@@ -9,19 +9,19 @@
 - [x] **P1-003**: Write the `core.editor` setup page — configuring VSCode as the default editor
 - [x] **P1-004**: Write the `core.autocrlf` page — line ending differences between Windows and Mac
 - [x] **P1-005**: Write the `core.excludesfile` page — setting up a global `.gitignore`
-- [ ] **P1-006**: Write the `pull.rebase` and `init.defaultBranch` page
-- [ ] **P1-007**: Write the `color.ui` page
-- [ ] **P1-008**: Write the `safe.directory` page — common gotcha on WSL + Windows filesystem
-- [ ] **P1-009**: Exercise: have tutors run `cat ~/.gitconfig` and verify their setup
+- [-] **P1-006**: Write the `pull.rebase` and `init.defaultBranch` page
+- [-] **P1-007**: Write the `color.ui` page
+- [-] **P1-008**: Write the `safe.directory` page — common gotcha on WSL + Windows filesystem
+- [-] **P1-009**: Exercise: have tutors run `cat ~/.gitconfig` and verify their setup
 
 ### Basics
 
 - [x] **P1-010**: Write conceptual explanation of git (middle/high school level)
 - [x] **P1-011**: Introduce essential Linux commands — `mkdir`, `cd`, `touch`, `ls`, `cat`
-- [ ] **P1-012**: Write the first repo page — `mkdir` -> `cd` -> `git init`
-- [ ] **P1-013**: Write the first file page — `touch` -> `git status`
-- [ ] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
-- [ ] **P1-015**: Write the first commit page — `git commit` -> `git log`
+- [-] **P1-012**: Write the first repo page — `mkdir` -> `cd` -> `git init`
+- [-] **P1-013**: Write the first file page — `touch` -> `git status`
+- [-] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
+- [-] **P1-015**: Write the first commit page — `git commit` -> `git log`
 - [ ] **P1-016**: Write the `.gitignore` page — what to ignore and why
 - [ ] **P1-017**: Exercise: create a small project, add files, commit, check log and diff
 
