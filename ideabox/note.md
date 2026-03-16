@@ -24,6 +24,17 @@
 
 ## Presentation
 
+### Emoji Usage
+
+Use emojis sparingly but deliberately for visual scanning:
+
+- Tips, hints, encouragement (e.g. 💡 ✅ 🎉)
+- Warnings or common mistakes (e.g. ⚠️ ❌)
+- Section landmarks within a long page (e.g. 📁 🔍)
+
+Keep it consistent across pages — same meaning, same emoji.
+Don't overuse; one or two per page is enough.
+
 ### Code Block Color-Coding
 
 Color-code blocks by role (CSS loaded via VSCode `markdown.styles`):
