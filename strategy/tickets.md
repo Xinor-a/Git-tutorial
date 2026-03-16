@@ -16,8 +16,8 @@
 
 ### Basics
 
-- [-] **P1-010**: Write conceptual explanation of git (middle/high school level)
-- [-] **P1-011**: Introduce essential Linux commands — `mkdir`, `cd`, `touch`, `ls`, `cat`
+- [x] **P1-010**: Write conceptual explanation of git (middle/high school level)
+- [x] **P1-011**: Introduce essential Linux commands — `mkdir`, `cd`, `touch`, `ls`, `cat`
 - [ ] **P1-012**: Write the first repo page — `mkdir` -> `cd` -> `git init`
 - [ ] **P1-013**: Write the first file page — `touch` -> `git status`
 - [ ] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
