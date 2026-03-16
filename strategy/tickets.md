@@ -1,5 +1,9 @@
 # Tickets
 
+## Infrastructure
+
+- [ ] **INF-001**: Add `docs/stylesheets/extra.css` with color-coded block classes (`code-input`, `code-output`, `code-error`) and wire it up in `.vscode/settings.json` via `markdown.styles`
+
 ## Part 1: Local
 
 ### Tooling & Setup
