@@ -10,9 +10,18 @@
 
 ## Up Next
 
-### Priority: INF-001 (unblocks visual polish on all future pages)
+### Priority 1: INF-001 (unblocks visual polish on all future pages)
 
 - [ ] INF-001: Add `docs/stylesheets/extra.css` + `.vscode/settings.json`
+
+### Priority 2: Retrofit existing docs to match note.md guidelines
+
+Update all pages under `docs/` (P1-001 – P1-015) to align with the two new conventions in `ideabox/note.md`:
+
+1. **Code block color-coding** — wrap command input/output/error fences in `<div class="code-input/output/error">` (requires INF-001 to land first)
+2. **Emoji usage** — add appropriate emojis (💡 ✅ ⚠️ ❌ etc.) at tips, warnings, and section landmarks; keep it to one or two per page
+
+This is an integration pass — can be done section by section, in parallel across pages.
 
 ### Then: continue Part 1 — Basics (can parallelize P1-016/017 with branching section start)
 
