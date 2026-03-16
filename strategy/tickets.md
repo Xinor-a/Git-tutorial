@@ -4,11 +4,11 @@
 
 ### Tooling & Setup
 
-- [-] **P1-001**: Create README.md as the entrypoint with index links to all pages
-- [-] **P1-002**: Write the gitconfig setup page — `user.name`, `user.email`
-- [-] **P1-003**: Write the `core.editor` setup page — configuring VSCode as the default editor
-- [-] **P1-004**: Write the `core.autocrlf` page — line ending differences between Windows and Mac
-- [-] **P1-005**: Write the `core.excludesfile` page — setting up a global `.gitignore`
+- [x] **P1-001**: Create README.md as the entrypoint with index links to all pages
+- [x] **P1-002**: Write the gitconfig setup page — `user.name`, `user.email`
+- [x] **P1-003**: Write the `core.editor` setup page — configuring VSCode as the default editor
+- [x] **P1-004**: Write the `core.autocrlf` page — line ending differences between Windows and Mac
+- [x] **P1-005**: Write the `core.excludesfile` page — setting up a global `.gitignore`
 - [ ] **P1-006**: Write the `pull.rebase` and `init.defaultBranch` page
 - [ ] **P1-007**: Write the `color.ui` page
 - [ ] **P1-008**: Write the `safe.directory` page — common gotcha on WSL + Windows filesystem
