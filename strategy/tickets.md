@@ -18,10 +18,10 @@
 
 - [x] **P1-010**: Write conceptual explanation of git (middle/high school level)
 - [x] **P1-011**: Introduce essential Linux commands — `mkdir`, `cd`, `touch`, `ls`, `cat`
-- [-] **P1-012**: Write the first repo page — `mkdir` -> `cd` -> `git init`
-- [-] **P1-013**: Write the first file page — `touch` -> `git status`
-- [-] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
-- [-] **P1-015**: Write the first commit page — `git commit` -> `git log`
+- [x] **P1-012**: Write the first repo page — `mkdir` -> `cd` -> `git init`
+- [x] **P1-013**: Write the first file page — `touch` -> `git status`
+- [x] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
+- [x] **P1-015**: Write the first commit page — `git commit` -> `git log`
 - [ ] **P1-016**: Write the `.gitignore` page — what to ignore and why
 - [ ] **P1-017**: Exercise: create a small project, add files, commit, check log and diff
 
