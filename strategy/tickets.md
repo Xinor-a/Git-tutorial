@@ -9,10 +9,10 @@
 - [x] **P1-003**: Write the `core.editor` setup page — configuring VSCode as the default editor
 - [x] **P1-004**: Write the `core.autocrlf` page — line ending differences between Windows and Mac
 - [x] **P1-005**: Write the `core.excludesfile` page — setting up a global `.gitignore`
-- [-] **P1-006**: Write the `pull.rebase` and `init.defaultBranch` page
-- [-] **P1-007**: Write the `color.ui` page
-- [-] **P1-008**: Write the `safe.directory` page — common gotcha on WSL + Windows filesystem
-- [-] **P1-009**: Exercise: have tutors run `cat ~/.gitconfig` and verify their setup
+- [x] **P1-006**: Write the `pull.rebase` and `init.defaultBranch` page
+- [x] **P1-007**: Write the `color.ui` page
+- [x] **P1-008**: Write the `safe.directory` page — common gotcha on WSL + Windows filesystem
+- [x] **P1-009**: Exercise: have tutors run `cat ~/.gitconfig` and verify their setup
 
 ### Basics
 
