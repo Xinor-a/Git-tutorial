@@ -26,7 +26,7 @@
 - [x] **P1-013**: Write the first file page — `touch` -> `git status`
 - [x] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
 - [x] **P1-015**: Write the first commit page — `git commit` -> `git log`
-- [-] **P1-016**: Write the `.gitignore` page — what to ignore and why
+- [x] **P1-016**: Write the `.gitignore` page — what to ignore and why
 - [ ] **P1-017**: Exercise: create a small project, add files, commit, check log and diff
 
 ### Branching
