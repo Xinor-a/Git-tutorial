@@ -5,15 +5,15 @@
 
 ## What & Why
 
-`git push` は、ローカルで積み上げたコミットをリモートリポジトリ（GitHub）へ送るコマンドです。
-プッシュをしないと、あなたのコンピュータにしか変更が存在しません。
+`git push` は、ローカルで積み上げたコミットをリモートリポジトリ（GitHub）へ送るコマンドです。  
+プッシュをしないと、あなたのコンピュータにしか変更が存在しません。  
 チームで作業するときも、一人で作業するときも、「完成したらプッシュ」が基本の流れです。
 
 ## Content
 
 ### シナリオ：新機能ブランチをGitHubへ送ろう
 
-あなたはローカルで `feature/top-page` というブランチを作り、いくつかコミットしました。
+あなたはローカルで `feature/top-page` というブランチを作り、いくつかコミットしました。  
 これをGitHubへ送って、チームに見せましょう。
 
 ---
@@ -58,7 +58,7 @@ git push origin feature/top-page
 
 ### ③ `-u` オプションで上流ブランチを設定する
 
-毎回 `git push origin feature/top-page` と打つのは長いですね。
+毎回 `git push origin feature/top-page` と打つのは長いですね。  
 `-u`（`--set-upstream` の略）オプションを使うと、次回から `git push` だけで済むようになります。
 
 ```bash
@@ -87,8 +87,8 @@ hint: not have locally. Integrate the remote changes (e.g.
 hint: 'git pull ...') before pushing again.
 ```
 
-これは「リモートに自分が持っていない変更があるよ」というメッセージです。
-解決策は、まず `git pull` でリモートの変更を取り込んでから、再度プッシュすることです。
+これは「リモートに自分が持っていない変更があるよ」というメッセージです。  
+解決策は、まず `git pull` でリモートの変更を取り込んでから、再度プッシュすることです。  
 `git pull` については[次のページ](02-pull.md)で詳しく説明します。
 
 ---
@@ -105,7 +105,7 @@ git push origin --delete feature/old-branch
 
 ### ⚠️ `--force` は共有ブランチで絶対に使わない
 
-`git push --force`（または `-f`）というオプションがあります。
+`git push --force`（または `-f`）というオプションがあります。  
 これはリモートの履歴を強制的に上書きするもので、**チームで共有しているブランチで使うと他の人のコミットが消える**危険があります。
 
 ```bash
@@ -113,7 +113,7 @@ git push origin --delete feature/old-branch
 git push --force origin main
 ```
 
-`--force` を使ってよいのは「自分だけが使っているブランチで、どうしても履歴を書き直したい」という限られた場面だけです。
+`--force` を使ってよいのは「自分だけが使っているブランチで、どうしても履歴を書き直したい」という限られた場面だけです。  
 迷ったら使わない、それが鉄則です。
 
 ## Summary
