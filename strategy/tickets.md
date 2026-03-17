@@ -36,18 +36,18 @@
 - [x] **P1-020**: Write the `git checkout` page — relationship to `git switch`, when to use which
 - [x] **P1-021**: Write the `git merge` page — merging branches with a scenario
 - [x] **P1-022**: Write the merge conflict page — intentionally cause one, then resolve it
-- [-] **P1-023**: Write the `git rebase` page — what it does, when to use it vs merge
-- [-] **P1-024**: Write the `git stash` page — scenario: need to switch branches mid-work
-- [-] **P1-025**: Exercise: branch, commit, merge, resolve a conflict, stash and restore
+- [x] **P1-023**: Write the `git rebase` page — what it does, when to use it vs merge
+- [x] **P1-024**: Write the `git stash` page — scenario: need to switch branches mid-work
+- [x] **P1-025**: Exercise: branch, commit, merge, resolve a conflict, stash and restore
 
 ### Advanced
 
 - [x] **P1-026**: Write the `git reset` page — soft, mixed, hard with scenarios
 - [x] **P1-027**: Write the `git revert` page — safely undoing a public commit
 - [x] **P1-028**: Write the `git restore` page — discarding working tree changes
-- [-] **P1-029**: Write the `git reflog` page — recovering lost commits
-- [-] **P1-030**: Write the `git cherry-pick` page
-- [-] **P1-031**: Write the `git bisect` page — finding the commit that introduced a bug
+- [x] **P1-029**: Write the `git reflog` page — recovering lost commits
+- [x] **P1-030**: Write the `git cherry-pick` page
+- [x] **P1-031**: Write the `git bisect` page — finding the commit that introduced a bug
 - [-] **P1-032**: Write the `git rebase -i` page — squashing and reordering commits
 - [-] **P1-033**: Write the `git worktree` page
 - [-] **P1-034**: Write the commit message conventions page — Conventional Commits
