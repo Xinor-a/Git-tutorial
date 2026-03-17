@@ -66,7 +66,7 @@
 
 - [-] **P2-005**: Write the fork guide — step-by-step entry point for all remote exercises
 - [-] **P2-006**: Write the `git clone` page — cloning the forked repo
-- [-] **P2-007**: Set up GitHub Actions to simulate a collaborator (auto-commits/branches)
+- [x] **P2-007**: Set up GitHub Actions to simulate a collaborator (auto-commits/branches)
 - [-] **P2-008**: Write the pull request page — creating and reviewing PRs
 - [-] **P2-009**: Write the issues page — tracking work with GitHub Issues
 
