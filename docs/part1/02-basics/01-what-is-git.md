@@ -1,6 +1,6 @@
 # gitって何だろう？
 
-[< Previous: gitconfig 確認演習](../../01-setup/08-exercise-verify-gitconfig.md) | [Back to Index](../../../README.md) | [Next: Linuxコマンド入門 >](02-linux-commands.md)
+[< Previous: gitconfig 確認演習](../01-setup/08-exercise-verify-gitconfig.md) | [Back to Index](../../../README.md) | [Next: Linuxコマンド入門 >](02-linux-commands.md)
 
 ## What & Why
 
@@ -131,4 +131,4 @@ git help
 
 この演習ではファイルを変更していないので、特にリセット操作は不要。もう一度確認したい場合は、同じコマンドをもう一度実行してみよう。
 
-[< Previous: gitconfig 確認演習](../../01-setup/08-exercise-verify-gitconfig.md) | [Back to Index](../../../README.md) | [Next: Linuxコマンド入門 >](02-linux-commands.md)
+[< Previous: gitconfig 確認演習](../01-setup/08-exercise-verify-gitconfig.md) | [Back to Index](../../../README.md) | [Next: Linuxコマンド入門 >](02-linux-commands.md)

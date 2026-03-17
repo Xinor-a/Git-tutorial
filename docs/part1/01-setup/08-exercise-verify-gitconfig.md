@@ -1,6 +1,6 @@
 # 設定を確認しよう
 
-[< Previous: safe.directory の設定](07-safe-directory.md) | [Back to Index](../../../README.md) | [Next: Gitって何？ >](../../02-basics/01-what-is-git.md)
+[< Previous: safe.directory の設定](07-safe-directory.md) | [Back to Index](../../../README.md) | [Next: Gitって何？ >](../02-basics/01-what-is-git.md)
 
 ## What & Why
 
@@ -152,4 +152,4 @@ rm ~/.gitconfig
 
 削除後は各ページの手順に従って、最初から設定し直してください。
 
-[< Previous: safe.directory の設定](07-safe-directory.md) | [Back to Index](../../../README.md) | [Next: Gitって何？ >](../../02-basics/01-what-is-git.md)
+[< Previous: safe.directory の設定](07-safe-directory.md) | [Back to Index](../../../README.md) | [Next: Gitって何？ >](../02-basics/01-what-is-git.md)

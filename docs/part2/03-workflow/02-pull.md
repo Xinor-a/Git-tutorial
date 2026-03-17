@@ -67,7 +67,7 @@ git pull  =  git fetch  +  git merge
 
 `git pull` はデフォルトでマージを行いますが、`pull.rebase = true` に設定している場合は  
 `git merge` の代わりに `git rebase` が実行されます。  
-この設定は [Part1 の gitconfig ページ](../../part1/01-setup/06-gitconfig-pull-rebase.md) で紹介しています。
+この設定は [Part1 の gitconfig ページ](../../part1/01-setup/05-pull-rebase-defaultbranch.md) で紹介しています。
 
 rebase モードでプルすると、マージコミットが作られず履歴がきれいに一本線になります。
 
@@ -115,7 +115,7 @@ CONFLICT (content): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-このコンフリクトの解消方法は、[マージコンフリクトのページ](../../part1/03-branching/06-merge-conflict.md)で詳しく説明しています。  
+このコンフリクトの解消方法は、[マージコンフリクトのページ](../../part1/03-branching/05-merge-conflict.md)で詳しく説明しています。  
 プルのコンフリクトも解消手順はまったく同じです。
 
 ## Summary

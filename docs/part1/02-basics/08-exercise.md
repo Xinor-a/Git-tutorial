@@ -34,11 +34,11 @@
 
 各コマンドの詳細はこちら:
 
-- [git init → リポジトリを作る](./03-git-status.md)（`git init` は `git status` のページで紹介している）
-- [git status](./03-git-status.md)
-- [git add](./04-git-add.md)
-- [git diff](./05-git-diff.md)
-- [git commit](./06-git-commit.md)
+- [git init → リポジトリを作る](./03-first-repo.md)（`git init` は `03-first-repo.md` のページで紹介している）
+- [git status](./04-first-file.md)
+- [git add](./05-staging.md)
+- [git diff](./05-staging.md)
+- [git commit](./06-first-commit.md)
 - [git log](./07-gitignore.md)（`git log` は `.gitignore` ページまでに登場している）
 - [.gitignore](./07-gitignore.md)
 

@@ -95,7 +95,7 @@ git worktree remove ../hotfix
 
 | 状況 | おすすめ |
 |---|---|
-| ちょっと確認したい、すぐ戻る | `git stash`（[P1-024](../03-branching/09-stash.md)参照） |
+| ちょっと確認したい、すぐ戻る | `git stash`（[P1-024](../03-branching/07-stash.md)参照） |
 | 並行して長時間作業したい | `git worktree` |
 | 2つのブランチを同時にエディタで開きたい | `git worktree` |
 | 別ブランチのファイルを参照したいだけ | `git worktree` |

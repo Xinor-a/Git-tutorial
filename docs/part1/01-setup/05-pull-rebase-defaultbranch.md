@@ -25,7 +25,7 @@ Gitには、あとあとトラブルになりやすいデフォルト動作が�
 どちらを使うかを明示しておかないと、Gitが警告を出すことがあります。
 
 今は「マージで取り込む（`false`）」と明示しておきましょう。  
-マージとリベースの違いは[ブランチのページ](../03-branching/01-branch-basics.md)で詳しく説明します。
+マージとリベースの違いは[ブランチのページ](../03-branching/01-branch-concept.md)で詳しく説明します。
 
 ```bash
 git config --global pull.rebase false

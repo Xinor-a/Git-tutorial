@@ -55,7 +55,7 @@ git checkout -- diary.md
 - **`git switch`** → ブランチの切り替え専用
 - **`git restore`** → ファイルの変更を元に戻す専用
 
-`git restore` については[後のページ](../04-advanced/git-restore.md)で詳しく扱います。
+`git restore` については[後のページ](../04-advanced/03-restore.md)で詳しく扱います。
 
 ---
 

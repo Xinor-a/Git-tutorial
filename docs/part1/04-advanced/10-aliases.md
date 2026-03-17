@@ -54,7 +54,7 @@ git config --global alias.lg 'log --oneline --graph --all --decorate'
 | `unstage` | `reset HEAD --` | ステージから取り消す |
 | `lg` | `log --oneline --graph --all --decorate` | ブランチグラフ付きログ |
 
-`lg` は特に便利だ。`--graph` オプション（[P1-025](../03-branching/10-log-graph.md)で紹介）を毎回打たなくて済む：
+`lg` は特に便利だ。`--graph` オプション（[P1-025](../03-branching/08-exercise.md)で紹介）を毎回打たなくて済む：
 
 ```bash
 git lg
