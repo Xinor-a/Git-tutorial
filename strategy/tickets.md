@@ -57,26 +57,26 @@
 
 ### GitHub Basics
 
-- [-] **P2-001**: Write conceptual explanation of GitHub (middle/high school level)
-- [-] **P2-002**: Write the remote vs local page — what "remote" means
-- [-] **P2-003**: Write the account setup page — creating a GitHub account
-- [-] **P2-004**: Write the SSH configuration page — generating keys and adding to GitHub
+- [x] **P2-001**: Write conceptual explanation of GitHub (middle/high school level)
+- [x] **P2-002**: Write the remote vs local page — what "remote" means
+- [x] **P2-003**: Write the account setup page — creating a GitHub account
+- [x] **P2-004**: Write the SSH configuration page — generating keys and adding to GitHub
 
 ### Collaboration
 
-- [-] **P2-005**: Write the fork guide — step-by-step entry point for all remote exercises
-- [-] **P2-006**: Write the `git clone` page — cloning the forked repo
+- [x] **P2-005**: Write the fork guide — step-by-step entry point for all remote exercises
+- [x] **P2-006**: Write the `git clone` page — cloning the forked repo
 - [x] **P2-007**: Set up GitHub Actions to simulate a collaborator (auto-commits/branches)
-- [-] **P2-008**: Write the pull request page — creating and reviewing PRs
-- [-] **P2-009**: Write the issues page — tracking work with GitHub Issues
+- [x] **P2-008**: Write the pull request page — creating and reviewing PRs
+- [x] **P2-009**: Write the issues page — tracking work with GitHub Issues
 
 ### Workflow
 
-- [-] **P2-010**: Write the `git push` page — pushing local changes to remote
-- [-] **P2-011**: Write the `git pull` page — pulling remote changes
-- [-] **P2-012**: Write the `git fetch` page — fetching without merging, difference from pull
+- [x] **P2-010**: Write the `git push` page — pushing local changes to remote
+- [x] **P2-011**: Write the `git pull` page — pulling remote changes
+- [x] **P2-012**: Write the `git fetch` page — fetching without merging, difference from pull
 
 ### Advanced
 
-- [-] **P2-013**: Write the `git tag` page — tagging releases
-- [-] **P2-014**: Write the `git submodule` page
+- [x] **P2-013**: Write the `git tag` page — tagging releases
+- [x] **P2-014**: Write the `git submodule` page
