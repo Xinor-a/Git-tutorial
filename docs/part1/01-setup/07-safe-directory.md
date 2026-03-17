@@ -4,16 +4,16 @@
 
 ## What & Why
 
-WSL（Windows Subsystem for Linux）を使っていると、
-Windowsのファイルシステム上（`/mnt/c/...`）にリポジトリを作ったとき、
-Gitが突然エラーを出すことがあります。
+WSL（Windows Subsystem for Linux）を使っていると、  
+Windowsのファイルシステム上（`/mnt/c/...`）にリポジトリを作ったとき、  
+Gitが突然エラーを出すことがあります。  
 これはGitのセキュリティ設定が原因です。このページではその原因と解決方法を説明します。
 
 ## Content
 
 ### シナリオ
 
-セットアップが終わったと思ったら、いざリポジトリを作ろうとしたときに見知らぬエラーが出た…
+セットアップが終わったと思ったら、いざリポジトリを作ろうとしたときに見知らぬエラーが出た…  
 WSL環境ではよくあるハマりポイントです。
 
 ---
@@ -29,15 +29,15 @@ To add an exception for this directory, call:
 	git config --global --add safe.directory /mnt/c/projects/myapp
 ```
 
-「**dubious ownership**（怪しいオーナー）」というのは、
+「**dubious ownership**（怪しいオーナー）」というのは、  
 「このディレクトリの所有者が今のユーザーと違う」とGitが判断しているサインです。
 
 ---
 
 ### なぜこうなるの？
 
-WSLのLinux環境からWindowsのファイルシステム（`/mnt/c/` 以下）を見ると、
-ファイルの「所有者情報」がLinux側のユーザーと一致しないことがあります。
+WSLのLinux環境からWindowsのファイルシステム（`/mnt/c/` 以下）を見ると、  
+ファイルの「所有者情報」がLinux側のユーザーと一致しないことがあります。  
 Git 2.35.2 以降、セキュリティ強化のためにこのチェックが追加されました。
 
 ---
@@ -112,8 +112,8 @@ cat ~/.gitconfig
 
 ### WSLを使っていない人は？
 
-WindowsのGit（Git for Windows）を直接使っている場合や、
-macOS・Linux上で作業している場合は、このエラーは通常出ません。
+WindowsのGit（Git for Windows）を直接使っている場合や、  
+macOS・Linux上で作業している場合は、このエラーは通常出ません。  
 このページの設定はスキップしても大丈夫です。
 
 ## Summary

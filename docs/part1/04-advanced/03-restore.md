@@ -5,8 +5,8 @@
 
 ## What & Why
 
-「このファイル、編集しすぎてぐちゃぐちゃになった。最後のコミット時点に戻したい」——そんなとき `git restore` が使えます。
-コミット単位で巻き戻す reset/revert と違い、`git restore` は **ファイル単位で変更を元に戻す** コマンドです。
+「このファイル、編集しすぎてぐちゃぐちゃになった。最後のコミット時点に戻したい」——そんなとき `git restore` が使えます。  
+コミット単位で巻き戻す reset/revert と違い、`git restore` は **ファイル単位で変更を元に戻す** コマンドです。  
 ステージングの取り消しにも使えて、「間違えて `git add` してしまった」ときにも活躍します。
 
 ## Content
@@ -118,7 +118,7 @@ Changes not staged for commit:
 
 ### 古いコマンドとの関係
 
-`git restore` は Git 2.23（2019年）で追加されたコマンドです。
+`git restore` は Git 2.23（2019年）で追加されたコマンドです。  
 それ以前は別のコマンドで同じことをしていました：
 
 | やりたいこと | 旧コマンド | 新コマンド |
@@ -126,7 +126,7 @@ Changes not staged for commit:
 | ファイルの変更を捨てる | `git checkout -- <ファイル>` | `git restore <ファイル>` |
 | ステージングを取り消す | `git reset HEAD <ファイル>` | `git restore --staged <ファイル>` |
 
-古いチュートリアルやStack Overflowで旧コマンドが出てきても、やっていることは同じです。
+古いチュートリアルやStack Overflowで旧コマンドが出てきても、やっていることは同じです。  
 現在は `git restore` が推奨されています。
 
 ---
@@ -216,7 +216,7 @@ git restore --staged config.txt
 git status
 ```
 
-`main.txt` はステージされたまま、`config.txt` はステージから外れていることを確認してください。
+`main.txt` はステージされたまま、`config.txt` はステージから外れていることを確認してください。  
 `config.txt` のファイル内容は変わっていないことも確認しましょう：
 
 ```bash

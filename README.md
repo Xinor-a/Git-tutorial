@@ -18,7 +18,7 @@ Gitをはじめて使う中学生・高校生向けのストーリー型チュ�
 | [05. pull.rebase と init.defaultBranch](docs/part1/01-setup/05-pull-rebase-defaultbranch.md) | デフォルトブランチを `main` に |
 | [06. color.ui の設定](docs/part1/01-setup/06-color-ui.md) | ターミナル出力を色付きに |
 | [07. safe.directory の設定](docs/part1/01-setup/07-safe-directory.md) | WSL + Windows でのよくあるハマりポイント |
-| [08. 演習: gitconfig の確認](docs/part1/01-setup/08-verify-gitconfig.md) | `cat ~/.gitconfig` で設定を確認する |
+| [08. 演習: gitconfig の確認](docs/part1/01-setup/08-exercise-verify-gitconfig.md) | `cat ~/.gitconfig` で設定を確認する |
 
 ### 第2章: Gitの基本
 

@@ -4,16 +4,16 @@
 
 ## What & Why
 
-ここまでのページで、Gitを使うための基本設定をすべて行いました。
-このページでは `cat ~/.gitconfig` と `git config --list` を使って、
+ここまでのページで、Gitを使うための基本設定をすべて行いました。  
+このページでは `cat ~/.gitconfig` と `git config --list` を使って、  
 設定が正しく揃っているかを確認します。
 
 ## Content
 
 ### シナリオ
 
-「よし、全部設定した！」と思っても、どこかで入力ミスがあったり、
-コマンドを飛ばしてしまったりすることはよくあります。
+「よし、全部設定した！」と思っても、どこかで入力ミスがあったり、  
+コマンドを飛ばしてしまったりすることはよくあります。  
 最後にまとめて確認しておきましょう。
 
 ---
@@ -70,8 +70,8 @@ color.ui=auto
 safe.directory=*
 ```
 
-`cat ~/.gitconfig` はファイルをそのまま表示しますが、
-`git config --list` はキーと値をフラットな一覧で表示します。
+`cat ~/.gitconfig` はファイルをそのまま表示しますが、  
+`git config --list` はキーと値をフラットな一覧で表示します。  
 どちらも確認方法として使えます。
 
 ---
@@ -128,14 +128,14 @@ git config --global core.editor
 
 4. 不足している項目があれば、対応するページに戻って設定しよう。
 
-   | 設定 | 参照ページ |
-   |---|---|
-   | `user.name` / `user.email` | [ユーザー名とメールアドレスを設定しよう](01-gitconfig-user.md) |
-   | `core.editor` | [エディタを設定しよう](02-gitconfig-editor.md) |
-   | `core.autocrlf` | [改行コードの設定](03-autocrlf.md) |
-   | `core.excludesfile` | [グローバル .gitignore を設定しよう](04-excludesfile.md) |
-   | `pull.rebase` / `init.defaultBranch` | [pull.rebase と init.defaultBranch の設定](05-pull-rebase-defaultbranch.md) |
-   | `color.ui` | [ターミナルの色を設定しよう](06-color-ui.md) |
+   | 設定 | 参照ページ |  
+   |---|---|  
+   | `user.name` / `user.email` | [ユーザー名とメールアドレスを設定しよう](01-gitconfig-user.md) |  
+   | `core.editor` | [エディタを設定しよう](02-gitconfig-editor.md) |  
+   | `core.autocrlf` | [改行コードの設定](03-autocrlf.md) |  
+   | `core.excludesfile` | [グローバル .gitignore を設定しよう](04-excludesfile.md) |  
+   | `pull.rebase` / `init.defaultBranch` | [pull.rebase と init.defaultBranch の設定](05-pull-rebase-defaultbranch.md) |  
+   | `color.ui` | [ターミナルの色を設定しよう](06-color-ui.md) |  
    | `safe.directory` | [safe.directory の設定](07-safe-directory.md) |
 
 ---
