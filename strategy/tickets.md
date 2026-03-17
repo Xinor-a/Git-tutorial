@@ -48,10 +48,10 @@
 - [x] **P1-029**: Write the `git reflog` page — recovering lost commits
 - [x] **P1-030**: Write the `git cherry-pick` page
 - [x] **P1-031**: Write the `git bisect` page — finding the commit that introduced a bug
-- [-] **P1-032**: Write the `git rebase -i` page — squashing and reordering commits
-- [-] **P1-033**: Write the `git worktree` page
-- [-] **P1-034**: Write the commit message conventions page — Conventional Commits
-- [-] **P1-035**: Write the aliases page — useful shortcuts, customizing git
+- [x] **P1-032**: Write the `git rebase -i` page — squashing and reordering commits
+- [x] **P1-033**: Write the `git worktree` page
+- [x] **P1-034**: Write the commit message conventions page — Conventional Commits
+- [x] **P1-035**: Write the aliases page — useful shortcuts, customizing git
 
 ## Part 2: Remote
 
