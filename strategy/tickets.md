@@ -31,11 +31,11 @@
 
 ### Branching
 
-- [-] **P1-018**: Write the branch concept page — what branches are and why they exist
-- [-] **P1-019**: Write the `git branch` / `git switch` page — creating and switching branches
-- [-] **P1-020**: Write the `git checkout` page — relationship to `git switch`, when to use which
-- [-] **P1-021**: Write the `git merge` page — merging branches with a scenario
-- [-] **P1-022**: Write the merge conflict page — intentionally cause one, then resolve it
+- [x] **P1-018**: Write the branch concept page — what branches are and why they exist
+- [x] **P1-019**: Write the `git branch` / `git switch` page — creating and switching branches
+- [x] **P1-020**: Write the `git checkout` page — relationship to `git switch`, when to use which
+- [x] **P1-021**: Write the `git merge` page — merging branches with a scenario
+- [x] **P1-022**: Write the merge conflict page — intentionally cause one, then resolve it
 - [-] **P1-023**: Write the `git rebase` page — what it does, when to use it vs merge
 - [-] **P1-024**: Write the `git stash` page — scenario: need to switch branches mid-work
 - [-] **P1-025**: Exercise: branch, commit, merge, resolve a conflict, stash and restore
