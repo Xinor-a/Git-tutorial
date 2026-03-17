@@ -42,9 +42,9 @@
 
 ### Advanced
 
-- [-] **P1-026**: Write the `git reset` page — soft, mixed, hard with scenarios
-- [-] **P1-027**: Write the `git revert` page — safely undoing a public commit
-- [-] **P1-028**: Write the `git restore` page — discarding working tree changes
+- [x] **P1-026**: Write the `git reset` page — soft, mixed, hard with scenarios
+- [x] **P1-027**: Write the `git revert` page — safely undoing a public commit
+- [x] **P1-028**: Write the `git restore` page — discarding working tree changes
 - [-] **P1-029**: Write the `git reflog` page — recovering lost commits
 - [-] **P1-030**: Write the `git cherry-pick` page
 - [-] **P1-031**: Write the `git bisect` page — finding the commit that introduced a bug
