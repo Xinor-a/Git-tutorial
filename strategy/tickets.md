@@ -27,31 +27,31 @@
 - [x] **P1-014**: Write the staging page — `git add` -> `git status` -> `git diff`
 - [x] **P1-015**: Write the first commit page — `git commit` -> `git log`
 - [x] **P1-016**: Write the `.gitignore` page — what to ignore and why
-- [ ] **P1-017**: Exercise: create a small project, add files, commit, check log and diff
+- [-] **P1-017**: Exercise: create a small project, add files, commit, check log and diff
 
 ### Branching
 
-- [ ] **P1-018**: Write the branch concept page — what branches are and why they exist
-- [ ] **P1-019**: Write the `git branch` / `git switch` page — creating and switching branches
-- [ ] **P1-020**: Write the `git checkout` page — relationship to `git switch`, when to use which
-- [ ] **P1-021**: Write the `git merge` page — merging branches with a scenario
-- [ ] **P1-022**: Write the merge conflict page — intentionally cause one, then resolve it
-- [ ] **P1-023**: Write the `git rebase` page — what it does, when to use it vs merge
-- [ ] **P1-024**: Write the `git stash` page — scenario: need to switch branches mid-work
-- [ ] **P1-025**: Exercise: branch, commit, merge, resolve a conflict, stash and restore
+- [-] **P1-018**: Write the branch concept page — what branches are and why they exist
+- [-] **P1-019**: Write the `git branch` / `git switch` page — creating and switching branches
+- [-] **P1-020**: Write the `git checkout` page — relationship to `git switch`, when to use which
+- [-] **P1-021**: Write the `git merge` page — merging branches with a scenario
+- [-] **P1-022**: Write the merge conflict page — intentionally cause one, then resolve it
+- [-] **P1-023**: Write the `git rebase` page — what it does, when to use it vs merge
+- [-] **P1-024**: Write the `git stash` page — scenario: need to switch branches mid-work
+- [-] **P1-025**: Exercise: branch, commit, merge, resolve a conflict, stash and restore
 
 ### Advanced
 
-- [ ] **P1-026**: Write the `git reset` page — soft, mixed, hard with scenarios
-- [ ] **P1-027**: Write the `git revert` page — safely undoing a public commit
-- [ ] **P1-028**: Write the `git restore` page — discarding working tree changes
-- [ ] **P1-029**: Write the `git reflog` page — recovering lost commits
-- [ ] **P1-030**: Write the `git cherry-pick` page
-- [ ] **P1-031**: Write the `git bisect` page — finding the commit that introduced a bug
-- [ ] **P1-032**: Write the `git rebase -i` page — squashing and reordering commits
-- [ ] **P1-033**: Write the `git worktree` page
-- [ ] **P1-034**: Write the commit message conventions page — Conventional Commits
-- [ ] **P1-035**: Write the aliases page — useful shortcuts, customizing git
+- [-] **P1-026**: Write the `git reset` page — soft, mixed, hard with scenarios
+- [-] **P1-027**: Write the `git revert` page — safely undoing a public commit
+- [-] **P1-028**: Write the `git restore` page — discarding working tree changes
+- [-] **P1-029**: Write the `git reflog` page — recovering lost commits
+- [-] **P1-030**: Write the `git cherry-pick` page
+- [-] **P1-031**: Write the `git bisect` page — finding the commit that introduced a bug
+- [-] **P1-032**: Write the `git rebase -i` page — squashing and reordering commits
+- [-] **P1-033**: Write the `git worktree` page
+- [-] **P1-034**: Write the commit message conventions page — Conventional Commits
+- [-] **P1-035**: Write the aliases page — useful shortcuts, customizing git
 
 ## Part 2: Remote
 
