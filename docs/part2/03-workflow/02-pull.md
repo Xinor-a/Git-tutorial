@@ -130,7 +130,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 **準備：** GitHubにリポジトリがあり、ローカルにクローンしてある状態から始めます。
 
-1. GitHubのWebインターフェイスで直接ファイルを編集し、コミットしてみましょう
+1. GitHubのWebインターフェイスで直接ファイルを編集し、コミットしてみましょう  
    （リモートにローカルより新しいコミットを作る練習です）。
 
 2. ローカルで `git status` と `git log --oneline` を確認して、まだ変更が来ていないことを確認しましょう。
@@ -152,7 +152,7 @@ Automatic merge failed; fix conflicts and then commit the result.
    git log --oneline
    ```
 
-5. ローカルでも同じファイルを別の行に変更してコミットし、
+5. ローカルでも同じファイルを別の行に変更してコミットし、  
    再度 `git pull` を実行してマージコミットが作られることを観察してみましょう。
 
    ```bash

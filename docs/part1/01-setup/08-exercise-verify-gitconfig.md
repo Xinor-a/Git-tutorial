@@ -44,8 +44,8 @@ cat ~/.gitconfig
 	directory = *
 ```
 
-> **WSLを使っていない人へ**: `[safe]` セクションがなくても問題ありません。
-> また `autocrlf` の値は環境によって `true`（Windows）、`input`（Mac/Linux）と
+> **WSLを使っていない人へ**: `[safe]` セクションがなくても問題ありません。  
+> また `autocrlf` の値は環境によって `true`（Windows）、`input`（Mac/Linux）と  
 > 異なる場合があります。
 
 ---

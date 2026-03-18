@@ -38,8 +38,8 @@ Changes not staged for commit:
 git restore config.py
 ```
 
-> ⚠️ **警告：この操作は元に戻せません**
-> `git restore` で捨てた変更は、コミットされていないため reflog にも残りません。
+> ⚠️ **警告：この操作は元に戻せません**  
+> `git restore` で捨てた変更は、コミットされていないため reflog にも残りません。  
 > 本当に捨てていいか確認してから実行してください。
 
 実行後にステータスを確認：
@@ -68,7 +68,7 @@ Changes not staged for commit:
 git restore .
 ```
 
-> ⚠️ **警告：ステージされていないすべての変更が消えます。**
+> ⚠️ **警告：ステージされていないすべての変更が消えます。**  
 > 実行前に `git status` で何が変更されているかを必ず確認しましょう。
 
 ```bash

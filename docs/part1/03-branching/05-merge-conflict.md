@@ -85,11 +85,11 @@ Git はあなたに「この2つのどちらを使う？それとも両方いる
 マーカー行（`<<<<<<<`、`=======`、`>>>>>>>`）はすべて消してください。  
 マーカーが1文字でも残っていると、Git はコンフリクトが解決されていないと判断します。
 
-> 💡 **VSCode を使っている場合**
->
-> VSCode はコンフリクトマーカーを検出すると、ファイル上部に
-> 「Accept Current Change / Accept Incoming Change / Accept Both Changes」
-> のボタンを表示します。ボタンをクリックするだけで選べるので便利です。
+> 💡 **VSCode を使っている場合**  
+>  
+> VSCode はコンフリクトマーカーを検出すると、ファイル上部に  
+> 「Accept Current Change / Accept Incoming Change / Accept Both Changes」  
+> のボタンを表示します。ボタンをクリックするだけで選べるので便利です。  
 > ただし、「手動で編集する方法」も必ず覚えておいてください。どんな環境でも使えるからです。
 
 ### ④ `git add` でマーク済みにする
@@ -260,7 +260,7 @@ git branch -D conflict-test
 git checkout README.md
 ```
 
-> `git merge --abort` はマージ中の場合のみ有効です。
+> `git merge --abort` はマージ中の場合のみ有効です。  
 > マージ中でない場合はエラーになりますが、無視して次のコマンドに進んで大丈夫です。
 
 ---
