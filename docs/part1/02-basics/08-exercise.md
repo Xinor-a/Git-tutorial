@@ -55,19 +55,27 @@
 
 ### ステップ 1: プロジェクトディレクトリを作って初期化する
 
+<div class="code-input">
+
 ```bash
 mkdir recipe-notes
 cd recipe-notes
 git init
 ```
 
+</div>
+
 確認:
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
-期待される出力:
+</div>
+
+<div class="code-output">
 
 ```
 On branch main
@@ -77,18 +85,26 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
+</div>
+
 ---
 
 ### ステップ 2: ファイルを作る
 
 レシピを2〜3個テキストファイルに書いてみよう。
 
+<div class="code-input">
+
 ```bash
 touch oyakodon.txt
 touch miso-soup.txt
 ```
 
+</div>
+
 `oyakodon.txt` に内容を書く（エディタで開くか、以下のように入力する）:
+
+<div class="code-input">
 
 ```bash
 cat > oyakodon.txt << 'EOF'
@@ -110,6 +126,10 @@ cat > oyakodon.txt << 'EOF'
 EOF
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 cat > miso-soup.txt << 'EOF'
 # 味噌汁
@@ -127,15 +147,21 @@ cat > miso-soup.txt << 'EOF'
 EOF
 ```
 
+</div>
+
 ---
 
 ### ステップ 3: 状態を確認する
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
-期待される出力:
+</div>
+
+<div class="code-output">
 
 ```
 On branch main
@@ -150,18 +176,24 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
+</div>
+
 2つのファイルが「Untracked」になっている。
 
 ---
 
 ### ステップ 4: ステージに追加する
 
+<div class="code-input">
+
 ```bash
 git add oyakodon.txt miso-soup.txt
 git status
 ```
 
-期待される出力:
+</div>
+
+<div class="code-output">
 
 ```
 On branch main
@@ -174,13 +206,19 @@ Changes to be committed:
 	new file:   oyakodon.txt
 ```
 
+</div>
+
 ---
 
 ### ステップ 5: ステージの内容を確認する
 
+<div class="code-input">
+
 ```bash
 git diff --cached
 ```
+
+</div>
 
 追加した内容が `+` で表示されるのを確認しよう。
 
@@ -188,11 +226,15 @@ git diff --cached
 
 ### ステップ 6: 最初のコミットをする
 
+<div class="code-input">
+
 ```bash
 git commit -m "docs: 親子丼と味噌汁のレシピを追加"
 ```
 
-期待される出力:
+</div>
+
+<div class="code-output">
 
 ```
 [main (root-commit) xxxxxxx] docs: 親子丼と味噌汁のレシピを追加
@@ -201,26 +243,36 @@ git commit -m "docs: 親子丼と味噌汁のレシピを追加"
  create mode 100644 oyakodon.txt
 ```
 
+</div>
+
 ---
 
 ### ステップ 7: ログを確認する
+
+<div class="code-input">
 
 ```bash
 git log
 git log --oneline
 ```
 
-`git log --oneline` の出力例:
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx (HEAD -> main) docs: 親子丼と味噌汁のレシピを追加
 ```
+
+</div>
 
 ---
 
 ### ステップ 8: .gitignore を追加する
 
 メモ書きや一時ファイルはGit管理したくない。`.gitignore` を作ろう。
+
+<div class="code-input">
 
 ```bash
 cat > .gitignore << 'EOF'
@@ -233,20 +285,32 @@ memo-*.txt
 EOF
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git status
 ```
 
+</div>
+
 `.gitignore` が `Untracked files` に表示される。
+
+<div class="code-input">
 
 ```bash
 git add .gitignore
 git commit -m "chore: .gitignoreを追加"
 ```
 
+</div>
+
 ---
 
 ### ステップ 9: もう一つレシピを追加してコミットする
+
+<div class="code-input">
 
 ```bash
 cat > chahan.txt << 'EOF'
@@ -267,6 +331,10 @@ cat > chahan.txt << 'EOF'
 EOF
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git status
 git add chahan.txt
@@ -275,15 +343,21 @@ git diff --cached
 git commit -m "docs: チャーハンのレシピを追加"
 ```
 
+</div>
+
 ---
 
 ### ステップ 10: 最終ログを確認する
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
 
-期待される出力:
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx (HEAD -> main) docs: チャーハンのレシピを追加
@@ -291,18 +365,26 @@ xxxxxxx chore: .gitignoreを追加
 xxxxxxx docs: 親子丼と味噌汁のレシピを追加
 ```
 
+</div>
+
 3つのコミットが積み重なっている。おめでとう、Basicsセクション完走！
 
 ---
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 最初からやり直したい場合は、`recipe-notes` ディレクトリごと削除して再挑戦しよう。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf recipe-notes
 ```
+
+</div>
 
 その後、ステップ1から始めれば OK。
 
