@@ -13,15 +13,10 @@
 
 `git switch` が登場する前、ブランチの切り替えはずっと `git checkout` で行われていました。2つは「ブランチを切り替える」という点では同じ動作をします。
 
-```bash
-# これと……
-git switch hobby-section
-
-# これは同じ意味
-git checkout hobby-section
-```
-
 どちらを使っても `hobby-section` ブランチに切り替わります。
+
+- `git switch hobby-section`
+- `git checkout hobby-section`
 
 ---
 
@@ -94,56 +89,176 @@ git checkout -b <branch> # = git switch -c <branch>
 
 `my-diary` リポジトリで以下を試して、`git checkout` が `git switch` と同じ動作をすることを確認してください。
 
-1. 現在のブランチを確認する。
+### 演習 1: 現在のブランチを確認する
 
-   ```bash
-   git branch
-   ```
+<div class="code-input">
 
-2. `git checkout` でブランチを切り替えてみる（例：`experiment` ブランチがあれば）。
+```bash
+git branch
+```
 
-   ```bash
-   git checkout experiment
-   ```
+</div>
 
-3. `git status` で切り替わったことを確認する。
+<div class="code-output">
 
-   ```bash
-   git status
-   ```
+```
+* main
+```
 
-4. `main` に戻る。
+</div>
 
-   ```bash
-   git checkout main
-   ```
+---
 
-5. `git checkout -b` で新しいブランチを作って切り替える。
+### 演習 2: `git checkout` でブランチを切り替える
 
-   ```bash
-   git checkout -b checkout-test
-   ```
+`experiment` ブランチがあれば切り替えてみよう。
 
-6. `git branch` で `*` の位置を確認する。
+<div class="code-input">
 
-   ```bash
-   git branch
-   ```
+```bash
+git checkout experiment
+```
 
-7. `git switch main` で `main` に戻る。（`git switch` でも `git checkout` でもどちらでも OK）
+</div>
 
-   ```bash
-   git switch main
-   ```
+<div class="code-output">
+
+```
+Switched to branch 'experiment'
+```
+
+</div>
+
+`git status` で切り替わったことを確認する。
+
+<div class="code-input">
+
+```bash
+git status
+```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch experiment
+nothing to commit, working tree clean
+```
+
+</div>
+
+---
+
+### 演習 3: `main` に戻る
+
+<div class="code-input">
+
+```bash
+git checkout main
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Switched to branch 'main'
+```
+
+</div>
+
+---
+
+### 演習 4: `git checkout -b` で新しいブランチを作って切り替える
+
+<div class="code-input">
+
+```bash
+git checkout -b checkout-test
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Switched to a new branch 'checkout-test'
+```
+
+</div>
+
+`git branch` で `*` の位置を確認する。
+
+<div class="code-input">
+
+```bash
+git branch
+```
+
+</div>
+
+<div class="code-output">
+
+```
+* checkout-test
+  main
+```
+
+</div>
+
+---
+
+### 演習 5: `git switch` で `main` に戻る
+
+`git switch` でも `git checkout` でもどちらでも OK。
+
+<div class="code-input">
+
+```bash
+git switch main
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Switched to branch 'main'
+```
+
+</div>
+
+---
 
 ### Reset & Retry
 
-練習用ブランチを削除してやり直す場合は以下を実行してください。
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 git switch main
 git branch -d checkout-test
 ```
+
+</div>
+
+<div class="code-input">
+
+```bash
+git branch
+```
+
+</div>
+
+<div class="code-output">
+
+```
+* main
+```
+
+</div>
 
 <!-- prev/next navigation -->
 [< Previous: ブランチを作って切り替える](02-branch-switch.md) | [Back to Index](../../../README.md) | [Next: ブランチをマージする >](04-merge.md)
