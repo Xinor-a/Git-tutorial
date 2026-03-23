@@ -60,17 +60,7 @@ ls -l
 
 新しいフォルダを作るときに使う。`mkdir` は "Make Directory"（フォルダを作る）の略。
 
-```bash
-mkdir my-project
-```
-
-これで `my-project` というフォルダが作られる。確認してみよう：
-
-```bash
-ls
-```
-
-`my-project` が増えていれば成功だ。
+`mkdir my-project` のように実行すると `my-project` というフォルダが作られる。その後 `ls` で確認すると、`my-project` が増えているはずだ。
 
 ---
 
@@ -78,11 +68,7 @@ ls
 
 別のフォルダに移動するコマンド。`cd` は "Change Directory"（フォルダを移動）の略。
 
-```bash
-cd my-project
-```
-
-移動したら、今どこにいるか確認しよう：
+`cd my-project` で移動したあと `pwd` を実行すると、今いる場所が確認できる：
 
 ```bash
 pwd
@@ -92,41 +78,19 @@ pwd
 /home/yourname/my-project
 ```
 
-1つ上のフォルダに戻るときは `..` を使う：
-
-```bash
-cd ..
-```
+1つ上のフォルダに戻るときは `cd ..` を使う。
 
 ---
 
 ### ファイルを作る — `touch`
 
-空のファイルを作るコマンド。
-
-```bash
-touch hello.txt
-```
-
-確認：
-
-```bash
-ls
-```
-
-`hello.txt` が増えていれば成功。
+空のファイルを作るコマンド。`touch hello.txt` のように実行するとファイルが作られる。その後 `ls` で確認すると `hello.txt` が増えているはずだ。
 
 ---
 
 ### ファイルの中身を見る — `cat`
 
 テキストファイルの内容をターミナルに表示する。
-
-```bash
-cat hello.txt
-```
-
-`hello.txt` が空なので何も表示されないが、エラーにはならない。中身があるファイルで試してみよう：
 
 ```bash
 cat ~/.gitconfig
@@ -166,13 +130,19 @@ setup セクションで設定した gitconfig の内容が表示されるはず
 
 ### 演習 1: 今いる場所を確認する
 
+<div class="code-input">
+
 ```bash
 pwd
 ```
 
+</div>
+
 ホームディレクトリ（例：`/home/yourname`）が表示されることを確認しよう。
 
 ### 演習 2: フォルダを作って移動する
+
+<div class="code-input">
 
 ```bash
 mkdir linux-practice
@@ -180,42 +150,62 @@ cd linux-practice
 pwd
 ```
 
+</div>
+
 `pwd` で `linux-practice` の中にいることを確認しよう。
 
 ### 演習 3: ファイルを作って確認する
+
+<div class="code-input">
 
 ```bash
 touch memo.txt
 ls
 ```
 
+</div>
+
 `memo.txt` が表示されれば成功。
 
 ### 演習 4: 1つ上に戻って、フォルダが作られたか確認する
+
+<div class="code-input">
 
 ```bash
 cd ..
 ls
 ```
 
+</div>
+
 `linux-practice` フォルダが表示されることを確認しよう。
 
 ### 演習 5: gitconfig の中身を見てみる
+
+<div class="code-input">
 
 ```bash
 cat ~/.gitconfig
 ```
 
+</div>
+
 setup セクションで設定した内容（`name`、`email`、`editor` など）が表示されることを確認しよう。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 演習で作ったフォルダとファイルをすべて削除してやり直したいときは：
+
+<div class="code-input">
 
 ```bash
 cd ~
 rm -rf linux-practice
 ```
+
+</div>
 
 > `rm -rf` は削除したファイルを元に戻せないので、対象のパスをよく確認してから実行しよう。
 
