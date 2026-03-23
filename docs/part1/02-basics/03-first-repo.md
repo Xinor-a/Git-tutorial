@@ -16,17 +16,7 @@ Linux コマンドを覚えたところで、いよいよ git を使い始めよ
 
 ### フォルダを作って移動する
 
-まずはプロジェクト用のフォルダを作る。ホームディレクトリにいることを確認してから始めよう。
-
-```bash
-cd ~
-mkdir my-diary
-cd my-diary
-```
-
-- `cd ~` でホームディレクトリに戻る
-- `mkdir my-diary` で `my-diary` フォルダを作る
-- `cd my-diary` でそのフォルダに移動する
+まずはプロジェクト用のフォルダを作る。`cd ~` でホームディレクトリに戻り、`mkdir my-diary` でフォルダを作って、`cd my-diary` で移動する。
 
 今どこにいるか確認しよう：
 
@@ -42,11 +32,7 @@ pwd
 
 ### git リポジトリを初期化する — `git init`
 
-フォルダの中に移動できたら、git に「このフォルダを管理してね」と伝える。
-
-```bash
-git init
-```
+フォルダの中に移動できたら、`git init` を実行して git に「このフォルダを管理してね」と伝える。
 
 こんなメッセージが表示されるはずだ：
 
@@ -110,6 +96,8 @@ nothing to commit (create/copy files and use "git add" to track)
 
 ### 演習 1: リポジトリを作る
 
+<div class="code-input">
+
 ```bash
 cd ~
 mkdir my-diary
@@ -117,38 +105,84 @@ cd my-diary
 git init
 ```
 
-`Initialized empty Git repository in ...` と表示されれば成功。
+</div>
+
+<div class="code-output">
+
+```
+Initialized empty Git repository in ...
+```
+
+</div>
 
 ### 演習 2: .git フォルダを確認する
+
+<div class="code-input">
 
 ```bash
 ls -a
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+.  ..  .git
+```
+
+</div>
+
 `.git` が表示されることを確認しよう。`ls`（`-a` なし）では表示されないことも確認してみよう：
+
+<div class="code-input">
 
 ```bash
 ls
 ```
 
+</div>
+
 何も表示されない（または `.git` が見えない）はずだ。
 
 ### 演習 3: git status で状態を確認する
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+```
+
+</div>
+
 `No commits yet` と `nothing to commit` が表示されることを確認しよう。これがリポジトリ作りたてのまっさらな状態だ。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 やり直したいときは、`my-diary` フォルダごと削除して最初からやり直せる：
+
+<div class="code-input">
 
 ```bash
 cd ~
 rm -rf my-diary
 ```
+
+</div>
 
 > `rm -rf` は削除したものを元に戻せない。パスをよく確認してから実行しよう。
 
