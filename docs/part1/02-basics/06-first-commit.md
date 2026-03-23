@@ -35,13 +35,7 @@ Changes to be committed:
 
 コミットには必ず「**コミットメッセージ**」が必要だ。「この記録で何をしたか」を短い文章で残す。
 
-一番シンプルな方法は `-m` オプションを使うことだ：
-
-```bash
-git commit -m "最初のコミット：READMEと日記ファイルを追加"
-```
-
-実行するとこんな表示が出る：
+一番シンプルな方法は `-m` オプションを使う方法だ。`git commit -m "最初のコミット：READMEと日記ファイルを追加"` のように実行すると、実行後にこんな表示が出る：
 
 ```
 [main (root-commit) a1b2c3d] 最初のコミット：READMEと日記ファイルを追加
@@ -71,16 +65,11 @@ nothing to commit, working tree clean
 
 ### エディタを使ったコミット
 
-`-m` オプションを省略すると、エディタが開いてコミットメッセージを入力できる：
-
-```bash
-git commit
-```
+`-m` オプションを省略して `git commit` と実行すると、エディタが開いてコミットメッセージを入力できる。
 
 setup セクションで設定したエディタ（例：VS Code）が開くはずだ。エディタには最初からこんな内容が書かれている：
 
 ```
-
 # Please enter the commit message for your changes. Lines starting
 # with '#' are comments, and will be ignored by git.
 # ...
@@ -189,21 +178,47 @@ git を使うときの基本の流れはこうだ：
 
 前のページで `README.md` と `entry-2024-01-01.md` をステージングした状態から：
 
+<div class="code-input">
+
 ```bash
 git commit -m "最初のコミット：READMEと日記ファイルを追加"
 ```
 
-成功メッセージが表示されることを確認しよう。
+</div>
+
+<div class="code-output">
+
+```
+[main (root-commit) a1b2c3d] 最初のコミット：READMEと日記ファイルを追加
+ 2 files changed, 2 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 entry-2024-01-01.md
+```
+
+</div>
 
 ### 演習 2: コミット後の状態を確認する
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
-`nothing to commit, working tree clean` が表示されることを確認しよう。
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+</div>
 
 ### 演習 3: 新しいファイルを追加してコミットする
+
+<div class="code-input">
 
 ```bash
 echo "今日も良い一日だった。" > entry-2024-01-02.md
@@ -213,20 +228,30 @@ git status
 git commit -m "1月2日の日記を追加"
 ```
 
+</div>
+
 各コマンドの後で状態がどう変わるか確認しながら進もう。
 
 ### 演習 4: git log でコミット履歴を確認する
+
+<div class="code-input">
 
 ```bash
 git log
 git log --oneline
 ```
 
+</div>
+
 2 つのコミットが記録されていることを確認しよう。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 最初からやり直したいときは、`my-diary` フォルダごと削除して作り直す：
+
+<div class="code-input">
 
 ```bash
 cd ~
@@ -235,6 +260,8 @@ mkdir my-diary
 cd my-diary
 git init
 ```
+
+</div>
 
 その後、[はじめてのファイル](04-first-file.md) のページを参考にファイルを作り、もう一度このページの演習に挑戦しよう。
 
