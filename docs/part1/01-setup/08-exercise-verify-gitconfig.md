@@ -4,16 +4,16 @@
 
 ## What & Why
 
-ここまでのページで、Gitを使うための基本設定をすべて行いました。  
-このページでは `cat ~/.gitconfig` と `git config --list` を使って、  
+ここまでのページで、Gitを使うための基本設定をすべて行いました。
+このページでは `cat ~/.gitconfig` と `git config --list` を使って、
 設定が正しく揃っているかを確認します。
 
 ## Content
 
 ### シナリオ
 
-「よし、全部設定した！」と思っても、どこかで入力ミスがあったり、  
-コマンドを飛ばしてしまったりすることはよくあります。  
+「よし、全部設定した！」と思っても、どこかで入力ミスがあったり、
+コマンドを飛ばしてしまったりすることはよくあります。
 最後にまとめて確認しておきましょう。
 
 ---
@@ -44,8 +44,8 @@ cat ~/.gitconfig
 	directory = *
 ```
 
-> **WSLを使っていない人へ**: `[safe]` セクションがなくても問題ありません。  
-> また `autocrlf` の値は環境によって `true`（Windows）、`input`（Mac/Linux）と  
+> **WSLを使っていない人へ**: `[safe]` セクションがなくても問題ありません。
+> また `autocrlf` の値は環境によって `true`（Windows）、`input`（Mac/Linux）と
 > 異なる場合があります。
 
 ---
@@ -70,8 +70,8 @@ color.ui=auto
 safe.directory=*
 ```
 
-`cat ~/.gitconfig` はファイルをそのまま表示しますが、  
-`git config --list` はキーと値をフラットな一覧で表示します。  
+`cat ~/.gitconfig` はファイルをそのまま表示しますが、
+`git config --list` はキーと値をフラットな一覧で表示します。
 どちらも確認方法として使えます。
 
 ---
@@ -114,28 +114,74 @@ git config --global core.editor
 
 1. 設定ファイルの内容を表示する。
 
-   ```bash
-   cat ~/.gitconfig
-   ```
+<div class="code-input">
+
+```bash
+cat ~/.gitconfig
+```
+
+</div>
+
+<div class="code-output">
+
+```
+[user]
+	name = 田中 太郎
+	email = taro@example.com
+[core]
+	editor = code --wait
+	autocrlf = true
+	excludesfile = /home/yourname/.gitignore_global
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[safe]
+	directory = *
+```
+
+</div>
 
 2. 一覧形式でも確認する。
 
-   ```bash
-   git config --list
-   ```
+<div class="code-input">
+
+```bash
+git config --list
+```
+
+</div>
+
+<div class="code-output">
+
+```
+user.name=田中 太郎
+user.email=taro@example.com
+core.editor=code --wait
+core.autocrlf=true
+core.excludesfile=/home/yourname/.gitignore_global
+pull.rebase=false
+init.defaultbranch=main
+color.ui=auto
+safe.directory=*
+```
+
+</div>
 
 3. 上のチェックリストを参考に、すべての項目が揃っているか確認する。
 
 4. 不足している項目があれば、対応するページに戻って設定しよう。
 
-   | 設定 | 参照ページ |  
-   |---|---|  
-   | `user.name` / `user.email` | [ユーザー名とメールアドレスを設定しよう](01-gitconfig-user.md) |  
-   | `core.editor` | [エディタを設定しよう](02-gitconfig-editor.md) |  
-   | `core.autocrlf` | [改行コードの設定](03-autocrlf.md) |  
-   | `core.excludesfile` | [グローバル .gitignore を設定しよう](04-excludesfile.md) |  
-   | `pull.rebase` / `init.defaultBranch` | [pull.rebase と init.defaultBranch の設定](05-pull-rebase-defaultbranch.md) |  
-   | `color.ui` | [ターミナルの色を設定しよう](06-color-ui.md) |  
+   | 設定 | 参照ページ |
+   |---|---|
+   | `user.name` / `user.email` | [ユーザー名とメールアドレスを設定しよう](01-gitconfig-user.md) |
+   | `core.editor` | [エディタを設定しよう](02-gitconfig-editor.md) |
+   | `core.autocrlf` | [改行コードの設定](03-autocrlf.md) |
+   | `core.excludesfile` | [グローバル .gitignore を設定しよう](04-excludesfile.md) |
+   | `pull.rebase` / `init.defaultBranch` | [pull.rebase と init.defaultBranch の設定](05-pull-rebase-defaultbranch.md) |
+   | `color.ui` | [ターミナルの色を設定しよう](06-color-ui.md) |
    | `safe.directory` | [safe.directory の設定](07-safe-directory.md) |
 
 ---
@@ -146,9 +192,13 @@ git config --global core.editor
 
 すべての設定をリセットしたい場合（注意: 元に戻せません）：
 
+<div class="code-input">
+
 ```bash
 rm ~/.gitconfig
 ```
+
+</div>
 
 削除後は各ページの手順に従って、最初から設定し直してください。
 
