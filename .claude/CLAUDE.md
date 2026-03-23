@@ -3,6 +3,8 @@
 Story-driven git tutorial for beginners (middle/high school level).
 See `ideabox/note.md` for design principles, `strategy/tickets.md` for the ticket list.
 
+> If you haven't read `../../.claude/CLAUDE.md` (git-guide root) yet, read it first — it contains project-wide writing rules.
+
 ## Directory Structure
 
 ```
