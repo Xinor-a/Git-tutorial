@@ -4,16 +4,16 @@
 
 ## What & Why
 
-このチュートリアルを進めるには、まずGitをパソコンに入れる必要があります。  
-Gitはプログラムのソースコードを管理するツールで、世界中のエンジニアが使っています。  
+このチュートリアルを進めるには、まずGitをパソコンに入れる必要があります。
+Gitはプログラムのソースコードを管理するツールで、世界中のエンジニアが使っています。
 インストールは一度やってしまえば終わり — さっと済ませて、本題に進みましょう！
 
 ## Content
 
 ### シナリオ
 
-あなたはGitを使ってみようと思い立ちました。  
-でも、まだパソコンにGitが入っていません。  
+あなたはGitを使ってみようと思い立ちました。
+でも、まだパソコンにGitが入っていません。
 「どうやって入れるんだろう？」——環境ごとに手順を確認していきましょう。
 
 ---
@@ -28,7 +28,7 @@ Gitはプログラムのソースコードを管理するツールで、世界�
 | macOS | Apple メニュー → このMacについて |
 | Linux / WSL | ターミナルで `uname -a` を実行 |
 
-※ WSLは、Windows Subsystem for Linux の略で、Windows上でLinux環境を動かす仕組みです。  
+※ WSLは、Windows Subsystem for Linux の略で、Windows上でLinux環境を動かす仕組みです。
 WSLを使っている場合は、Linuxの手順でGitをインストールしてください。
 
 ---
@@ -43,62 +43,47 @@ WSLを使っている場合は、Linuxの手順でGitをインストールして
    - エディタの選択画面では「Use Visual Studio Code as Git's default editor」を選ぶと便利です
 4. インストールが完了したら、**Git Bash** または **コマンドプロンプト** を開く
 
-または、**winget**（Windows パッケージマネージャー）でもインストールできます。
+または、**winget**（Windows パッケージマネージャー）を使って `winget install --id Git.Git -e --source winget` を実行してもインストールできます。
 
-```bash
-winget install --id Git.Git -e --source winget
-```
-
-> **WSLを使っている場合**  
+> **WSLを使っている場合**
 > Windows Subsystem for Linux (WSL) 環境では、後述の「Ubuntu / Debian」の手順を使ってください。
 
 ---
 
 ### macOS の場合
 
-**Homebrew** を使うのがおすすめです。  
+**Homebrew** を使うのがおすすめです。
 Homebrew が入っていない場合は [https://brew.sh/](https://brew.sh/) からインストールできます。
 
-```bash
-brew install git
-```
+Homebrewが入ったら、`brew install git` を実行してインストールします。
 
 または、Xcode のコマンドラインツールに含まれるGitを使う方法もあります。
-
-```bash
-xcode-select --install
-```
-
-ダイアログが表示されたら「インストール」をクリックしてください。
+`xcode-select --install` を実行するとダイアログが表示されるので「インストール」をクリックしてください。
 
 ---
 
 ### Ubuntu / Debian（Linux・WSL）の場合
 
-```bash
-sudo apt update
-sudo apt install git
-```
-
+`sudo apt update` を実行してパッケージ情報を更新してから、`sudo apt install git` でインストールします。
 パスワードを求められたらログインパスワードを入力してください。
 
 ---
 
 ### インストールを確認する
 
-どのOSでも、インストール後は以下のコマンドでバージョンを確認できます。
+どのOSでも、インストール後は `git --version` でバージョンを確認できます。
 
 ```bash
 git --version
 ```
 
-このような出力が表示されればOKです（バージョン番号は多少違っても大丈夫）。
-
-```text
+```
 git version 2.43.0
 ```
 
-何も表示されなかったり「command not found」と出た場合は、インストールが完了していません。  
+このような出力が表示されればOKです（バージョン番号は多少違っても大丈夫）。
+
+何も表示されなかったり「command not found」と出た場合は、インストールが完了していません。
 もう一度手順を確認してみましょう。
 
 ## Summary
@@ -115,23 +100,35 @@ git version 2.43.0
 2. ターミナル（Git Bash / Terminal / コンソール）を開く
 3. 以下のコマンドを実行して、バージョンが表示されることを確認する
 
+<div class="code-input">
+
 ```bash
 git --version
 ```
 
-期待される出力例：
+</div>
 
-```text
+<div class="code-output">
+
+```
 git version 2.43.0
 ```
 
+</div>
+
 4. 以下のコマンドも試してみよう。ヘルプ画面が表示されればGitは正常に動いています。
+
+<div class="code-input">
 
 ```bash
 git --help
 ```
 
+</div>
+
 ### Reset & Retry
+
+⚠️ うまくいかなかったときだけ実行してください。
 
 インストールに失敗した場合は、一度Gitをアンインストールしてからやり直してください。
 
