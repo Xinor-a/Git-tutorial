@@ -1,6 +1,6 @@
 # Gitをインストールしよう
 
-[Back to Index](../../../README.md) | [Next: ユーザー名とメールアドレスの設定 >](../../part1/01-setup/01-gitconfig-user.md)
+[< Previous: このチュートリアルについて](../01-intro/01-about.md) | [Back to Index](../../../README.md) | [Next: ユーザー名とメールアドレスの設定 >](../../part1/01-setup/01-gitconfig-user.md)
 
 ## What & Why
 
@@ -141,4 +141,4 @@ git --help
 
 その後、上記の手順を最初からやり直しましょう。
 
-[Back to Index](../../../README.md) | [Next: ユーザー名とメールアドレスの設定 >](../../part1/01-setup/01-gitconfig-user.md)
+[< Previous: このチュートリアルについて](../01-intro/01-about.md) | [Back to Index](../../../README.md) | [Next: ユーザー名とメールアドレスの設定 >](../../part1/01-setup/01-gitconfig-user.md)
