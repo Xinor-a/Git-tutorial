@@ -4,27 +4,25 @@
 
 ## What & Why
 
-Gitの出力はデフォルトでもカラー表示されることが多いですが、  
-`color.ui auto` を明示的に設定しておくと、  
+Gitの出力はデフォルトでもカラー表示されることが多いですが、
+`color.ui auto` を明示的に設定しておくと、
 ターミナル上ではカラー、ファイルへのリダイレクト時は自動でカラーなしに切り替わります。
 
 ## Content
 
 ### シナリオ
 
-`git diff` や `git status` の出力をはじめて見たとき、  
+`git diff` や `git status` の出力をはじめて見たとき、
 「全部同じ色で読みにくい…」と思ったことはありませんか？
 
-`color.ui auto` を設定すると、追加行が緑、削除行が赤など、  
+`color.ui auto` を設定すると、追加行が緑、削除行が赤など、
 パッと見てわかりやすい出力になります。
 
 ---
 
 ### color.ui auto を設定する
 
-```bash
-git config --global color.ui auto
-```
+`git config --global color.ui auto` で設定します。
 
 `auto` は「ターミナルに出力するときは色をつける、ファイルに書き出すときは色なし」という設定です。
 
@@ -54,7 +52,7 @@ index 1234567..abcdefg 100644
 +Hello
 ```
 
-実際のターミナルでは、`-` で始まる行（削除）が赤、`+` で始まる行（追加）が緑で表示されます。  
+実際のターミナルでは、`-` で始まる行（削除）が赤、`+` で始まる行（追加）が緑で表示されます。
 どこが変わったか一目でわかるようになるので、作業がずっと楽になります。
 
 ---
@@ -95,36 +93,84 @@ cat ~/.gitconfig
 
 1. `color.ui` を設定する。
 
-   ```bash
-   git config --global color.ui auto
-   ```
-
-2. 設定を確認する。
-
-   ```bash
-   git config --global color.ui
-   ```
-
-3. `cat ~/.gitconfig` で `[color]` セクションが追加されたことを確認しよう。
-
-   ```bash
-   cat ~/.gitconfig
-   ```
-
----
-
-### Reset & Retry
-
-設定をやり直すには：
+<div class="code-input">
 
 ```bash
 git config --global color.ui auto
 ```
 
+</div>
+
+2. 設定を確認する。
+
+<div class="code-input">
+
+```bash
+git config --global color.ui
+```
+
+</div>
+
+<div class="code-output">
+
+```
+auto
+```
+
+</div>
+
+3. `cat ~/.gitconfig` で `[color]` セクションが追加されたことを確認しよう。
+
+<div class="code-input">
+
+```bash
+cat ~/.gitconfig
+```
+
+</div>
+
+<div class="code-output">
+
+```
+[user]
+	name = 田中 太郎
+	email = taro@example.com
+[core]
+	editor = code --wait
+	autocrlf = true
+	excludesfile = /home/yourname/.gitignore_global
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+```
+
+</div>
+
+---
+
+### Reset & Retry
+
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
+
+```bash
+git config --global color.ui auto
+```
+
+</div>
+
 設定を削除したい場合：
+
+<div class="code-input">
 
 ```bash
 git config --global --unset color.ui
 ```
+
+</div>
 
 [< Previous: pull.rebase と init.defaultBranch の設定](05-pull-rebase-defaultbranch.md) | [Back to Index](../../../README.md) | [Next: safe.directory の設定 >](07-safe-directory.md)
