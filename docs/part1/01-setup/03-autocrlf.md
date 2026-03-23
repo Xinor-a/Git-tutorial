@@ -4,9 +4,9 @@
 
 ## What & Why
 
-Windowsで書いたテキストファイルをMacやLinuxで開くと、文字化けしたように見えることがあります。  
-原因のひとつが「改行コードの違い」です。  
-Gitにはこの違いを自動で吸収してくれる `core.autocrlf` という設定があります。  
+Windowsで書いたテキストファイルをMacやLinuxで開くと、文字化けしたように見えることがあります。
+原因のひとつが「改行コードの違い」です。
+Gitにはこの違いを自動で吸収してくれる `core.autocrlf` という設定があります。
 これを正しく設定しておくと、チームで開発するときのトラブルを防げます。
 
 ## Content
@@ -39,24 +39,16 @@ The file will have its original line endings in your working directory.
 
 ### core.autocrlf の設定
 
-**Windowsを使っている場合:**
-
-```bash
-git config --global core.autocrlf true
-```
+**Windowsを使っている場合** は `git config --global core.autocrlf true` を実行します。
 
 `true` にすると、こんな動きをします。
 
 - コミット時: CRLF → LF に変換（リポジトリにはLFで保存）
 - チェックアウト時: LF → CRLF に変換（手元ではCRLFで使える）
 
-**MacやLinuxを使っている場合:**
+**MacやLinuxを使っている場合** は `git config --global core.autocrlf input` を実行します。
 
-```bash
-git config --global core.autocrlf input
-```
-
-`input` にすると、コミット時にCRLFがあればLFに変換しますが、  
+`input` にすると、コミット時にCRLFがあればLFに変換しますが、
 チェックアウト時は何もしません。
 
 ---
@@ -86,9 +78,9 @@ cat ~/.gitconfig
 
 ### なぜこの設定が大切なの？
 
-チームで開発するとき、WindowsとMacが混在することはよくあります。  
-改行コードをそろえておかないと、ファイルを変更していないのに差分が出てしまったり、  
-コードレビューが読みにくくなったりします。  
+チームで開発するとき、WindowsとMacが混在することはよくあります。
+改行コードをそろえておかないと、ファイルを変更していないのに差分が出てしまったり、
+コードレビューが読みにくくなったりします。
 `core.autocrlf` はそのトラブルを防ぐための設定です。
 
 ## Summary
@@ -108,33 +100,74 @@ cat ~/.gitconfig
 
    **Windowsの場合:**
 
-   ```bash
-   git config --global core.autocrlf true
-   ```
+<div class="code-input">
+
+```bash
+git config --global core.autocrlf true
+```
+
+</div>
 
    **Mac / Linuxの場合:**
 
-   ```bash
-   git config --global core.autocrlf input
-   ```
+<div class="code-input">
+
+```bash
+git config --global core.autocrlf input
+```
+
+</div>
 
 3. 設定を確認する。
 
-   ```bash
-   git config --global core.autocrlf
-   ```
+<div class="code-input">
+
+```bash
+git config --global core.autocrlf
+```
+
+</div>
+
+<div class="code-output">
+
+```
+true
+```
+
+</div>
 
 4. `cat ~/.gitconfig` で全体の設定を確認しよう。
 
-   ```bash
-   cat ~/.gitconfig
-   ```
+<div class="code-input">
+
+```bash
+cat ~/.gitconfig
+```
+
+</div>
+
+<div class="code-output">
+
+```
+[user]
+	name = 田中 太郎
+	email = taro@example.com
+[core]
+	editor = code --wait
+	autocrlf = true
+```
+
+</div>
 
 ---
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 設定をやり直すには同じコマンドをもう一度実行すれば上書きできます。
+
+<div class="code-input">
 
 ```bash
 # Windowsの場合
@@ -144,10 +177,16 @@ git config --global core.autocrlf true
 git config --global core.autocrlf input
 ```
 
+</div>
+
 設定を削除したい場合：
+
+<div class="code-input">
 
 ```bash
 git config --global --unset core.autocrlf
 ```
+
+</div>
 
 [< Previous: エディタの設定](02-gitconfig-editor.md) | [Back to Index](../../../README.md) | [Next: グローバル .gitignore の設定 >](04-excludesfile.md)
