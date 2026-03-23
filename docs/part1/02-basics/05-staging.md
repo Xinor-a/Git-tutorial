@@ -8,31 +8,6 @@
 
 ## Content
 
-### シナリオ：日記ファイルを記録する準備をする
-
-前のページで `README.md` と `entry-2024-01-01.md` を作った。今の状態を確認しよう：
-
-```bash
-git status
-```
-
-```
-On branch main
-
-No commits yet
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        README.md
-        entry-2024-01-01.md
-
-nothing added to commit but untracked files present (use "git add" to track)
-```
-
-2 つのファイルが `Untracked files` に入っている。これをコミット（記録）したい。でもその前に「ステージング」という考え方を理解しよう。
-
----
-
 ### なぜ add が必要なのか — ステージングの概念
 
 git のコミットは「今この瞬間のスナップショット（写真）」だと考えてほしい。
@@ -55,19 +30,104 @@ git の `add` はまさにこれだ。
 
 ---
 
-### ファイルをステージングする — `git add`
+### 今の状態を確認する
 
-`README.md` をステージングしてみよう：
+前のページで `README.md` と `entry-2024-01-01.md` を作った。`git status` で今の状態を見てみよう：
+
+```bash
+git status
+```
+
+```
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+        entry-2024-01-01.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+`Untracked files` というのは「git がまだ追跡していないファイル」のことだ。この状態ではコミットしても何も記録されない。`git add` でステージングエリアに追加してはじめて、コミットの対象になる。
+
+---
+
+### `git add` と `git diff`
+
+`git add ファイル名` でファイルをステージングエリアに追加する。`git add .` を使うとカレントディレクトリ以下のすべての変更をまとめて追加できるが、意図しないファイルまで含まれることがあるので注意しよう。
+
+ファイルを編集した後、`git add` する前に `git diff` で変更内容を確認できる。`+` が付いた行が追加された内容、`-` が削除された内容だ。`git add` する前にこのコマンドで変更を確認する習慣をつけると、うっかりミスを防げる。
+
+> 💡 `git diff` は**ステージング前**の変更を表示する。`git add` した後の変更を確認したいときは `git diff --cached` を使う。
+
+## Summary
+
+- **ステージングエリア**は「次のコミットに含めるファイルを選ぶ場所」。
+- `git add ファイル名` でファイルをステージングエリアに追加する。
+- `git add .` でカレントディレクトリ以下のすべての変更をまとめて追加できる。
+- `git status` でステージングの状態を確認できる（`Changes to be committed` に移動していれば OK）。
+- `git diff` で `git add` する前の変更内容を確認できる。
+- add してから commit する 2 ステップの仕組みは「どの変更をコミットに含めるか選べる」ことを実現するためにある。
+
+## Exercises
+
+### 演習 1: 現在の状態を確認する
+
+まず今の状態を見てみよう：
+
+<div class="code-input">
+
+```bash
+git status
+```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+        entry-2024-01-01.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
+2 つのファイルが `Untracked files` に入っている。これをステージングしていこう。
+
+---
+
+### 演習 2: README.md をステージングする
+
+<div class="code-input">
 
 ```bash
 git add README.md
 ```
 
-何も表示されなければ成功（エラーがなければ OK）。続けて `git status` で確認する：
+</div>
+
+何も表示されなければ成功。`git status` で状態が変わったことを確認しよう：
+
+<div class="code-input">
 
 ```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 On branch main
@@ -83,134 +143,107 @@ Untracked files:
         entry-2024-01-01.md
 ```
 
-出力が変わった。`README.md` が `Changes to be committed`（コミットされる予定の変更）に移動している。`entry-2024-01-01.md` はまだ `Untracked files` のままだ。
+</div>
+
+`README.md` が `Changes to be committed` に移動した。`entry-2024-01-01.md` はまだ `Untracked files` のままだ。
 
 ---
 
-### 残りのファイルもステージングする
+### 演習 3: ファイルを編集して git diff を確認する
 
-もうひとつのファイルも追加しよう：
+`entry-2024-01-01.md` に内容を書いてみよう：
 
-```bash
-git add entry-2024-01-01.md
-git status
-```
-
-```
-On branch main
-
-No commits yet
-
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-        new file:   README.md
-        new file:   entry-2024-01-01.md
-```
-
-両方が `Changes to be committed` に入った。これでコミットの準備が整った。
-
-> **すべてのファイルをまとめて追加したいとき**は `git add .`（ドット）が使える。カレントディレクトリ以下のすべての変更をステージングする。ただし、意図しないファイルまで追加することがあるので注意しよう。
-
----
-
-### コミット前に変更内容を確認する — `git diff`
-
-ファイルの中身を変えた場合、`git add` する前に「何を変えたか」を確認できる。試してみよう。
-
-`README.md` に少し内容を書き加えてみる（エディタで開いて編集してもよいし、以下のコマンドでも OK）：
-
-```bash
-echo "# My Diary" > README.md
-```
-
-この状態で `git diff` を実行する：
-
-```bash
-git diff
-```
-
-```diff
-diff --git a/README.md b/README.md
-index e69de29..8f2de6b 100644
---- a/README.md
-+++ b/README.md
-@@ -0,0 +1 @@
-+# My Diary
-```
-
-`+` が付いている行が「追加された内容」だ。`git add` する前にこのコマンドで変更内容を確認する習慣をつけると、うっかりミスを防げる。
-
-> **注意**: `git diff` は**ステージング前**の変更を表示する。`git add` した後の変更を確認したいときは `git diff --cached` を使う。
-
-確認したら、改めてステージングしよう：
-
-```bash
-git add README.md
-git status
-```
-
-```
-On branch main
-
-No commits yet
-
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-        new file:   README.md
-        new file:   entry-2024-01-01.md
-```
-
-両方がステージングエリアに入った。次のページでいよいよコミットする。
-
-## Summary
-
-- **ステージングエリア**は「次のコミットに含めるファイルを選ぶ場所」。
-- `git add ファイル名` でファイルをステージングエリアに追加する。
-- `git add .` でカレントディレクトリ以下のすべての変更をまとめて追加できる。
-- ステージング後、`git status` で `Changes to be committed` に移動していることを確認できる。
-- `git diff` で `git add` する前の変更内容を確認できる。
-- add してから commit する 2 ステップの仕組みは「どの変更をコミットに含めるか選べる」ことを実現するためにある。
-
-## Exercises
-
-### 演習 1: README.md をステージングして確認する
-
-```bash
-git add README.md
-git status
-```
-
-`README.md` が `Changes to be committed` に移動していることを確認しよう。
-
-### 演習 2: git diff で変更を確認する
-
-`entry-2024-01-01.md` に内容を書いてから `git diff` を確認してみよう：
+<div class="code-input">
 
 ```bash
 echo "今日から日記を始めました。" > entry-2024-01-01.md
+```
+
+</div>
+
+`git add` する前に `git diff` で変更内容を確認しよう：
+
+<div class="code-input">
+
+```bash
 git diff
 ```
 
-変更内容が `+` 付きで表示されることを確認しよう。
+</div>
 
-### 演習 3: 残りのファイルもステージングする
+<div class="code-output">
+
+```diff
+diff --git a/entry-2024-01-01.md b/entry-2024-01-01.md
+--- a/entry-2024-01-01.md
++++ b/entry-2024-01-01.md
+@@ -0,0 +1 @@
++今日から日記を始めました。
+```
+
+</div>
+
+`+` が付いた行が追加された内容だ。確認できたら次へ。
+
+---
+
+### 演習 4: 残りのファイルもステージングする
+
+<div class="code-input">
 
 ```bash
 git add entry-2024-01-01.md
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
-`Untracked files` が空になり、すべてが `Changes to be committed` に入ることを確認しよう。
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   README.md
+        new file:   entry-2024-01-01.md
+```
+
+</div>
+
+両方が `Changes to be committed` に入った ✅ これでコミットの準備が整った。
+
+---
 
 ### Reset & Retry
 
-ステージングをやり直したいときは `git rm --cached` でステージングを取り消せる：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 git rm --cached README.md
 git rm --cached entry-2024-01-01.md
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
 
 `Untracked files` に戻れば OK。演習 1 からもう一度やってみよう。
 
