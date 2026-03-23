@@ -4,17 +4,17 @@
 
 ## What & Why
 
-`.gitignore` はGitに「このファイルは管理しなくていい」と伝えるためのファイルです。  
-プロジェクトごとに `.gitignore` を作ることもありますが、  
-どのプロジェクトでも共通して無視したいファイル（OSやエディタが自動生成するファイルなど）は  
+`.gitignore` はGitに「このファイルは管理しなくていい」と伝えるためのファイルです。
+プロジェクトごとに `.gitignore` を作ることもありますが、
+どのプロジェクトでも共通して無視したいファイル（OSやエディタが自動生成するファイルなど）は
 グローバルの `.gitignore` にまとめて書いておくと便利です。
 
 ## Content
 
 ### シナリオ
 
-Gitで管理したくないファイルはプロジェクトごとに `.gitignore` で指定できますが、  
-MacなどのOSが自動生成する `.DS_Store` というファイルや、  
+Gitで管理したくないファイルはプロジェクトごとに `.gitignore` で指定できますが、
+MacなどのOSが自動生成する `.DS_Store` というファイルや、
 Windowsが作る `Thumbs.db` は、どのプロジェクトでも毎回 `.gitignore` に書く必要があります。
 
 グローバル `.gitignore` を使えば、一度設定するだけで全プロジェクトに適用されます。
@@ -23,19 +23,9 @@ Windowsが作る `Thumbs.db` は、どのプロジェクトでも毎回 `.gitign
 
 ### グローバル .gitignore ファイルを作る
 
-まず、ホームディレクトリにグローバル `.gitignore` ファイルを作ります。
+`touch ~/.gitignore_global` でホームディレクトリにグローバル `.gitignore` ファイルを作ります。
 
-```bash
-touch ~/.gitignore_global
-```
-
-次に、VSCodeで開いて内容を書きましょう。
-
-```bash
-code ~/.gitignore_global
-```
-
-以下の内容を貼り付けて保存してください。
+次に、`code ~/.gitignore_global` でVSCodeで開いて、以下の内容を貼り付けて保存してください。
 
 ```gitignore
 # macOS
@@ -65,12 +55,8 @@ Desktop.ini
 
 ### Gitにグローバル .gitignore を教える
 
-ファイルを作っただけでは使われません。  
-Gitにこのファイルを使うよう設定します。
-
-```bash
-git config --global core.excludesfile ~/.gitignore_global
-```
+ファイルを作っただけでは使われません。
+`git config --global core.excludesfile ~/.gitignore_global` でGitにこのファイルを使うよう設定します。
 
 ---
 
@@ -126,58 +112,114 @@ cat ~/.gitconfig
 
 1. グローバル `.gitignore` ファイルを作る。
 
-   ```bash
-   touch ~/.gitignore_global
-   ```
+<div class="code-input">
+
+```bash
+touch ~/.gitignore_global
+```
+
+</div>
 
 2. VSCodeで開く。
 
-   ```bash
-   code ~/.gitignore_global
-   ```
+<div class="code-input">
+
+```bash
+code ~/.gitignore_global
+```
+
+</div>
 
 3. 自分のOSに合わせた内容を書いて保存する（上の例を参考に）。
 
 4. Gitに登録する。
 
-   ```bash
-   git config --global core.excludesfile ~/.gitignore_global
-   ```
-
-5. 設定を確認する。
-
-   ```bash
-   git config --global core.excludesfile
-   ```
-
-6. `cat ~/.gitconfig` で全体を確認しよう。
-
-   ```bash
-   cat ~/.gitconfig
-   ```
-
-   `[core]` セクションに `excludesfile` が追加されていることを確認しよう。
-
----
-
-### Reset & Retry
-
-設定をやり直すには：
+<div class="code-input">
 
 ```bash
 git config --global core.excludesfile ~/.gitignore_global
 ```
 
+</div>
+
+5. 設定を確認する。
+
+<div class="code-input">
+
+```bash
+git config --global core.excludesfile
+```
+
+</div>
+
+<div class="code-output">
+
+```
+/home/yourname/.gitignore_global
+```
+
+</div>
+
+6. `cat ~/.gitconfig` で全体を確認しよう。
+
+<div class="code-input">
+
+```bash
+cat ~/.gitconfig
+```
+
+</div>
+
+<div class="code-output">
+
+```
+[user]
+	name = 田中 太郎
+	email = taro@example.com
+[core]
+	editor = code --wait
+	autocrlf = true
+	excludesfile = /home/yourname/.gitignore_global
+```
+
+</div>
+
+`[core]` セクションに `excludesfile` が追加されていることを確認しよう。
+
+---
+
+### Reset & Retry
+
+⚠️ うまくいかなかったときだけ実行してください。
+
+設定をやり直すには：
+
+<div class="code-input">
+
+```bash
+git config --global core.excludesfile ~/.gitignore_global
+```
+
+</div>
+
 設定を削除したい場合：
+
+<div class="code-input">
 
 ```bash
 git config --global --unset core.excludesfile
 ```
 
+</div>
+
 ファイル自体を削除したい場合：
+
+<div class="code-input">
 
 ```bash
 rm ~/.gitignore_global
 ```
+
+</div>
 
 [< Previous: 改行コードの設定](03-autocrlf.md) | [Back to Index](../../../README.md) | [Next: pull.rebase と init.defaultBranch の設定 >](05-pull-rebase-defaultbranch.md)
