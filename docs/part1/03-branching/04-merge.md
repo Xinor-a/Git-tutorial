@@ -6,48 +6,22 @@
 
 ## What & Why
 
-ブランチで作業が完成したら、その変更を `main` に取り込む必要があります。  
-この操作を **マージ（merge）** といいます。  
+ブランチで作業が完成したら、その変更を `main` に取り込む必要があります。
+この操作を **マージ（merge）** といいます。
 マージを使うことで、複数の作業ラインをひとつにまとめられます。
 
 ## Content
 
 ### シナリオ：日記アプリに新しい章を追加した
 
-あなたは `feature` ブランチで「第3章」の日記ファイルを作成し、コミットしました。  
+あなたは `feature` ブランチで「第3章」の日記ファイルを作成し、コミットしました。
 レビューも終わり、いよいよ `main` に取り込む時がきました。
 
-#### ① まず `main` に移動する
+マージは「取り込む側のブランチ」に移動してから行います。`main` に移動したあと `git merge feature` を実行します。
 
-マージは「取り込む側のブランチ」に移動してから行います。
+---
 
-```bash
-git switch main
-```
-
-```
-Switched to branch 'main'
-```
-
-`main` にいることを確認したら、マージを実行します。
-
-#### ② `git merge feature` を実行する
-
-```bash
-git merge feature
-```
-
-```
-Updating a1b2c3d..e4f5g6h
-Fast-forward
- diary/chapter3.md | 10 ++++++++++
- 1 file changed, 10 insertions(+)
- create mode 100644 diary/chapter3.md
-```
-
-「**Fast-forward**」と表示されました。
-
-**Fast-forward とは？**
+### Fast-forward とは？
 
 `main` が動いていない間に `feature` だけが進んでいた場合、Git は「ポインタをそのまま前に移動するだけ」でマージできます。これを Fast-forward マージといいます。新しいマージコミットは作られません。
 
@@ -60,13 +34,9 @@ main             main
            feature            feature
 ```
 
-`main` 側にも独自のコミットがあった場合は、Git は新しい「マージコミット」を作ります（non-fast-forward）。このページでは Fast-forward のケースだけ見ておきましょう。
+`main` 側にも独自のコミットがあった場合は、Git は新しい「マージコミット」を作ります（non-fast-forward）。
 
-#### ③ マージ後のログを確認する
-
-```bash
-git log --oneline
-```
+マージ後の `git log --oneline` はこのようになります。
 
 ```
 e4f5g6h (HEAD -> main, feature) diary: add chapter 3
@@ -76,82 +46,22 @@ a1b2c3d first commit
 
 `feature` ブランチのコミットが `main` にも見えるようになりました。
 
-#### ④ マージ済みブランチを削除する
+---
 
-用が済んだブランチはきれいに削除しておきましょう。
+### マージ済みブランチの削除
 
-```bash
-git branch -d feature
-```
-
-```
-Deleted branch feature (was e4f5g6h).
-```
-
-`-d` は「マージ済みのブランチだけ削除できる」オプションです。まだマージしていないブランチを誤って消さないための安全装置がついています。
-
-```bash
-git branch
-```
-
-```
-* main
-```
-
-すっきりしました。
+用が済んだブランチはきれいに削除しておきましょう。`git branch -d <ブランチ名>` を使います。`-d` は「マージ済みのブランチだけ削除できる」オプションです。まだマージしていないブランチを誤って消さないための安全装置がついています。
 
 ---
 
 ### ⚠️ ここからは次のページの準備です
 
-マージがうまくいったところで、**わざとトラブルを起こして**みましょう。  
+マージがうまくいったところで、**わざとトラブルを起こして**みましょう。
 次のページで何が起きるかを体験するための実験です。
 
-#### ① `conflict-test` ブランチを作る
+`conflict-test` ブランチを作り、`README.md` の1行目を編集してコミットします。次に `main` に戻って同じ行を別の内容に編集してコミットし、`conflict-test` をマージしてみます。
 
-```bash
-git switch -c conflict-test
-```
-
-```
-Switched to a new branch 'conflict-test'
-```
-
-#### ② `README.md` の1行目を編集してコミット（`conflict-test` 側）
-
-`README.md` の1行目を次のように変えてください（元の内容は何でも OK）。
-
-```markdown
-# 私の日記アプリ（conflict-test ブランチ版）
-```
-
-```bash
-git add README.md
-git commit -m "docs: update README title on conflict-test"
-```
-
-#### ③ `main` に戻って、同じ行を別の内容に編集してコミット
-
-```bash
-git switch main
-```
-
-`README.md` の1行目を、今度は別の内容に変えてください。
-
-```markdown
-# 私の日記アプリ（main ブランチ版）
-```
-
-```bash
-git add README.md
-git commit -m "docs: update README title on main"
-```
-
-#### ④ `conflict-test` をマージしてみる
-
-```bash
-git merge conflict-test
-```
+すると次のようなエラーが出るはずです。
 
 ```
 Auto-merging README.md
@@ -173,56 +83,214 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 ### 練習1：Fast-forward マージを体験する
 
-1. 新しいリポジトリ（または手元のリポジトリ）で `feature` ブランチを作成する。
+<div class="code-input">
 
-   ```bash
-   git switch -c feature
-   ```
+```bash
+git switch -c feature
+```
 
-2. 新しいファイルを作成してコミットする。
+</div>
 
-   ```bash
-   echo "# 新しいページ" > new-page.md
-   git add new-page.md
-   git commit -m "docs: add new page"
-   ```
+<div class="code-output">
 
-3. `git log --oneline` でコミット履歴を確認する。
+```
+Switched to a new branch 'feature'
+```
 
-   ```bash
-   git log --oneline
-   ```
+</div>
 
-4. `main` に切り替えてマージする。
+新しいファイルを作成してコミットする。
 
-   ```bash
-   git switch main
-   git merge feature
-   ```
+<div class="code-input">
 
-5. `git log --oneline` と `git status` でマージ結果を確認する。
+```bash
+echo "# 新しいページ" > new-page.md
+git add new-page.md
+git commit -m "docs: add new page"
+```
 
-   ```bash
-   git log --oneline
-   git status
-   ```
+</div>
 
-6. `feature` ブランチを削除する。
+`git log --oneline` でコミット履歴を確認する。
 
-   ```bash
-   git branch -d feature
-   git branch
-   ```
+<div class="code-input">
+
+```bash
+git log --oneline
+```
+
+</div>
+
+<div class="code-output">
+
+```
+xxxxxxx (HEAD -> feature) docs: add new page
+yyyyyyy (main) （以前のコミット）
+```
+
+</div>
+
+`main` に切り替えてマージする。
+
+<div class="code-input">
+
+```bash
+git switch main
+git merge feature
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Updating yyyyyyy..xxxxxxx
+Fast-forward
+ new-page.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 new-page.md
+```
+
+</div>
+
+`git log --oneline` と `git status` でマージ結果を確認する。
+
+<div class="code-input">
+
+```bash
+git log --oneline
+git status
+```
+
+</div>
+
+`feature` ブランチを削除する。
+
+<div class="code-input">
+
+```bash
+git branch -d feature
+git branch
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Deleted branch feature (was xxxxxxx).
+* main
+```
+
+</div>
+
+---
+
+### 練習2：コンフリクトを起こす準備をする（次のページへの仕込み）
+
+<div class="code-input">
+
+```bash
+git switch -c conflict-test
+```
+
+</div>
+
+`README.md` の1行目を編集する（エディタで開いて次の内容に変更する）。
+
+```markdown
+# 私の日記アプリ（conflict-test ブランチ版）
+```
+
+<div class="code-input">
+
+```bash
+git add README.md
+git commit -m "docs: update README title on conflict-test"
+```
+
+</div>
+
+`main` に戻って、同じ行を別の内容に編集する。
+
+<div class="code-input">
+
+```bash
+git switch main
+```
+
+</div>
+
+`README.md` の1行目を今度は別の内容に変更する。
+
+```markdown
+# 私の日記アプリ（main ブランチ版）
+```
+
+<div class="code-input">
+
+```bash
+git add README.md
+git commit -m "docs: update README title on main"
+```
+
+</div>
+
+`conflict-test` をマージしてみる。
+
+<div class="code-input">
+
+```bash
+git merge conflict-test
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+</div>
+
+コンフリクトが出た！次のページで解決方法を学ぼう。
+
+---
 
 ### Reset & Retry
 
-```
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
+
+```bash
 git switch main
 git branch -D feature
 git branch -D conflict-test
 ```
 
+</div>
+
 > `-D` は強制削除です。マージしていないブランチも消えるので注意してください。
+
+<div class="code-input">
+
+```bash
+git branch
+```
+
+</div>
+
+<div class="code-output">
+
+```
+* main
+```
+
+</div>
 
 ---
 
