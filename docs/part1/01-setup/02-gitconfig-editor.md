@@ -4,16 +4,16 @@
 
 ## What & Why
 
-Gitはコミットメッセージを書くとき、テキストエディタを自動で開きます。  
-デフォルトのエディタは `vim` というツールで、初心者にはちょっと難しいです。  
+Gitはコミットメッセージを書くとき、テキストエディタを自動で開きます。
+デフォルトのエディタは `vim` というツールで、初心者にはちょっと難しいです。
 ここでは使い慣れたVSCodeをGitのエディタとして設定します。
 
 ## Content
 
 ### シナリオ
 
-前のページで名前とメールアドレスを設定しました。  
-次は「コミットメッセージを書くとき、どのエディタを使うか」を設定します。  
+前のページで名前とメールアドレスを設定しました。
+次は「コミットメッセージを書くとき、どのエディタを使うか」を設定します。
 設定しておかないと、Gitが `vim` を開いてしまい、「終了できない！」と焦ることになります。
 
 ---
@@ -33,20 +33,16 @@ code --version
 ...
 ```
 
-何も表示されない場合は、VSCodeを開いて `Ctrl+Shift+P`（MacはCmd+Shift+P）を押し、  
+何も表示されない場合は、VSCodeを開いて `Ctrl+Shift+P`（MacはCmd+Shift+P）を押し、
 `Shell Command: Install 'code' command in PATH` を実行してください。
 
 ---
 
 ### エディタを設定する
 
-VSCodeをGitのデフォルトエディタに設定します。
+VSCodeをGitのデフォルトエディタに設定するには `git config --global core.editor "code --wait"` を実行します。
 
-```bash
-git config --global core.editor "code --wait"
-```
-
-`--wait` というオプションは「VSCodeを閉じるまで待つ」という意味です。  
+`--wait` というオプションは「VSCodeを閉じるまで待つ」という意味です。
 これがないと、Gitがエディタの起動を待たずに処理を続けてしまいます。
 
 ---
@@ -102,45 +98,100 @@ cat ~/.gitconfig
 
 1. VSCodeの `code` コマンドが使えるか確認する。
 
-   ```bash
-   code --version
-   ```
+<div class="code-input">
+
+```bash
+code --version
+```
+
+</div>
+
+<div class="code-output">
+
+```
+1.89.0
+...
+```
+
+</div>
 
 2. エディタを設定する。
 
-   ```bash
-   git config --global core.editor "code --wait"
-   ```
-
-3. 設定を確認する。
-
-   ```bash
-   git config --global core.editor
-   ```
-
-   `code --wait` と表示されることを確認しよう。
-
-4. `cat ~/.gitconfig` で全体の設定を見てみよう。
-
-   ```bash
-   cat ~/.gitconfig
-   ```
-
----
-
-### Reset & Retry
-
-設定をやり直すには、同じコマンドをもう一度打てばOKです。
+<div class="code-input">
 
 ```bash
 git config --global core.editor "code --wait"
 ```
 
+</div>
+
+3. 設定を確認する。
+
+<div class="code-input">
+
+```bash
+git config --global core.editor
+```
+
+</div>
+
+<div class="code-output">
+
+```
+code --wait
+```
+
+</div>
+
+`code --wait` と表示されることを確認しよう。
+
+4. `cat ~/.gitconfig` で全体の設定を見てみよう。
+
+<div class="code-input">
+
+```bash
+cat ~/.gitconfig
+```
+
+</div>
+
+<div class="code-output">
+
+```
+[user]
+	name = 田中 太郎
+	email = taro@example.com
+[core]
+	editor = code --wait
+```
+
+</div>
+
+---
+
+### Reset & Retry
+
+⚠️ うまくいかなかったときだけ実行してください。
+
+設定をやり直すには、同じコマンドをもう一度打てばOKです。
+
+<div class="code-input">
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+</div>
+
 設定を削除したい場合：
+
+<div class="code-input">
 
 ```bash
 git config --global --unset core.editor
 ```
+
+</div>
 
 削除すると、Gitはデフォルトのエディタ（`vim` や `nano`）に戻ります。
 
