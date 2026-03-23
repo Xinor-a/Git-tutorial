@@ -12,9 +12,9 @@
 
 `my-diary` リポジトリで作業していたら、うっかり `secret.txt` というファイルを作ってしまったとしよう。メモのつもりで書いた個人的なパスワードとか、見られたくないメモが入っている。
 
+`cd ~/my-diary` に移動して `echo "パスワード: hunter2" > secret.txt` でファイルを作り、`git status` を確認すると：
+
 ```bash
-cd ~/my-diary
-echo "パスワード: hunter2" > secret.txt
 git status
 ```
 
@@ -35,13 +35,7 @@ nothing added to commit but untracked files present (use "git add" to include in
 
 `.gitignore` はリポジトリのルートに置くテキストファイルだ。1 行に 1 パターンを書くことで、それに一致するファイルを git が無視してくれる。
 
-作ってみよう：
-
-```bash
-touch .gitignore
-```
-
-エディタで `.gitignore` を開いて、以下のように書いてみよう：
+`touch .gitignore` でファイルを作り、エディタで開いて以下のように書いてみよう：
 
 ```
 secret.txt
@@ -109,13 +103,7 @@ build/
 - 「なんでこのファイルが無視されてるの？」という謎がなくなる
 - 新しくクローンした人も、はじめから正しい設定で作業できる
 
-コミットしよう：
-
-```bash
-git add .gitignore
-git status
-git commit -m ".gitignoreを追加：secret.txtとOS一時ファイルを除外"
-```
+`git add .gitignore` でステージングして `git commit -m "..."` でコミットする。その後 `git log --oneline` で確認すると：
 
 ```bash
 git log --oneline
@@ -149,18 +137,39 @@ setup セクションの [excludesfile の設定](../01-setup/04-excludesfile.md
 
 `my-diary` リポジトリで作業する：
 
+<div class="code-input">
+
 ```bash
 cd ~/my-diary
 echo "パスワード: hunter2" > secret.txt
 git status
 ```
 
+</div>
+
 `secret.txt` が `Untracked files` に出ることを確認したら、`.gitignore` を作って `secret.txt` を書く：
+
+<div class="code-input">
 
 ```bash
 echo "secret.txt" > .gitignore
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to include in what will be committed)
+```
+
+</div>
 
 `secret.txt` が消えて、`.gitignore` だけが残ることを確認しよう。
 
@@ -168,22 +177,32 @@ git status
 
 ログファイルをまとめて無視してみよう：
 
+<div class="code-input">
+
 ```bash
 echo "エラーが発生しました" > app.log
 echo "デバッグ情報" > debug.log
 git status
 ```
 
+</div>
+
 今はまだ `app.log` と `debug.log` が `Untracked files` に出る。`.gitignore` に `*.log` を追加しよう：
+
+<div class="code-input">
 
 ```bash
 echo "*.log" >> .gitignore
 git status
 ```
 
+</div>
+
 `*.log` パターンで両方消えることを確認しよう。
 
 ### 演習 3: .gitignore をコミットする
+
+<div class="code-input">
 
 ```bash
 git diff
@@ -193,11 +212,15 @@ git commit -m ".gitignoreを追加：secret.txtとログファイルを除外"
 git log --oneline
 ```
 
+</div>
+
 `.gitignore` がコミット履歴に記録されていることを確認しよう。
 
 ### 演習 4: すでにコミット済みのファイルはどうなる？
 
 試してみよう（少し注意が必要な演習だ）：
+
+<div class="code-input">
 
 ```bash
 echo "これはメモ" > memo.txt
@@ -207,9 +230,13 @@ echo "memo.txt" >> .gitignore
 git status
 ```
 
+</div>
+
 実は、**すでにコミット済みのファイルは .gitignore に書いても無視されない。** `memo.txt` はまだ `git status` に出てくるはずだ。
 
 一度 git に追跡されたファイルを無視したい場合は：
+
+<div class="code-input">
 
 ```bash
 git rm --cached memo.txt
@@ -217,11 +244,17 @@ git status
 git commit -m "memo.txtをキャッシュから削除"
 ```
 
+</div>
+
 `git rm --cached` は「git の追跡からは外す（でもファイル自体は消さない）」コマンドだ。これで以後は無視されるようになる。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 最初からやり直したいときは：
+
+<div class="code-input">
 
 ```bash
 cd ~
@@ -234,6 +267,8 @@ echo "今日も良い一日だった。" > entry-2024-01-01.md
 git add README.md entry-2024-01-01.md
 git commit -m "最初のコミット：READMEと日記ファイルを追加"
 ```
+
+</div>
 
 その後、このページの演習 1 から挑戦してみよう。
 
