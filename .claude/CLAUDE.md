@@ -90,7 +90,8 @@ one section to the first page of the next.
   `git merge`, `git reset`, etc.) must NOT appear as executable code blocks in Content.
   Explain what they do in prose or pseudocode, but keep actual execution in Exercises only.
   Non-destructive commands (`git status`, `git log`, `git diff`, `git branch`, etc.) are
-  welcome anywhere on the page — showing expected output is encouraged.
+  encouraged everywhere on the page — use them actively in Content to show state changes
+  and reinforce understanding. Always show the expected output alongside them.
 - **Mistake pages**: some pages intentionally end with a common mistake.
   The next page opens by explaining what went wrong and how to recover.
   Mark these pages with a comment at the top: `<!-- mistake-page -->`.
