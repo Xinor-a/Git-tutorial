@@ -89,6 +89,7 @@ one section to the first page of the next.
   A page can cover multiple related commands if they serve one scenario.
 - **Separate theory from practice** — see `../../.claude/CLAUDE.md` for the full rule.
   In short: state-changing commands in Exercises only; read-only commands freely in Content.
+  Reference implementation: `docs/part1/02-basics/05-staging.md` (commit `34a02f6`).
 - **Mistake pages**: some pages intentionally end with a common mistake.
   The next page opens by explaining what went wrong and how to recover.
   Mark these pages with a comment at the top: `<!-- mistake-page -->`.
