@@ -26,13 +26,7 @@ pwd
 
 ### ファイルを作る — `touch`
 
-日記の README ファイルを作ってみよう。
-
-```bash
-touch README.md
-```
-
-ファイルが作られたか確認する：
+`touch README.md` で日記の README ファイルを作ってみよう。ファイルが作られたか `ls` で確認すると：
 
 ```bash
 ls
@@ -96,10 +90,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 ### もうひとつファイルを追加してみる
 
-追跡されていないファイルが増えるとどうなるか試してみよう。
+`touch entry-2024-01-01.md` で追跡されていないファイルを増やすとどうなるか試してみよう。`git status` を実行すると：
 
 ```bash
-touch entry-2024-01-01.md
 git status
 ```
 
@@ -132,38 +125,89 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 `my-diary` フォルダの中にいることを確認してから：
 
+<div class="code-input">
+
 ```bash
 touch README.md
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
 `Untracked files` に `README.md` が表示されることを確認しよう。
 
 ### 演習 2: もうひとつファイルを追加する
+
+<div class="code-input">
 
 ```bash
 touch entry-2024-01-01.md
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+        entry-2024-01-01.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
 `Untracked files` に 2 つのファイルが並ぶことを確認しよう。
 
 ### 演習 3: ファイルの内容を確認する
+
+<div class="code-input">
 
 ```bash
 cat README.md
 ```
 
+</div>
+
 何も表示されない（空のファイルなので正常）。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 作ったファイルを削除してやり直す：
+
+<div class="code-input">
 
 ```bash
 rm README.md entry-2024-01-01.md
 git status
 ```
+
+</div>
 
 `nothing to commit` に戻れば OK。演習 1 からもう一度やってみよう。
 
