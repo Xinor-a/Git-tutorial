@@ -85,13 +85,8 @@ one section to the first page of the next.
 - **Code blocks**: always specify the language (```bash, ```markdown, etc.).
 - **One scenario per page** — not one command per page.
   A page can cover multiple related commands if they serve one scenario.
-- **Separate theory from practice** — the Content section is for conceptual understanding only.
-  Destructive commands (those that change repository state: `git init`, `git add`, `git commit`,
-  `git merge`, `git reset`, etc.) must NOT appear as executable code blocks in Content.
-  Explain what they do in prose or pseudocode, but keep actual execution in Exercises only.
-  Non-destructive commands (`git status`, `git log`, `git diff`, `git branch`, etc.) are
-  encouraged everywhere on the page — use them actively in Content to show state changes
-  and reinforce understanding. Always show the expected output alongside them.
+- **Separate theory from practice** — see `../../.claude/CLAUDE.md` for the full rule.
+  In short: state-changing commands in Exercises only; read-only commands freely in Content.
 - **Mistake pages**: some pages intentionally end with a common mistake.
   The next page opens by explaining what went wrong and how to recover.
   Mark these pages with a comment at the top: `<!-- mistake-page -->`.
