@@ -4,16 +4,16 @@
 
 ## What & Why
 
-WSL（Windows Subsystem for Linux）を使っていると、  
-Windowsのファイルシステム上（`/mnt/c/...`）にリポジトリを作ったとき、  
-Gitが突然エラーを出すことがあります。  
+WSL（Windows Subsystem for Linux）を使っていると、
+Windowsのファイルシステム上（`/mnt/c/...`）にリポジトリを作ったとき、
+Gitが突然エラーを出すことがあります。
 これはGitのセキュリティ設定が原因です。このページではその原因と解決方法を説明します。
 
 ## Content
 
 ### シナリオ
 
-セットアップが終わったと思ったら、いざリポジトリを作ろうとしたときに見知らぬエラーが出た…  
+セットアップが終わったと思ったら、いざリポジトリを作ろうとしたときに見知らぬエラーが出た…
 WSL環境ではよくあるハマりポイントです。
 
 ---
@@ -29,15 +29,15 @@ To add an exception for this directory, call:
 	git config --global --add safe.directory /mnt/c/projects/myapp
 ```
 
-「**dubious ownership**（怪しいオーナー）」というのは、  
+「**dubious ownership**（怪しいオーナー）」というのは、
 「このディレクトリの所有者が今のユーザーと違う」とGitが判断しているサインです。
 
 ---
 
 ### なぜこうなるの？
 
-WSLのLinux環境からWindowsのファイルシステム（`/mnt/c/` 以下）を見ると、  
-ファイルの「所有者情報」がLinux側のユーザーと一致しないことがあります。  
+WSLのLinux環境からWindowsのファイルシステム（`/mnt/c/` 以下）を見ると、
+ファイルの「所有者情報」がLinux側のユーザーと一致しないことがあります。
 Git 2.35.2 以降、セキュリティ強化のためにこのチェックが追加されました。
 
 ---
@@ -46,24 +46,15 @@ Git 2.35.2 以降、セキュリティ強化のためにこのチェックが追
 
 **方法1: 特定のディレクトリだけ許可する**
 
-エラーメッセージにも書いてありますが、対象ディレクトリを個別に許可できます。
-
-```bash
-git config --global --add safe.directory /mnt/c/projects/myapp
-```
-
+エラーメッセージにも書いてありますが、`git config --global --add safe.directory /mnt/c/projects/myapp` で対象ディレクトリを個別に許可できます。
 ただし、プロジェクトが増えるたびに毎回設定するのは面倒です。
 
 **方法2: /mnt/c/ 以下すべて許可する（おすすめ）**
 
-WSL環境でWindowsのドライブ上のすべてのディレクトリを許可するには、ワイルドカードを使います。
+WSL環境でWindowsのドライブ上のすべてのディレクトリを許可するには、`git config --global --add safe.directory '*'` でワイルドカードを使います。
 
-```bash
-git config --global --add safe.directory '*'
-```
-
-> **注意**: `'*'` はすべてのディレクトリを許可します。  
-> 自分だけが使うパソコンであれば問題ありませんが、  
+> **注意**: `'*'` はすべてのディレクトリを許可します。
+> 自分だけが使うパソコンであれば問題ありませんが、
 > 共有環境での使用には向いていません。
 
 ---
@@ -112,8 +103,8 @@ cat ~/.gitconfig
 
 ### WSLを使っていない人は？
 
-WindowsのGit（Git for Windows）を直接使っている場合や、  
-macOS・Linux上で作業している場合は、このエラーは通常出ません。  
+WindowsのGit（Git for Windows）を直接使っている場合や、
+macOS・Linux上で作業している場合は、このエラーは通常出ません。
 このページの設定はスキップしても大丈夫です。
 
 ## Summary
@@ -129,36 +120,73 @@ macOS・Linux上で作業している場合は、このエラーは通常出ま�
 
 1. ワイルドカードで設定する。
 
-   ```bash
-   git config --global --add safe.directory '*'
-   ```
+<div class="code-input">
+
+```bash
+git config --global --add safe.directory '*'
+```
+
+</div>
 
 2. 設定を確認する。
 
-   ```bash
-   git config --global --get-all safe.directory
-   ```
+<div class="code-input">
+
+```bash
+git config --global --get-all safe.directory
+```
+
+</div>
+
+<div class="code-output">
+
+```
+*
+```
+
+</div>
 
 3. `cat ~/.gitconfig` で `[safe]` セクションが追加されたことを確認しよう。
 
-   ```bash
-   cat ~/.gitconfig
-   ```
+<div class="code-input">
+
+```bash
+cat ~/.gitconfig
+```
+
+</div>
+
+<div class="code-output">
+
+```
+[safe]
+	directory = *
+```
+
+</div>
 
 ---
 
 ### Reset & Retry
 
-設定を削除して最初からやり直すには：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 git config --global --unset-all safe.directory
 ```
 
+</div>
+
 その後、改めて設定する：
+
+<div class="code-input">
 
 ```bash
 git config --global --add safe.directory '*'
 ```
+
+</div>
 
 [< Previous: ターミナルの色を設定しよう](06-color-ui.md) | [Back to Index](../../../README.md) | [Next: 設定を確認しよう >](08-exercise-verify-gitconfig.md)
