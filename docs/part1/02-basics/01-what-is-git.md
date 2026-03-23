@@ -97,31 +97,45 @@ git で管理されているプロジェクトのフォルダを**リポジト�
 
 すでに setup セクションでやった操作だけど、改めて確認しよう。
 
+<div class="code-input">
+
 ```bash
 git --version
 ```
 
-こんな表示が出れば OK：
+</div>
+
+<div class="code-output">
 
 ```
 git version 2.xx.x
 ```
 
+</div>
+
 ### 演習 2: git の設定を確認する
 
 setup セクションで設定した内容を振り返ろう。
+
+<div class="code-input">
 
 ```bash
 git config --list
 ```
 
+</div>
+
 `user.name` と `user.email` が表示されるはずだ。
 
 ### 演習 3: git のヘルプを眺めてみる
 
+<div class="code-input">
+
 ```bash
 git help
 ```
+
+</div>
 
 たくさんのコマンドが表示されるが、今は全部わからなくて大丈夫。「こんなことができるんだな」と眺めるだけでいい。
 
