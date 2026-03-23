@@ -83,10 +83,14 @@ one section to the first page of the next.
 - **Person**: second person — "you" (not "we").
 - **Language**: Japanese (日本語). Pages are written in Japanese.
 - **Code blocks**: always specify the language (```bash, ```markdown, etc.).
-- **Commands**: show the full command, then explain what it does after.
-  Show the expected output when it helps understanding.
 - **One scenario per page** — not one command per page.
   A page can cover multiple related commands if they serve one scenario.
+- **Separate theory from practice** — the Content section is for conceptual understanding only.
+  Destructive commands (those that change repository state: `git init`, `git add`, `git commit`,
+  `git merge`, `git reset`, etc.) must NOT appear as executable code blocks in Content.
+  Explain what they do in prose or pseudocode, but keep actual execution in Exercises only.
+  Non-destructive commands (`git status`, `git log`, `git diff`, `git branch`, etc.) are
+  welcome anywhere on the page — showing expected output is encouraged.
 - **Mistake pages**: some pages intentionally end with a common mistake.
   The next page opens by explaining what went wrong and how to recover.
   Mark these pages with a comment at the top: `<!-- mistake-page -->`.
