@@ -21,106 +21,29 @@
 
 ### 現在のブランチを確認する
 
-まず今どのブランチにいるか確認します。
+まず今どのブランチにいるか `git branch` で確認します。`*` がついているのが「今いるブランチ」です。
 
 ```bash
 git branch
 ```
-
-実行すると、こんな出力が出るはずです。
 
 ```
 * main
 ```
 
-`*` がついているのが「今いるブランチ」です。現在は `main` にいます。
-
 ---
 
-### ブランチを作る
+### ブランチを作る・切り替える
 
-新しいブランチを作るには `git branch <名前>` を使います。
+`git branch <名前>` で新しいブランチを作れます。ただし、これだけではまだ `main` にいます。切り替えるには `git switch <名前>` を使います。
 
-```bash
-git branch hobby-section
-```
-
-これでブランチが作られました。でもまだ `main` にいます。もう一度確認してみましょう。
-
-```bash
-git branch
-```
-
-```
-  hobby-section
-* main
-```
-
-`hobby-section` が増えましたが、`*` はまだ `main` についています。
-
----
-
-### ブランチを切り替える
-
-`hobby-section` に移動するには `git switch` を使います。
-
-```bash
-git switch hobby-section
-```
-
-```
-Switched to branch 'hobby-section'
-```
-
-もう一度 `git branch` で確認してみましょう。
-
-```bash
-git branch
-```
-
-```
-* hobby-section
-  main
-```
-
-`*` が `hobby-section` に移りました。これで今のあなたは `hobby-section` ブランチにいます。
-
-`git status` でも確認できます。
-
-```bash
-git status
-```
-
-```
-On branch hobby-section
-nothing to commit, working tree clean
-```
-
-「On branch hobby-section」と表示されていますね。
+`git switch -c <名前>` とすると、作成と切り替えを一度に行えます。`-c` は「create（作成）」の略です。慣れたらこちらを使うのがおすすめです。
 
 ---
 
 ### ブランチで作業してコミットする
 
-趣味ページを作ってコミットしてみましょう。
-
-```bash
-touch hobby.md
-git add hobby.md
-git commit -m "add hobby page draft"
-```
-
-```
-[hobby-section xxxxxxx] add hobby page draft
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 hobby.md
-```
-
-コミットログを確認します。
-
-```bash
-git log --oneline
-```
+`hobby-section` ブランチでコミットを積むと、`git log --oneline` の出力は次のようになります。
 
 ```
 xxxxxxx (HEAD -> hobby-section) add hobby page draft
@@ -133,60 +56,14 @@ yyyyyyy (main) （以前のコミット）
 
 ### main に戻ると……
 
-`main` に切り替えてみましょう。
-
-```bash
-git switch main
-```
-
-```
-Switched to branch 'main'
-```
-
-`hobby.md` がどうなっているか確認します。
-
-```bash
-git status
-```
+`git switch main` で `main` に切り替えると、`hobby-section` で作ったファイルは見えなくなります。`git status` で確認すると：
 
 ```
 On branch main
 nothing to commit, working tree clean
 ```
 
-`hobby.md` は見えません！`ls` で確認しても存在しないはずです。**`hobby-section` ブランチのコミットは `main` には影響していない**のです。これがブランチの力です。
-
-```bash
-git log --oneline
-```
-
-```
-yyyyyyy (HEAD -> main) （以前のコミット）
-```
-
-`hobby-section` で作ったコミットは、`main` のログには出てきません。
-
----
-
-### 作成と切り替えを一度にやる：git switch -c
-
-ブランチを作ってすぐ切り替えることが多いので、2つのコマンドを1つにまとめられます。
-
-```bash
-git switch -c new-branch-name
-```
-
-`-c` は「create（作成）」の略です。
-
-```bash
-git switch -c another-idea
-```
-
-```
-Switched to new branch 'another-idea'
-```
-
-これで `another-idea` ブランチが作られ、すぐそこに移動しました。`git branch` → `git switch` の2ステップを1つで済ませられるので、慣れたらこちらを使うのがおすすめです。
+`git log --oneline` を見ても、`hobby-section` で作ったコミットは出てきません。**`hobby-section` ブランチのコミットは `main` には影響していない**のです。これがブランチの力です。
 
 ---
 
@@ -211,73 +88,212 @@ git switch -c <name>         # 作成 + 切り替え（一発）
 
 `my-diary` リポジトリで以下の手順を試してください。
 
-1. 現在のブランチを確認する。
+### 演習 1: 現在のブランチを確認する
 
-   ```bash
-   git branch
-   ```
+<div class="code-input">
 
-2. `experiment` という名前のブランチを作る。
+```bash
+git branch
+```
 
-   ```bash
-   git branch experiment
-   ```
+</div>
 
-3. `git branch` でブランチが増えたことを確認する。
+<div class="code-output">
 
-4. `experiment` ブランチに切り替える。
+```
+* main
+```
 
-   ```bash
-   git switch experiment
-   ```
+</div>
 
-5. `git status` で現在のブランチを確認する。
+---
 
-   ```bash
-   git status
-   ```
+### 演習 2: `experiment` ブランチを作る
 
-6. 新しいファイルを作ってコミットする。
+<div class="code-input">
 
-   ```bash
-   touch test-note.md
-   git add test-note.md
-   git commit -m "add test note on experiment branch"
-   ```
+```bash
+git branch experiment
+```
 
-7. コミットログを確認する。
+</div>
 
-   ```bash
-   git log --oneline
-   ```
+`git branch` でブランチが増えたことを確認する。
 
-8. `main` に戻る。
+<div class="code-input">
 
-   ```bash
-   git switch main
-   ```
+```bash
+git branch
+```
 
-9. `git log --oneline` を再度確認して、`experiment` ブランチのコミットが見えないことを確かめる。
+</div>
 
-   ```bash
-   git log --oneline
-   ```
+<div class="code-output">
 
-10. `git switch -c` で新しいブランチを一発で作って切り替えてみる。
+```
+  experiment
+* main
+```
 
-    ```bash
-    git switch -c quick-test
-    ```
+</div>
 
-11. `git branch` で `*` の位置を確認する。
+---
 
-    ```bash
-    git branch
-    ```
+### 演習 3: `experiment` ブランチに切り替える
+
+<div class="code-input">
+
+```bash
+git switch experiment
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Switched to branch 'experiment'
+```
+
+</div>
+
+`git status` で現在のブランチを確認する。
+
+<div class="code-input">
+
+```bash
+git status
+```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch experiment
+nothing to commit, working tree clean
+```
+
+</div>
+
+---
+
+### 演習 4: 新しいファイルを作ってコミットする
+
+<div class="code-input">
+
+```bash
+touch test-note.md
+git add test-note.md
+git commit -m "add test note on experiment branch"
+```
+
+</div>
+
+コミットログを確認する。
+
+<div class="code-input">
+
+```bash
+git log --oneline
+```
+
+</div>
+
+<div class="code-output">
+
+```
+xxxxxxx (HEAD -> experiment) add test note on experiment branch
+yyyyyyy (main) （以前のコミット）
+```
+
+</div>
+
+---
+
+### 演習 5: `main` に戻る
+
+<div class="code-input">
+
+```bash
+git switch main
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Switched to branch 'main'
+```
+
+</div>
+
+`git log --oneline` を確認して、`experiment` ブランチのコミットが見えないことを確かめる。
+
+<div class="code-input">
+
+```bash
+git log --oneline
+```
+
+</div>
+
+<div class="code-output">
+
+```
+yyyyyyy (HEAD -> main) （以前のコミット）
+```
+
+</div>
+
+---
+
+### 演習 6: `git switch -c` で新しいブランチを一発で作って切り替える
+
+<div class="code-input">
+
+```bash
+git switch -c quick-test
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Switched to a new branch 'quick-test'
+```
+
+</div>
+
+`git branch` で `*` の位置を確認する。
+
+<div class="code-input">
+
+```bash
+git branch
+```
+
+</div>
+
+<div class="code-output">
+
+```
+  experiment
+  main
+* quick-test
+```
+
+</div>
+
+---
 
 ### Reset & Retry
 
-うまくいかなかった場合は、以下で `main` に戻り、練習用ブランチを削除してやり直せます。
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 git switch main
@@ -285,7 +301,25 @@ git branch -d experiment
 git branch -d quick-test
 ```
 
+</div>
+
 `-d` はブランチの削除です。ブランチを削除してもコミット履歴の `main` 側は消えません。安心して試してください。
+
+<div class="code-input">
+
+```bash
+git branch
+```
+
+</div>
+
+<div class="code-output">
+
+```
+* main
+```
+
+</div>
 
 <!-- prev/next navigation -->
 [< Previous: ブランチとは何か](01-branch-concept.md) | [Back to Index](../../../README.md) | [Next: git checkout — git switch との関係 >](03-checkout.md)
