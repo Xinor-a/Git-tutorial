@@ -28,13 +28,19 @@
 
 リポジトリを準備しよう：
 
+<div class="code-input">
+
 ```bash
 mkdir ~/blog-practice
 cd ~/blog-practice
 git init
 ```
 
+</div>
+
 最初のファイルを作ってコミットする：
+
+<div class="code-input">
 
 ```bash
 echo "# 私のブログ" > index.md
@@ -43,13 +49,21 @@ git add index.md
 git commit -m "ブログ：最初のコミット"
 ```
 
+</div>
+
 `tags` ブランチを作って切り替える：
+
+<div class="code-input">
 
 ```bash
 git switch -c tags
 ```
 
+</div>
+
 タグ機能のファイルを作りながらコミットを 2 つ積もう：
+
+<div class="code-input">
 
 ```bash
 echo "# タグ一覧" > tags.md
@@ -58,17 +72,29 @@ git add tags.md
 git commit -m "タグ：タグ一覧ページを追加"
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 echo "タグのスタイルを調整" >> tags.md
 git add tags.md
 git commit -m "タグ：スタイルを調整"
 ```
 
+</div>
+
 ここまでの状態を確認しよう：
+
+<div class="code-input">
 
 ```bash
 git log --oneline --graph --all
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 * b2c3d4e (HEAD -> tags) タグ：スタイルを調整
@@ -76,17 +102,25 @@ git log --oneline --graph --all
 * 9z8y7x6 ブログ：最初のコミット (main)
 ```
 
+</div>
+
 ---
 
 ### フェーズ 2: main にも変更を加える
 
 `main` に戻り、`tags` ブランチとは別のコミットを作る。これで「ファストフォワードにならない」状況が作れる：
 
+<div class="code-input">
+
 ```bash
 git switch main
 ```
 
+</div>
+
 `index.md` に変更を加えてコミットしよう：
+
+<div class="code-input">
 
 ```bash
 echo "プロフィールページ追加" >> index.md
@@ -94,11 +128,19 @@ git add index.md
 git commit -m "トップ：プロフィールリンクを追加"
 ```
 
+</div>
+
 状態を確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline --graph --all
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 * f3c4d5e (HEAD -> main) トップ：プロフィールリンクを追加
@@ -108,6 +150,8 @@ git log --oneline --graph --all
 * 9z8y7x6 ブログ：最初のコミット
 ```
 
+</div>
+
 2 つのブランチが分岐していることがわかる。
 
 ---
@@ -116,11 +160,15 @@ git log --oneline --graph --all
 
 `tags` ブランチを `main` にマージしよう：
 
+<div class="code-input">
+
 ```bash
 git merge tags
 ```
 
-`index.md` を両ブランチで変更していないので、今回はコンフリクトなしで成功するはずだ：
+</div>
+
+<div class="code-output">
 
 ```
 Merge made by the 'ort' strategy.
@@ -129,13 +177,23 @@ Merge made by the 'ort' strategy.
  create mode 100644 tags.md
 ```
 
+</div>
+
+`index.md` を両ブランチで変更していないので、今回はコンフリクトなしで成功するはずだ。
+
 > もしコンフリクトが起きた場合は [マージコンフリクトを解決する](05-merge-conflict.md) を参考に解消しよう。
 
 マージ後の状態を確認：
 
+<div class="code-input">
+
 ```bash
 git log --oneline --graph --all
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 *   c4d5e6f (HEAD -> main) Merge branch 'tags'
@@ -147,11 +205,26 @@ git log --oneline --graph --all
 * 9z8y7x6 ブログ：最初のコミット
 ```
 
+</div>
+
 枝が合流しているグラフが表示された。マージコミットが作られたことも確認できる。
+
+<div class="code-input">
 
 ```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+</div>
 
 ---
 
@@ -161,31 +234,71 @@ git status
 
 `profile` ブランチを作り、作業を始める：
 
+<div class="code-input">
+
 ```bash
 git switch -c profile
 echo "# プロフィール" > profile.md
 echo "自己紹介の途中..." >> profile.md
 ```
 
+</div>
+
 まだコミットしていない（途中の状態）。ここで緊急メッセージが来たとしよう：「`main` の `index.md` に誤字がある！直してほしい！」
 
 現在の変更を確認：
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch profile
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	profile.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
 スタッシュに退避する：
+
+<div class="code-input">
 
 ```bash
 git stash push -u -m "プロフィールページの途中"
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch profile
+nothing to commit, working tree clean
+```
+
+</div>
+
 `nothing to commit, working tree clean` になることを確認。`main` に切り替えて修正する：
+
+<div class="code-input">
 
 ```bash
 git switch main
@@ -194,20 +307,50 @@ git add index.md
 git commit -m "トップ：誤字を修正"
 ```
 
+</div>
+
 `profile` ブランチに戻り、スタッシュを復元する：
+
+<div class="code-input">
 
 ```bash
 git switch profile
 git stash pop
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch profile
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	profile.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
 `profile.md` が戻ってきたことを確認。作業を再開してコミットしよう：
+
+<div class="code-input">
 
 ```bash
 git add profile.md
 git commit -m "プロフィール：自己紹介ページを追加"
 ```
+
+</div>
 
 ---
 
@@ -215,11 +358,15 @@ git commit -m "プロフィール：自己紹介ページを追加"
 
 いよいよ仕上げ。すべての操作の結果を一気に確認しよう：
 
+<div class="code-input">
+
 ```bash
 git log --oneline --graph --all
 ```
 
-こんなグラフが見えるはずだ：
+</div>
+
+<div class="code-output">
 
 ```
 * 8e9f0a1 (HEAD -> profile) プロフィール：自己紹介ページを追加
@@ -233,17 +380,27 @@ git log --oneline --graph --all
 * 9z8y7x6 ブログ：最初のコミット
 ```
 
+</div>
+
 `*` がコミット、`|` と `/` が枝の流れ、`\` が合流を表している。自分がやってきた作業がグラフで見えると、ブランチ操作の全体像が一目でわかる。
 
 ブランチの一覧も確認しよう：
+
+<div class="code-input">
 
 ```bash
 git branch
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git log --oneline
 ```
+
+</div>
 
 ---
 
@@ -251,24 +408,41 @@ git log --oneline
 
 `profile` ブランチを `main` にマージする前に、`git rebase main` でリベースしてから取り込んでみよう。
 
+<div class="code-input">
+
 ```bash
 git switch profile
 git rebase main
 git switch main
 git merge profile
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git log --oneline --graph --all
 ```
 
+</div>
+
 リベース後にマージするとグラフがどう変わるか確認しよう。マージコミットは作られる？
+
+---
 
 ### Reset & Retry
 
-最初からやり直したいときは：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ~
 rm -rf blog-practice
 ```
+
+</div>
 
 その後、フェーズ 1 から始めてみよう。
 
