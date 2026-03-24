@@ -79,11 +79,7 @@ GitHub にはデフォルトでいくつかのラベルが用意されていま�
 
 ### ステップ3：コミットから Issue を参照する
 
-コミットメッセージに `#番号` を書くと、GitHub が自動でリンクしてくれます。
-
-```bash
-git commit -m "fix: タイポを修正 (#3)"
-```
+コミットメッセージに `#番号` を書くと、GitHub が自動でリンクしてくれます。`git commit -m "fix: タイポを修正 (#3)"` のように書くだけです。
 
 GitHub 上でコミット履歴を見ると、`#3` が Issue へのリンクになります。「この修正はあの Issue を対応したんだな」とひと目でわかります。
 
@@ -144,27 +140,99 @@ PR をマージした瞬間、`#3` の Issue が自動で "closed" になるの�
 
 1. 自分のリポジトリのどこかに、わざとタイポを入れたファイルを作る。
 
+   <div class="code-input">
+
    ```bash
    echo "collaboartion is fun" > typo-sample.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git add typo-sample.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git commit -m "chore: add typo sample for issue practice"
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git push origin main
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
    ```
+
+   </div>
 
 2. GitHub の **Issues** タブから **New issue** を押し、タイポの報告 Issue を作る。ラベルに `bug` を設定する。Issue 番号をメモしておく（例：`#5`）。
 
 3. ローカルでフィーチャーブランチを作り、タイポを修正してコミットする。
 
+   <div class="code-input">
+
    ```bash
    git switch -c fix/typo-sample
-   # typo-sample.txt を編集して "collaboration is fun" に直す
+   ```
+
+   </div>
+
+   エディタで `typo-sample.txt` を開いて `"collaboration is fun"` に直してから：
+
+   <div class="code-input">
+
+   ```bash
    git add typo-sample.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git diff --cached
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git commit -m "fix: タイポを修正 (#5)"
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git push origin fix/typo-sample
    ```
+
+   </div>
 
 4. GitHub で PR を作る。説明文に `Closes #5` を書く。
 
@@ -174,21 +242,38 @@ PR をマージした瞬間、`#3` の Issue が自動で "closed" になるの�
 
 ### Reset & Retry
 
-途中でやり直したい場合は、以下を実行してください。
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
-# フィーチャーブランチを削除してやり直す（まだ push していない場合）
 git switch main
 git branch -D fix/typo-sample
+```
 
-# push 済みのブランチをリモートからも削除する場合
+</div>
+
+push 済みのブランチをリモートからも削除する場合：
+
+<div class="code-input">
+
+```bash
 git push origin --delete fix/typo-sample
+```
 
-# typo-sample.txt を削除してやり直す場合
+</div>
+
+`typo-sample.txt` を削除してやり直す場合：
+
+<div class="code-input">
+
+```bash
 git rm typo-sample.txt
 git commit -m "chore: remove typo sample"
 git push origin main
 ```
+
+</div>
 
 <!-- prev/next navigation -->
 [< Previous: プルリクエストを作ろう](04-pull-request.md) | [Back to Index](../../../README.md) | [Next: git push — ローカルをリモートへ >](../03-workflow/01-push.md)
