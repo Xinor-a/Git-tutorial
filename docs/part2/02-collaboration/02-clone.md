@@ -36,40 +36,16 @@ git@github.com:あなたのユーザー名/git-tutorial-practice.git
 
 ### git clone を実行しよう
 
-ターミナルを開いて、リポジトリを置きたいディレクトリに移動します。  
-たとえば、ホームディレクトリの下に `projects` フォルダを作って使うと整理しやすいです。
-
-```bash
-mkdir -p ~/projects
-cd ~/projects
-```
-
-次に、`git clone` でリポジトリをコピーします：
-
-```bash
-git clone git@github.com:あなたのユーザー名/git-tutorial-practice.git
-```
-
-実行すると、こんな出力が表示されます：
-
-```
-Cloning into 'git-tutorial-practice'...
-remote: Enumerating objects: 42, done.
-remote: Counting objects: 100% (42/42), done.
-remote: Compressing objects: 100% (28/28), done.
-Receiving objects: 100% (42/42), 15.23 KiB | 2.17 MiB/s, done.
-Resolving deltas: 100% (10/10), done.
-```
-
+ターミナルを開いて、`mkdir -p ~/projects` でリポジトリを置くフォルダを作り、
+そのディレクトリに移動します。
+次に、`git clone git@github.com:あなたのユーザー名/git-tutorial-practice.git` でリポジトリをコピーします。
 クローンが完了すると、`git-tutorial-practice` というフォルダが作成されます。
 
 ---
 
 ### リポジトリに入ってみよう
 
-```bash
-cd git-tutorial-practice
-```
+`cd git-tutorial-practice` でクローンしたリポジトリのディレクトリに入ります。
 
 ---
 
@@ -159,31 +135,51 @@ github.com/あなた/git-tutorial-practice
 2. ターミナルで作業用ディレクトリに移動する（例: `~/projects`）
 3. `git clone` を実行する
 
+   <div class="code-input">
+
    ```bash
    git clone git@github.com:あなたのユーザー名/git-tutorial-practice.git
    ```
 
+   </div>
+
 4. クローンが完了したら、ディレクトリに入る
+
+   <div class="code-input">
 
    ```bash
    cd git-tutorial-practice
    ```
 
+   </div>
+
 ### 演習2: 状態を確認しよう
 
 クローンしたリポジトリの中で以下のコマンドを実行して、出力を確認しましょう。
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git log --oneline
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git remote -v
 ```
+
+</div>
 
 それぞれ何が表示されましたか？`origin` はどのURLを指していますか？
 
@@ -196,16 +192,26 @@ git remote -v
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 クローンをやり直したい場合、ローカルのフォルダを削除して再実行します：
 
+<div class="code-input">
+
 ```bash
-# git-tutorial-practice フォルダを削除する（1つ上のディレクトリから実行）
 cd ~/projects
 rm -rf git-tutorial-practice
+```
 
-# 再度クローンする
+</div>
+
+<div class="code-input">
+
+```bash
 git clone git@github.com:あなたのユーザー名/git-tutorial-practice.git
 ```
+
+</div>
 
 ---
 
