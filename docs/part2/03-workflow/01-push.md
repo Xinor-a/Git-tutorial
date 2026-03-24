@@ -5,31 +5,27 @@
 
 ## What & Why
 
-`git push` は、ローカルで積み上げたコミットをリモートリポジトリ（GitHub）へ送るコマンドです。  
-プッシュをしないと、あなたのコンピュータにしか変更が存在しません。  
+`git push` は、ローカルで積み上げたコミットをリモートリポジトリ（GitHub）へ送るコマンドです。
+プッシュをしないと、あなたのコンピュータにしか変更が存在しません。
 チームで作業するときも、一人で作業するときも、「完成したらプッシュ」が基本の流れです。
 
 ## Content
 
 ### シナリオ：新機能ブランチをGitHubへ送ろう
 
-あなたはローカルで `feature/top-page` というブランチを作り、いくつかコミットしました。  
+あなたはローカルで `feature/top-page` というブランチを作り、いくつかコミットしました。
 これをGitHubへ送って、チームに見せましょう。
 
 ---
 
 ### ① mainブランチをプッシュする
 
-まず基本から。`main` ブランチの変更をリモートへ送るには：
-
-```bash
-git push origin main
-```
+まず基本から。`git push origin main` で `main` ブランチの変更をリモートへ送れます。
 
 - `origin` — リモートリポジトリの名前（クローンすると自動でこの名前になります）
 - `main` — プッシュするブランチ名
 
-実行するとこんな出力が出ます：
+プッシュが成功するとこんな出力が出ます：
 
 ```text
 Enumerating objects: 5, done.
@@ -46,32 +42,15 @@ To https://github.com/yourname/your-repo.git
 
 ### ② フィーチャーブランチをプッシュする
 
-`feature/top-page` ブランチをプッシュするには：
-
-```bash
-git push origin feature/top-page
-```
-
-ブランチ名をそのまま指定するだけです。リモートに同じ名前のブランチが作られます。
+`git push origin feature/top-page` のようにブランチ名を指定するだけです。リモートに同じ名前のブランチが作られます。
 
 ---
 
 ### ③ `-u` オプションで上流ブランチを設定する
 
-毎回 `git push origin feature/top-page` と打つのは長いですね。  
-`-u`（`--set-upstream` の略）オプションを使うと、次回から `git push` だけで済むようになります。
-
-```bash
-git push -u origin feature/top-page
-```
-
-実行後、このブランチでは：
-
-```bash
-git push   # これだけでOK！
-```
-
-と打つだけでプッシュできます。`-u` は最初の一回だけ使えば十分です。
+毎回 `git push origin feature/top-page` と打つのは長いですね。
+`-u`（`--set-upstream` の略）オプションを初回に使うと、次回から `git push` だけで済むようになります。
+`-u` は最初の一回だけ使えば十分です。
 
 ---
 
@@ -87,33 +66,24 @@ hint: not have locally. Integrate the remote changes (e.g.
 hint: 'git pull ...') before pushing again.
 ```
 
-これは「リモートに自分が持っていない変更があるよ」というメッセージです。  
-解決策は、まず `git pull` でリモートの変更を取り込んでから、再度プッシュすることです。  
+これは「リモートに自分が持っていない変更があるよ」というメッセージです。
+解決策は、まず `git pull` でリモートの変更を取り込んでから、再度プッシュすることです。
 `git pull` については[次のページ](02-pull.md)で詳しく説明します。
 
 ---
 
 ### ⑤ リモートブランチを削除する
 
-マージ済みのフィーチャーブランチはリモートからも消しておくとすっきりします：
-
-```bash
-git push origin --delete feature/old-branch
-```
+マージ済みのフィーチャーブランチはリモートからも消しておくとすっきりします。`git push origin --delete feature/old-branch` で削除できます。
 
 ---
 
 ### ⚠️ `--force` は共有ブランチで絶対に使わない
 
-`git push --force`（または `-f`）というオプションがあります。  
+`git push --force`（または `-f`）というオプションがあります。
 これはリモートの履歴を強制的に上書きするもので、**チームで共有しているブランチで使うと他の人のコミットが消える**危険があります。
 
-```bash
-# ⚠️ 共有ブランチでは絶対に使わないこと！
-git push --force origin main
-```
-
-`--force` を使ってよいのは「自分だけが使っているブランチで、どうしても履歴を書き直したい」という限られた場面だけです。  
+`--force` を使ってよいのは「自分だけが使っているブランチで、どうしても履歴を書き直したい」という限られた場面だけです。
 迷ったら使わない、それが鉄則です。
 
 ## Summary
@@ -130,53 +100,151 @@ git push --force origin main
 
 1. ローカルで新しいブランチを作り、空のファイルを追加してコミットしてみましょう。
 
+   <div class="code-input">
+
    ```bash
    git checkout -b feature/exercise-push
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    touch hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git add hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git commit -m "docs: add hello.txt for push exercise"
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git status
+   ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   On branch feature/exercise-push
+   nothing to commit, working tree clean
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
    ```
 
+   </div>
+
 2. `-u` オプションでブランチをプッシュしましょう。
+
+   <div class="code-input">
 
    ```bash
    git push -u origin feature/exercise-push
    ```
 
+   </div>
+
    GitHubのリポジトリページを開いて、ブランチが追加されていることを確認してください。
 
 3. もう一度ファイルを変更してコミットし、今度は `git push` だけでプッシュできることを確認しましょう。
 
+   <div class="code-input">
+
    ```bash
    echo "hello" >> hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git add hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git commit -m "docs: update hello.txt"
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git push
    ```
 
+   </div>
+
 4. `git log --oneline` でコミット履歴を確認し、リモートと同期されていることを見てみましょう。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline origin/feature/exercise-push
    ```
 
+   </div>
+
 5. 練習が終わったら、リモートブランチを削除しましょう。
+
+   <div class="code-input">
 
    ```bash
    git push origin --delete feature/exercise-push
    ```
 
+   </div>
+
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
+
 ```bash
-# ローカルブランチを削除してやり直す
 git checkout main
 git branch -D feature/exercise-push
-# リモートブランチが残っている場合はこちらも
+```
+
+</div>
+
+リモートブランチが残っている場合はこちらも：
+
+<div class="code-input">
+
+```bash
 git push origin --delete feature/exercise-push
 ```
+
+</div>
 
 <!-- prev/next navigation -->
 [< Previous: Issueで作業を管理しよう](../02-collaboration/05-issues.md) | [Back to Index](../../../README.md) | [Next: git pull — リモートの変更をローカルへ >](02-pull.md)
