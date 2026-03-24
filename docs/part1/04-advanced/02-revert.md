@@ -5,8 +5,8 @@
 
 ## What & Why
 
-前のページでは `git reset` を学びました。でも reset は「歴史を書き換える」ので、すでに push したコミットには使えません。  
-`git revert` は **新しいコミットを追加することで**、過去のコミットを安全に取り消すコマンドです。  
+前のページでは `git reset` を学びました。でも reset は「歴史を書き換える」ので、すでに push したコミットには使えません。
+`git revert` は **新しいコミットを追加することで**、過去のコミットを安全に取り消すコマンドです。
 歴史はそのまま保たれるので、チームで共有しているブランチでも安心して使えます。
 
 ## Content
@@ -25,7 +25,7 @@ a5b4c3d ヘッダーを修正
 9d8e7f6 README を更新
 ```
 
-`f8e7d6c` のコミットがバグの原因だと判明。でも、このコミットはすでに push 済みで、チームメンバーが pull しているかもしれません。  
+`f8e7d6c` のコミットがバグの原因だと判明。でも、このコミットはすでに push 済みで、チームメンバーが pull しているかもしれません。
 ここで `git reset` を使って歴史を書き換えてしまうと、チームに大混乱が起きます。
 
 そこで `git revert` の出番です。
@@ -34,11 +34,7 @@ a5b4c3d ヘッダーを修正
 
 ### `git revert <ハッシュ>` ― 指定したコミットを取り消す
 
-```bash
-git revert f8e7d6c
-```
-
-このコマンドを実行すると、エディタが開いてコミットメッセージを求められます。  
+`git revert f8e7d6c` を実行すると、エディタが開いてコミットメッセージを求められます。
 デフォルトで以下のようなメッセージが入力されています：
 
 ```
@@ -49,25 +45,10 @@ This reverts commit f8e7d6c.
 
 そのまま保存して閉じると、revert コミットが作成されます。
 
----
+**ポイント：** 元のコミット `f8e7d6c` は消えません。
+代わりに、その変更を打ち消す新しいコミットが追加されます。
 
-### 実行後の履歴を確認する
-
-```bash
-git log --oneline
-```
-
-```
-2c1b0a9 Revert "バグのあるコードを追加してしまった"
-f8e7d6c バグのあるコードを追加してしまった
-a5b4c3d ヘッダーを修正
-9d8e7f6 README を更新
-```
-
-**ポイント：** `f8e7d6c` のコミットは消えていません。  
-代わりに、その変更を打ち消す新しいコミット `2c1b0a9` が追加されています。
-
-歴史が保たれているので、チームメンバーは普通に `git pull` するだけで最新状態になります。  
+歴史が保たれているので、チームメンバーは普通に `git pull` するだけで最新状態になります。
 「なぜ取り消したのか」も履歴に残るので、後から見返したときにも状況がわかります。
 
 ---
@@ -76,11 +57,7 @@ a5b4c3d ヘッダーを修正
 
 最新のコミットを取り消したいだけなら、ハッシュを調べなくても `HEAD` で指定できます。
 
-```bash
-git revert HEAD
-```
-
-これは `git revert <最新のコミットのハッシュ>` と同じ意味です。
+`git revert HEAD` は `git revert <最新のコミットのハッシュ>` と同じ意味です。
 
 ---
 
@@ -99,14 +76,14 @@ git revert HEAD
 
 ### revert はコミット単位で動く
 
-`git revert` は指定した1つのコミットの変更を打ち消します。  
+`git revert` は指定した1つのコミットの変更を打ち消します。
 そのコミット以降の変更には手を加えません。
 
-たとえば `a5b4c3d` を revert しても、それより新しい `f8e7d6c` は影響を受けません。  
+たとえば `a5b4c3d` を revert しても、それより新しい `f8e7d6c` は影響を受けません。
 それぞれのコミットが独立して取り消せるのが revert の強みです。
 
-> 💡 **注意：** 古いコミットを revert すると、その後の変更と内容が衝突（コンフリクト）することがあります。  
-> そのときは通常のコンフリクト解消と同じように対応してください  
+> 💡 **注意：** 古いコミットを revert すると、その後の変更と内容が衝突（コンフリクト）することがあります。
+> そのときは通常のコンフリクト解消と同じように対応してください
 > （コンフリクト解消は [マージの章](../03-branching/05-merge-conflict.md) を参照）。
 
 ## Summary
@@ -122,31 +99,59 @@ git revert HEAD
 
 練習用のリポジトリを作ります。
 
+<div class="code-input">
+
 ```bash
 mkdir revert-practice && cd revert-practice
 git init
 echo "最初の内容" > app.txt
 git add app.txt
 git commit -m "最初のコミット"
+```
 
+</div>
+
+<div class="code-input">
+
+```bash
 echo "良い変更" >> app.txt
 git add app.txt
 git commit -m "良い変更を追加"
+```
 
+</div>
+
+<div class="code-input">
+
+```bash
 echo "バグのある変更" >> app.txt
 git add app.txt
 git commit -m "バグのある変更を追加"
+```
 
+</div>
+
+<div class="code-input">
+
+```bash
 echo "その後の変更" >> app.txt
 git add app.txt
 git commit -m "その後の変更"
 ```
 
+</div>
+
 現在の状態を確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx その後の変更
@@ -155,23 +160,45 @@ zzzzzzz 良い変更を追加
 wwwwwww 最初のコミット
 ```
 
+</div>
+
 ---
 
 ### 演習1：直前のコミットを revert する
+
+<div class="code-input">
 
 ```bash
 git revert HEAD
 ```
 
+</div>
+
 エディタが開いたらデフォルトのメッセージのまま保存して閉じてください。
 
 ログを確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
 
-「Revert "その後の変更"」というコミットが追加されていることを確認してください。  
+</div>
+
+<div class="code-output">
+
+```
+aaaaaaa Revert "その後の変更"
+xxxxxxx その後の変更
+yyyyyyy バグのある変更を追加
+zzzzzzz 良い変更を追加
+wwwwwww 最初のコミット
+```
+
+</div>
+
+「Revert "その後の変更"」というコミットが追加されていることを確認してください。
 元のコミットは消えていないことも確認しましょう。
 
 ---
@@ -180,33 +207,65 @@ git log --oneline
 
 「バグのある変更を追加」のコミットハッシュをコピーして：
 
+<div class="code-input">
+
 ```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-input">
 
 ```bash
 git revert <バグのコミットのハッシュ>
 ```
 
+</div>
+
 コンフリクトが起きた場合は、ファイルを編集してコンフリクトを解消し、`git add` してから `git revert --continue` を実行してください。
 
 ログを確認：
 
+<div class="code-input">
+
 ```bash
 git log --oneline
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+</div>
 
 ---
 
 ### Reset & Retry
 
-練習をやり直したい場合：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf revert-practice
 ```
+
+</div>
 
 「準備」の手順から再実行してください。
 
