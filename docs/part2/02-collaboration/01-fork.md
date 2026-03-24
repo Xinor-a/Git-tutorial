@@ -150,6 +150,8 @@ example/git-tutorial-practice  ← 元のリポジトリ（upstream）
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 フォークはGitHub上の操作なので、やり直すには：
 
 ```
