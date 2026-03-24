@@ -96,7 +96,7 @@ Reference implementation: `docs/part1/02-basics/05-staging.md` (commit `34a02f6`
 ### Part 0
 
 - [x] **RF-P0-001**: docs/part0/02-install/01-install-git.md
-- [ ] **RF-P0-000**: docs/part0/01-intro/01-about.md
+- [x] **RF-P0-000**: docs/part0/01-intro/01-about.md
 
 ### Part 1 — Setup
 
@@ -126,46 +126,46 @@ Reference implementation: `docs/part1/02-basics/05-staging.md` (commit `34a02f6`
 - [x] **RF-P1-019**: docs/part1/03-branching/02-branch-switch.md
 - [x] **RF-P1-020**: docs/part1/03-branching/03-checkout.md
 - [x] **RF-P1-021**: docs/part1/03-branching/04-merge.md
-- [ ] **RF-P1-022**: docs/part1/03-branching/05-merge-conflict.md
-- [ ] **RF-P1-023**: docs/part1/03-branching/06-rebase.md
-- [ ] **RF-P1-024**: docs/part1/03-branching/07-stash.md
-- [ ] **RF-P1-025**: docs/part1/03-branching/08-exercise.md
+- [x] **RF-P1-022**: docs/part1/03-branching/05-merge-conflict.md
+- [x] **RF-P1-023**: docs/part1/03-branching/06-rebase.md
+- [x] **RF-P1-024**: docs/part1/03-branching/07-stash.md
+- [x] **RF-P1-025**: docs/part1/03-branching/08-exercise.md
 
 ### Part 1 — Advanced
 
-- [ ] **RF-P1-026**: docs/part1/04-advanced/01-reset.md
-- [ ] **RF-P1-027**: docs/part1/04-advanced/02-revert.md
-- [ ] **RF-P1-028**: docs/part1/04-advanced/03-restore.md
-- [ ] **RF-P1-029**: docs/part1/04-advanced/04-reflog.md
-- [ ] **RF-P1-030**: docs/part1/04-advanced/05-cherry-pick.md
-- [ ] **RF-P1-031**: docs/part1/04-advanced/06-bisect.md
-- [ ] **RF-P1-032**: docs/part1/04-advanced/07-rebase-interactive.md
-- [ ] **RF-P1-033**: docs/part1/04-advanced/08-worktree.md
-- [ ] **RF-P1-034**: docs/part1/04-advanced/09-commit-conventions.md
-- [ ] **RF-P1-035**: docs/part1/04-advanced/10-aliases.md
+- [x] **RF-P1-026**: docs/part1/04-advanced/01-reset.md
+- [x] **RF-P1-027**: docs/part1/04-advanced/02-revert.md
+- [x] **RF-P1-028**: docs/part1/04-advanced/03-restore.md
+- [x] **RF-P1-029**: docs/part1/04-advanced/04-reflog.md
+- [x] **RF-P1-030**: docs/part1/04-advanced/05-cherry-pick.md
+- [x] **RF-P1-031**: docs/part1/04-advanced/06-bisect.md
+- [x] **RF-P1-032**: docs/part1/04-advanced/07-rebase-interactive.md
+- [x] **RF-P1-033**: docs/part1/04-advanced/08-worktree.md
+- [x] **RF-P1-034**: docs/part1/04-advanced/09-commit-conventions.md
+- [x] **RF-P1-035**: docs/part1/04-advanced/10-aliases.md
 
 ### Part 2 — GitHub Basics
 
-- [ ] **RF-P2-001**: docs/part2/01-github-basics/01-what-is-github.md
-- [ ] **RF-P2-002**: docs/part2/01-github-basics/02-remote-vs-local.md
-- [ ] **RF-P2-003**: docs/part2/01-github-basics/03-account-setup.md
-- [ ] **RF-P2-004**: docs/part2/01-github-basics/04-ssh-setup.md
+- [x] **RF-P2-001**: docs/part2/01-github-basics/01-what-is-github.md
+- [x] **RF-P2-002**: docs/part2/01-github-basics/02-remote-vs-local.md
+- [x] **RF-P2-003**: docs/part2/01-github-basics/03-account-setup.md
+- [x] **RF-P2-004**: docs/part2/01-github-basics/04-ssh-setup.md
 
 ### Part 2 — Collaboration
 
-- [ ] **RF-P2-005**: docs/part2/02-collaboration/01-fork.md
-- [ ] **RF-P2-006**: docs/part2/02-collaboration/02-clone.md
-- [ ] **RF-P2-007**: docs/part2/02-collaboration/03-actions-collaborator.md
-- [ ] **RF-P2-008**: docs/part2/02-collaboration/04-pull-request.md
-- [ ] **RF-P2-009**: docs/part2/02-collaboration/05-issues.md
+- [x] **RF-P2-005**: docs/part2/02-collaboration/01-fork.md
+- [x] **RF-P2-006**: docs/part2/02-collaboration/02-clone.md
+- [x] **RF-P2-007**: docs/part2/02-collaboration/03-actions-collaborator.md
+- [x] **RF-P2-008**: docs/part2/02-collaboration/04-pull-request.md
+- [x] **RF-P2-009**: docs/part2/02-collaboration/05-issues.md
 
 ### Part 2 — Workflow
 
-- [ ] **RF-P2-010**: docs/part2/03-workflow/01-push.md
-- [ ] **RF-P2-011**: docs/part2/03-workflow/02-pull.md
-- [ ] **RF-P2-012**: docs/part2/03-workflow/03-fetch.md
+- [x] **RF-P2-010**: docs/part2/03-workflow/01-push.md
+- [x] **RF-P2-011**: docs/part2/03-workflow/02-pull.md
+- [x] **RF-P2-012**: docs/part2/03-workflow/03-fetch.md
 
 ### Part 2 — Advanced
 
-- [ ] **RF-P2-013**: docs/part2/04-advanced/01-tag.md
-- [ ] **RF-P2-014**: docs/part2/04-advanced/02-submodule.md
+- [x] **RF-P2-013**: docs/part2/04-advanced/01-tag.md
+- [x] **RF-P2-014**: docs/part2/04-advanced/02-submodule.md
