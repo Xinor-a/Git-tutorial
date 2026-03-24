@@ -5,17 +5,17 @@
 
 ## What & Why
 
-ブランチ全体はまだマージしたくないけど、あの1つのバグ修正だけ今すぐ `main` に入れたい――そんなときに使えるのが `git cherry-pick` です。  
+ブランチ全体はまだマージしたくないけど、あの1つのバグ修正だけ今すぐ `main` に入れたい――そんなときに使えるのが `git cherry-pick` です。
 特定のコミットだけをコピーして、今いるブランチに追加できます。
 
 ## Content
 
 ### シナリオ
 
-あなたは `feature/login` ブランチで新機能を開発中です。  
+あなたは `feature/login` ブランチで新機能を開発中です。
 まだ完成していないので `main` にマージはできません。
 
-でも、その作業中に重大なバグを見つけて修正しました。  
+でも、その作業中に重大なバグを見つけて修正しました。
 そのバグ修正コミット **1つだけ** を、今すぐ `main` に反映させたい。
 
 ```
@@ -30,17 +30,7 @@ feature/login ブランチのコミット履歴:
 
 ### git cherry-pick の使い方
 
-まず `main` ブランチに切り替えます。
-
-```bash
-git checkout main
-```
-
-次に、取り込みたいコミットのハッシュを指定して cherry-pick します。
-
-```bash
-git cherry-pick 9a8b7c6
-```
+`git checkout main` で `main` ブランチに切り替えてから、取り込みたいコミットのハッシュを指定して `git cherry-pick 9a8b7c6` を実行します。
 
 成功すると、こんなメッセージが出ます。
 
@@ -51,11 +41,9 @@ git cherry-pick 9a8b7c6
 
 ---
 
-### cherry-pick の前後を確認しよう
+### cherry-pick 前の main を確認しよう
 
-cherry-pick の前後で `git log` を見てみると、よく分かります。
-
-**cherry-pick する前の main：**
+cherry-pick する前に `git log` で main の状態を確認しておくと、実行後の変化がよくわかります。
 
 ```bash
 git log --oneline
@@ -65,22 +53,13 @@ git log --oneline
 3f2e1d0 initial commit
 ```
 
-**cherry-pick した後の main：**
+cherry-pick を実行すると、バグ修正コミットが main に追加されます。
 
-```bash
-git log --oneline
-```
+注目してほしいのは **ハッシュが変わる** 点です。
+`feature/login` 側では `9a8b7c6` だったのに、`main` では別のハッシュになります。
 
-```
-c4d5e6f 重大なバグを修正   ← 新しく追加された！
-3f2e1d0 initial commit
-```
-
-注目してほしいのは **ハッシュが変わっている** 点です。  
-`feature/login` 側では `9a8b7c6` だったのに、`main` では `c4d5e6f` になっています。
-
-これは cherry-pick が「コピー」だからです。  
-同じ変更内容でも、コミットとして新しく作り直されるのでハッシュが変わります。  
+これは cherry-pick が「コピー」だからです。
+同じ変更内容でも、コミットとして新しく作り直されるのでハッシュが変わります。
 元のコミットが消えるわけではなく、`feature/login` ブランチにはまだ `9a8b7c6` が残っています。
 
 ---
@@ -97,8 +76,8 @@ cherry-pick が役立つ場面をまとめると：
 
 ### 使わないほうがいい場面
 
-ブランチのコミットをぜんぶ取り込みたいなら、素直に `git merge` を使いましょう。  
-cherry-pick は「1つ（または数個）だけ欲しい」という場面向きです。  
+ブランチのコミットをぜんぶ取り込みたいなら、素直に `git merge` を使いましょう。
+cherry-pick は「1つ（または数個）だけ欲しい」という場面向きです。
 多用すると同じ変更が複数ブランチに散らばって、後で管理が大変になることがあります。
 
 ## Summary
@@ -114,46 +93,106 @@ cherry-pick は「1つ（または数個）だけ欲しい」という場面向�
 
 **準備**
 
+<div class="code-input">
+
 ```bash
-mkdir cherry-practice
-cd cherry-practice
+mkdir cherry-practice && cd cherry-practice
 git init
 echo "app v1" > app.txt && git add app.txt && git commit -m "initial commit"
+```
 
+</div>
+
+<div class="code-input">
+
+```bash
 git checkout -b feature/new-ui
 echo "new ui" >> app.txt && git add app.txt && git commit -m "新UIを追加（未完成）"
 echo "bugfix" >> app.txt && git add app.txt && git commit -m "重大なバグを修正"
 echo "more ui" >> app.txt && git add app.txt && git commit -m "UIをさらに追加（未完成）"
 ```
 
+</div>
+
 1. `feature/new-ui` のコミット履歴を確認する。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline
    ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   xxxxxxx UIをさらに追加（未完成）
+   yyyyyyy 重大なバグを修正
+   zzzzzzz 新UIを追加（未完成）
+   wwwwwww initial commit
+   ```
+
+   </div>
 
    「重大なバグを修正」のハッシュをメモしておく。
 
 2. `main` ブランチに切り替える。
 
+   <div class="code-input">
+
    ```bash
    git checkout main
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
    ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   wwwwwww initial commit
+   ```
+
+   </div>
 
    `main` にはまだ initial commit しかないことを確認する。
 
 3. バグ修正コミットだけを cherry-pick する（ハッシュは自分でメモした値を使う）。
 
+   <div class="code-input">
+
    ```bash
    git cherry-pick <バグ修正のハッシュ>
    ```
 
+   </div>
+
 4. `git log` で確認する。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline
    ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   aaaaaaa 重大なバグを修正
+   wwwwwww initial commit
+   ```
+
+   </div>
 
    バグ修正コミットが追加されていることを確認しよう。
 
@@ -161,24 +200,47 @@ echo "more ui" >> app.txt && git add app.txt && git commit -m "UIをさらに追
 
    `feature/new-ui` 側のハッシュと `main` 側のハッシュを見比べてみよう。
 
+   <div class="code-input">
+
    ```bash
    git log --oneline --all
    ```
 
+   </div>
+
 6. `git status` も確認する。
+
+   <div class="code-input">
 
    ```bash
    git status
    ```
 
+   </div>
+
+   <div class="code-output">
+
+   ```
+   On branch main
+   nothing to commit, working tree clean
+   ```
+
+   </div>
+
 ---
 
 ### Reset & Retry
+
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf cherry-practice
 ```
+
+</div>
 
 もう一度「準備」の手順から始めよう。
 
