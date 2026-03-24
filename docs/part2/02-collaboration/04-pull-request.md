@@ -19,13 +19,9 @@
 
 `main` に直接コミットするのではなく、専用のブランチを作ります。ブランチを使うことで、作業が整理されて PR を出しやすくなります。
 
-```bash
-git switch -c feature/add-note
-```
+`git switch -c feature/add-note` で新しいブランチを作って切り替えます。`feature/add-note` がブランチ名で、`feature/` は「新機能用のブランチ」という意味の慣習的なプレフィックスです。
 
-> `git switch -c` は「新しいブランチを作ってそこに切り替える」コマンドです。`feature/add-note` がブランチ名で、`feature/` は「新機能用のブランチ」という意味の慣習的なプレフィックスです。
-
-現在のブランチを確認しておきましょう。
+現在のブランチを `git status` で確認しておきましょう：
 
 ```bash
 git status
@@ -40,42 +36,9 @@ nothing to commit, working tree clean
 
 ### ステップ2：ファイルを編集してコミットする
 
-`notes.md` というファイルを作って、一言メモを書いてみます。
+`notes.md` というファイルを作って一言メモを書いたら、`git add notes.md` でステージし、`git commit` でコミットします。
 
-```bash
-# notes.md を新規作成（エディタで開いて内容を書いてもOK）
-echo "# メモ" > notes.md
-echo "はじめてのPR用メモです。" >> notes.md
-```
-
-変更内容を確認します。
-
-```bash
-git status
-```
-
-```
-On branch feature/add-note
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        notes.md
-```
-
-```bash
-git diff
-```
-
-> 新規ファイルはまだ追跡されていないので `git diff` には何も表示されません。`git diff --cached` はステージ後に使います。
-
-ステージしてコミット。
-
-```bash
-git add notes.md
-git diff --cached
-git commit -m "docs: add notes.md"
-```
-
-ログで確認しましょう。
+`git log --oneline` でコミットが記録されたことを確認できます：
 
 ```bash
 git log --oneline
@@ -90,26 +53,13 @@ a1b2c3d docs: add notes.md
 
 ### ステップ3：ブランチを GitHub に push する
 
-```bash
-git push origin feature/add-note
-```
-
-```
-Enumerating objects: 4, done.
-...
-remote: Create a pull request for 'feature/add-note' on GitHub by visiting:
-remote:      https://github.com/あなたのユーザー名/リポジトリ名/pull/new/feature/add-note
-To github.com:あなたのユーザー名/リポジトリ名.git
- * [new branch]      feature/add-note -> feature/add-note
-```
-
-GitHub が「PR を作りますか？」とリンクを表示してくれます。
+`git push origin feature/add-note` でブランチを GitHub に送ります。GitHub が「PR を作りますか？」とリンクを表示してくれます。
 
 ---
 
 ### ステップ4：GitHub で PR を作る
 
-1. **GitHub のリポジトリページを開く**  
+1. **GitHub のリポジトリページを開く**
    黄色いバナーで `"Compare & pull request"` ボタンが表示されます。クリック！
 
 2. **タイトルと説明を書く**
@@ -161,34 +111,19 @@ PR を開くと、次のタブが見えます。
 
 ### ステップ6：ローカルを最新の `main` に同期する
 
-GitHub 上でマージされても、ローカルの `main` はまだ古いままです。
+GitHub 上でマージされても、ローカルの `main` はまだ古いままです。`git switch main` でブランチを切り替えてから `git pull origin main` で同期します。
 
-```bash
-git switch main
-git pull origin main
-```
+`git log --oneline` でマージされたコミットが `main` に反映されているか確認しましょう：
 
 ```bash
 git log --oneline
 ```
 
-マージされたコミットが `main` に反映されているのを確認しましょう。
-
 ---
 
 ### ステップ7：フィーチャーブランチを削除する
 
-マージが終わったブランチはもう不要です。ローカルから削除しておきましょう。
-
-```bash
-git branch -d feature/add-note
-```
-
-```
-Deleted branch feature/add-note (was a1b2c3d).
-```
-
-> `-d` は「マージ済みのブランチのみ削除」するオプションです。まだマージしていないブランチを強制削除したい場合は `-D`（大文字）を使いますが、基本的に `-d` で安全に削除しましょう。
+マージが終わったブランチはもう不要です。`git branch -d feature/add-note` でローカルから削除しておきましょう。`-d` は「マージ済みのブランチのみ削除」するオプションです。
 
 ## Summary
 
@@ -205,27 +140,101 @@ Deleted branch feature/add-note (was a1b2c3d).
 
 1. 新しいブランチを作る。
 
+   <div class="code-input">
+
    ```bash
    git switch -c feature/my-first-pr
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git status
    ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   On branch feature/my-first-pr
+   nothing to commit, working tree clean
+   ```
+
+   </div>
 
 2. `hello.txt` を作成してコミットする。
 
+   <div class="code-input">
+
    ```bash
    echo "はじめての PR！" > hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git add hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git status
+   ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   On branch feature/my-first-pr
+   Changes to be committed:
+     (use "git rm --cached <file>..." to unstage)
+           new file:   hello.txt
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git diff --cached
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git commit -m "docs: add hello.txt for PR practice"
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
    ```
 
+   </div>
+
 3. GitHub に push する。
+
+   <div class="code-input">
 
    ```bash
    git push origin feature/my-first-pr
    ```
+
+   </div>
 
 4. GitHub のリポジトリページを開き、`Compare & pull request` をクリック。タイトルと説明を書いて `Create pull request` を押す。
 
@@ -235,25 +244,60 @@ Deleted branch feature/add-note (was a1b2c3d).
 
 7. ローカルを同期して、ブランチを削除する。
 
+   <div class="code-input">
+
    ```bash
    git switch main
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git pull origin main
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git branch -d feature/my-first-pr
    ```
 
+   </div>
+
 ### Reset & Retry
 
-途中でやり直したい場合は、以下を実行してください。
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
-# フィーチャーブランチを削除してやり直す（まだ push していない場合）
 git switch main
 git branch -D feature/my-first-pr
+```
 
-# push 済みのブランチをリモートからも削除する場合
+</div>
+
+push 済みのブランチをリモートからも削除する場合：
+
+<div class="code-input">
+
+```bash
 git push origin --delete feature/my-first-pr
 ```
+
+</div>
 
 <!-- prev/next navigation -->
 [< Previous: GitHub Actions で仮想コラボレーター](03-actions-collaborator.md) | [Back to Index](../../../README.md) | [Next: Issueで作業を管理しよう >](05-issues.md)
