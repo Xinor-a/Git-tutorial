@@ -5,27 +5,25 @@
 
 ## What & Why
 
-`git fetch` は、リモートの最新情報をダウンロードしつつ、**ローカルのブランチには一切手を加えない**コマンドです。  
-「どんな変更が来ているか確認してから取り込む」という慎重な作業スタイルに向いています。  
+`git fetch` は、リモートの最新情報をダウンロードしつつ、**ローカルのブランチには一切手を加えない**コマンドです。
+「どんな変更が来ているか確認してから取り込む」という慎重な作業スタイルに向いています。
 `git pull` との違いを理解すると、リモートとの同期をより安全にコントロールできるようになります。
 
 ## Content
 
 ### シナリオ：取り込む前に内容を確認したい
 
-チームメンバーのリナが `main` ブランチに大きな変更をプッシュしたと教えてくれました。  
+チームメンバーのリナが `main` ブランチに大きな変更をプッシュしたと教えてくれました。
 内容を確認してから取り込みたい——そんなときに `git fetch` が活躍します。
 
 ---
 
 ### ① git fetch でダウンロードだけする
 
-```bash
-git fetch origin
-```
-
-これを実行すると、リモートの最新コミットがダウンロードされます。  
+`git fetch origin` を実行すると、リモートの最新コミットがダウンロードされます。
 しかしあなたのローカルの `main` ブランチは**まったく動きません**。
+
+フェッチ後はこんな出力が出ます：
 
 ```text
 remote: Enumerating objects: 5, done.
@@ -41,7 +39,7 @@ From https://github.com/yourname/your-repo
 
 ### ② リモート追跡ブランチとは
 
-`git fetch` のあと、リモートの情報は **リモート追跡ブランチ**（`origin/main` など）に保存されます。  
+`git fetch` のあと、リモートの情報は **リモート追跡ブランチ**（`origin/main` など）に保存されます。
 これは「リモートの最新状態のスナップショット」で、あなたのローカルブランチとは別物です。
 
 ```text
@@ -59,8 +57,6 @@ main         ← あなたのローカルブランチ（まだ古いまま）
 git log origin/main --oneline
 ```
 
-出力例：
-
 ```text
 e4f5g6h (origin/main) feat: add dark mode toggle
 d3e4f5g feat: update header design
@@ -73,33 +69,14 @@ a1b2c3d (HEAD -> main) docs: fix typo in README
 
 ### ④ ローカルとリモートの差分を確認する
 
-`git diff` でローカルとリモートの違いを確認することもできます：
-
-```bash
-git diff main origin/main
-```
-
-これで「取り込むとどのファイルがどう変わるか」を事前に把握できます。
+`git diff main origin/main` でローカルとリモートの違いを確認することもできます。
+「取り込むとどのファイルがどう変わるか」を事前に把握できます。
 
 ---
 
 ### ⑤ 確認後に取り込む
 
-内容を確認して問題なければ、`merge` か `rebase` で取り込みます。
-
-**マージで取り込む：**
-
-```bash
-git merge origin/main
-```
-
-**リベースで取り込む（履歴を一本線にしたいとき）：**
-
-```bash
-git rebase origin/main
-```
-
-どちらでも結果としてローカルの `main` が `origin/main` と同じ状態になります。
+内容を確認して問題なければ、`git merge origin/main` か `git rebase origin/main` で取り込みます。どちらでも結果としてローカルの `main` が `origin/main` と同じ状態になります。
 
 ---
 
@@ -130,37 +107,75 @@ git rebase origin/main
 
 2. ローカルで `git fetch origin` を実行しましょう。
 
+   <div class="code-input">
+
    ```bash
    git fetch origin
    ```
 
+   </div>
+
 3. `git log` でローカルと `origin/main` の状態を比べましょう。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline --graph main origin/main
    ```
 
+   </div>
+
 4. `git diff` でどんな変更が来ているか確認しましょう。
+
+   <div class="code-input">
 
    ```bash
    git diff main origin/main
    ```
 
+   </div>
+
 5. 内容を確認できたら、`git merge origin/main` でローカルに取り込みましょう。
+
+   <div class="code-input">
 
    ```bash
    git merge origin/main
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git log --oneline
+   ```
+
+   </div>
+
+   <div class="code-input">
+
+   ```bash
    git status
    ```
 
+   </div>
+
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
+マージを取り消してやり直す（マージコミットが作られた場合）：
+
+<div class="code-input">
+
 ```bash
-# マージを取り消してやり直す（マージコミットが作られた場合）
 git reset --hard HEAD~1
-# フェッチはローカルブランチを変えないので、fetch のやり直しは不要
 ```
+
+</div>
+
+フェッチはローカルブランチを変えないので、fetch のやり直しは不要です。
 
 <!-- prev/next navigation -->
 [< Previous: git pull — リモートの変更をローカルへ](02-pull.md) | [Back to Index](../../../README.md) | [Next: git tag — リリースにタグをつける >](../04-advanced/01-tag.md)
