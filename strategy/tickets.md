@@ -6,6 +6,7 @@
 
 ## Part 0: Preparing
 
+- [x] **P0-000**: Write the about/intro page — concept, how to use, two repos
 - [x] **P0-001**: Write the Git installation guide — Windows, macOS, Linux/WSL
 
 ## Part 1: Local
@@ -84,3 +85,87 @@
 
 - [x] **P2-013**: Write the `git tag` page — tagging releases
 - [x] **P2-014**: Write the `git submodule` page
+
+---
+
+## Refactoring: Theory/Practice Separation
+
+Apply theory/practice separation rule to all pages (see `../../.claude/CLAUDE.md`).
+Reference implementation: `docs/part1/02-basics/05-staging.md` (commit `34a02f6`).
+
+### Part 0
+
+- [x] **RF-P0-001**: docs/part0/02-install/01-install-git.md
+- [ ] **RF-P0-000**: docs/part0/01-intro/01-about.md
+
+### Part 1 — Setup
+
+- [x] **RF-P1-002**: docs/part1/01-setup/01-gitconfig-user.md
+- [x] **RF-P1-003**: docs/part1/01-setup/02-gitconfig-editor.md
+- [x] **RF-P1-004**: docs/part1/01-setup/03-autocrlf.md
+- [x] **RF-P1-005**: docs/part1/01-setup/04-excludesfile.md
+- [x] **RF-P1-006**: docs/part1/01-setup/05-pull-rebase-defaultbranch.md
+- [x] **RF-P1-007**: docs/part1/01-setup/06-color-ui.md
+- [x] **RF-P1-008**: docs/part1/01-setup/07-safe-directory.md
+- [x] **RF-P1-009**: docs/part1/01-setup/08-exercise-verify-gitconfig.md
+
+### Part 1 — Basics
+
+- [x] **RF-P1-010**: docs/part1/02-basics/01-what-is-git.md
+- [x] **RF-P1-011**: docs/part1/02-basics/02-linux-commands.md
+- [x] **RF-P1-012**: docs/part1/02-basics/03-first-repo.md
+- [x] **RF-P1-013**: docs/part1/02-basics/04-first-file.md
+- [x] **RF-P1-014**: docs/part1/02-basics/05-staging.md
+- [x] **RF-P1-015**: docs/part1/02-basics/06-first-commit.md
+- [x] **RF-P1-016**: docs/part1/02-basics/07-gitignore.md
+- [x] **RF-P1-017**: docs/part1/02-basics/08-exercise.md
+
+### Part 1 — Branching
+
+- [x] **RF-P1-018**: docs/part1/03-branching/01-branch-concept.md
+- [x] **RF-P1-019**: docs/part1/03-branching/02-branch-switch.md
+- [x] **RF-P1-020**: docs/part1/03-branching/03-checkout.md
+- [x] **RF-P1-021**: docs/part1/03-branching/04-merge.md
+- [ ] **RF-P1-022**: docs/part1/03-branching/05-merge-conflict.md
+- [ ] **RF-P1-023**: docs/part1/03-branching/06-rebase.md
+- [ ] **RF-P1-024**: docs/part1/03-branching/07-stash.md
+- [ ] **RF-P1-025**: docs/part1/03-branching/08-exercise.md
+
+### Part 1 — Advanced
+
+- [ ] **RF-P1-026**: docs/part1/04-advanced/01-reset.md
+- [ ] **RF-P1-027**: docs/part1/04-advanced/02-revert.md
+- [ ] **RF-P1-028**: docs/part1/04-advanced/03-restore.md
+- [ ] **RF-P1-029**: docs/part1/04-advanced/04-reflog.md
+- [ ] **RF-P1-030**: docs/part1/04-advanced/05-cherry-pick.md
+- [ ] **RF-P1-031**: docs/part1/04-advanced/06-bisect.md
+- [ ] **RF-P1-032**: docs/part1/04-advanced/07-rebase-interactive.md
+- [ ] **RF-P1-033**: docs/part1/04-advanced/08-worktree.md
+- [ ] **RF-P1-034**: docs/part1/04-advanced/09-commit-conventions.md
+- [ ] **RF-P1-035**: docs/part1/04-advanced/10-aliases.md
+
+### Part 2 — GitHub Basics
+
+- [ ] **RF-P2-001**: docs/part2/01-github-basics/01-what-is-github.md
+- [ ] **RF-P2-002**: docs/part2/01-github-basics/02-remote-vs-local.md
+- [ ] **RF-P2-003**: docs/part2/01-github-basics/03-account-setup.md
+- [ ] **RF-P2-004**: docs/part2/01-github-basics/04-ssh-setup.md
+
+### Part 2 — Collaboration
+
+- [ ] **RF-P2-005**: docs/part2/02-collaboration/01-fork.md
+- [ ] **RF-P2-006**: docs/part2/02-collaboration/02-clone.md
+- [ ] **RF-P2-007**: docs/part2/02-collaboration/03-actions-collaborator.md
+- [ ] **RF-P2-008**: docs/part2/02-collaboration/04-pull-request.md
+- [ ] **RF-P2-009**: docs/part2/02-collaboration/05-issues.md
+
+### Part 2 — Workflow
+
+- [ ] **RF-P2-010**: docs/part2/03-workflow/01-push.md
+- [ ] **RF-P2-011**: docs/part2/03-workflow/02-pull.md
+- [ ] **RF-P2-012**: docs/part2/03-workflow/03-fetch.md
+
+### Part 2 — Advanced
+
+- [ ] **RF-P2-013**: docs/part2/04-advanced/01-tag.md
+- [ ] **RF-P2-014**: docs/part2/04-advanced/02-submodule.md

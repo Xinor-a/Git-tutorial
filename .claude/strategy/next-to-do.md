@@ -4,34 +4,26 @@
 
 ## Current Status
 
-- Completed: P1-001 – P1-015 (Setup section + Basics through first commit)
-- In progress: none
-- Pending: P1-016 onward, all of Part 2, INF-001
+All original content tickets done (P0-000 through P2-014).
 
-## Up Next
+Active refactoring: **Theory/Practice Separation** (RF-* tickets in `strategy/tickets.md`).
 
-### Priority 1: INF-001 (unblocks visual polish on all future pages)
+### Done (21/50)
 
-- [ ] INF-001: Add `docs/stylesheets/extra.css` + `.vscode/settings.json`
+- RF-P0-001 (install)
+- RF-P1-002 through RF-P1-009 (all setup pages)
+- RF-P1-010 through RF-P1-017 (all basics pages)
+- RF-P1-018 through RF-P1-021 (branching: concept, switch, checkout, merge)
 
-### Priority 2: Retrofit existing docs to match note.md guidelines
+### Remaining (29/50)
 
-Update all pages under `docs/` (P1-001 – P1-015) to align with the two new conventions in `ideabox/note.md`:
-
-1. **Code block color-coding** — wrap command input/output/error fences in `<div class="code-input/output/error">` (requires INF-001 to land first)
-2. **Emoji usage** — add appropriate emojis (💡 ✅ ⚠️ ❌ etc.) at tips, warnings, and section landmarks; keep it to one or two per page
-
-This is an integration pass — can be done section by section, in parallel across pages.
-
-### Then: continue Part 1 — Basics (can parallelize P1-016/017 with branching section start)
-
-- [ ] P1-016: `.gitignore` page
-- [ ] P1-017: Exercise — create project, add files, commit, check log and diff
-
-After P1-016 and P1-017 merge, the Basics section is complete.
-Next batch: P1-018 onward (Branching section) — all independent, can be parallelized.
+- RF-P0-000: docs/part0/01-intro/01-about.md
+- RF-P1-022 through RF-P1-025: branching 05–08
+- RF-P1-026 through RF-P1-035: all advanced pages (10)
+- RF-P2-001 through RF-P2-014: all Part 2 pages (14)
 
 ## Notes
 
-- P1-021 → P1-022 must be sequential (merge → merge conflict scenario).
-- Integration pass needed after each section completes (check nav links).
+- Each file gets its own commit: `fix: apply theory/practice separation to <filename>`
+- Reference implementation: `docs/part1/02-basics/05-staging.md` (commit `34a02f6`)
+- Rules are in `../../.claude/CLAUDE.md`
