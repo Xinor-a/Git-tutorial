@@ -42,7 +42,7 @@ feature:              D' --- E'
 
 シナリオ：日記アプリの `feature` ブランチで作業している間に、`main` に新しいコミットが追加されてしまった。
 
-状況を確認しよう：
+`feature` ブランチで作業中の状況を確認しよう：
 
 ```bash
 git log --oneline --graph --all
@@ -58,43 +58,9 @@ git log --oneline --graph --all
 
 `feature` ブランチのベース（出発点）は `a1b2c3d` だ。でも `main` はその後 `f3c4d5e` まで進んでいる。
 
-`feature` ブランチにいる状態で：
+`feature` ブランチにいる状態で `git rebase main` を実行すると、`feature` のコミットが `main` の最新コミットの上に移植される。一直線のきれいな履歴になる。
 
-```bash
-git rebase main
-```
-
-```
-Successfully rebased and updated refs/heads/feature.
-```
-
-もう一度ログを見てみよう：
-
-```bash
-git log --oneline --graph --all
-```
-
-```
-* 2d3e4f5 (HEAD -> feature) 検索機能を追加
-* 1c2d3e4 検索画面のHTMLを作成
-* f3c4d5e (main) READMEに使い方を追記
-* a1b2c3d 最初のコミット
-```
-
-`feature` のコミットが `main` の最新コミットの上に移植された。一直線のきれいな履歴になった。
-
-この後で `main` にマージすると、ベースが同じなので**ファストフォワードマージ**になる。マージコミットが不要な、スッキリした履歴が完成する。
-
-```bash
-git switch main
-git merge feature
-```
-
-```
-Updating f3c4d5e..2d3e4f5
-Fast-forward
- ...
-```
+この後で `main` に `git merge` すると、ベースが同じなので**ファストフォワードマージ**になる。マージコミットが不要な、スッキリした履歴が完成する。
 
 ---
 
@@ -102,12 +68,7 @@ Fast-forward
 
 リベース中にコンフリクトが発生することもある。解決の手順はマージコンフリクトと同じだ（[マージコンフリクトを解決する](05-merge-conflict.md) を参照）。
 
-コンフリクトを解決してステージングしたら：
-
-```bash
-git add 修正したファイル名
-git rebase --continue
-```
+コンフリクトを解決してステージングしたら、`git add 修正したファイル名` でステージングし、`git rebase --continue` でリベースを続行する。
 
 複数のコミットをリベースするとき、コンフリクトが何度か出る場合もある。その都度解決して `--continue` を繰り返せば OK だ。
 
@@ -115,13 +76,7 @@ git rebase --continue
 
 ### やめたいときは — git rebase --abort
 
-リベース中に「やっぱりやめたい」と思ったら：
-
-```bash
-git rebase --abort
-```
-
-これでリベース前の状態にキレイに戻れる。コンフリクト解決が難しくなったときの逃げ道として覚えておこう。
+リベース中に「やっぱりやめたい」と思ったら `git rebase --abort` を使えばリベース前の状態にキレイに戻れる。コンフリクト解決が難しくなったときの逃げ道として覚えておこう。
 
 ---
 
@@ -131,7 +86,7 @@ git rebase --abort
 
 もし**すでにリモートに push 済みのコミット**をリベースすると、チームメンバーが持っているコミット ID と自分のものがズレてしまい、大混乱が起きる。
 
-> **黄金ルール**：リモートに push した（＝チームと共有した）コミットはリベースしない。  
+> **黄金ルール**：リモートに push した（＝チームと共有した）コミットはリベースしない。
 > リベースは「まだ自分のローカルだけにある」ブランチでだけ使おう。
 
 一人で作業しているうちはあまり気にしなくて OK。チームで GitHub を使うようになったら必ず意識しよう。
@@ -162,7 +117,9 @@ git rebase --abort
 
 ### 演習 1: リベースを体験してみよう
 
-新しいリポジトリで試してみよう：
+新しいリポジトリを作って準備する：
+
+<div class="code-input">
 
 ```bash
 mkdir ~/rebase-practice
@@ -173,7 +130,11 @@ git add README.md
 git commit -m "最初のコミット"
 ```
 
+</div>
+
 `feature` ブランチを作り、コミットを追加する：
+
+<div class="code-input">
 
 ```bash
 git switch -c feature
@@ -185,7 +146,11 @@ git add feature-a.txt
 git commit -m "機能Aを改良"
 ```
 
+</div>
+
 `main` に戻り、別のコミットを追加する：
+
+<div class="code-input">
 
 ```bash
 git switch main
@@ -194,49 +159,138 @@ git add README.md
 git commit -m "READMEを更新"
 ```
 
+</div>
+
 現在の状態を確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline --graph --all
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+* a1b2c3d (HEAD -> main) READMEを更新
+| * 9e8f7a6 (feature) 機能Aを改良
+| * 7b6c5d4 機能Aを追加
+|/
+* f3c4d5e 最初のコミット
+```
+
+</div>
+
+---
+
 ### 演習 2: リベースを実行して履歴を確認する
+
+<div class="code-input">
 
 ```bash
 git switch feature
 git rebase main
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+Successfully rebased and updated refs/heads/feature.
+```
+
+</div>
+
 リベース後の状態を確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline --graph --all
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+* 2d3e4f5 (HEAD -> feature) 機能Aを改良
+* 1c2d3e4 機能Aを追加
+* a1b2c3d (main) READMEを更新
+* f3c4d5e 最初のコミット
+```
+
+</div>
+
 `feature` のコミットが `main` の上に積み重なっていることを確認しよう。
 
+---
+
 ### 演習 3: リベース後にマージしてみよう
+
+<div class="code-input">
 
 ```bash
 git switch main
 git merge feature
+```
+
+</div>
+
+<div class="code-output">
+
+```
+Updating a1b2c3d..2d3e4f5
+Fast-forward
+ ...
+```
+
+</div>
+
+マージコミットが作られず、ファストフォワードになることを確認しよう。
+
+<div class="code-input">
+
+```bash
 git log --oneline --graph --all
 ```
 
-マージコミットが作られず、ファストフォワードになることを確認しよう。
+</div>
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+</div>
+
+---
+
 ### Reset & Retry
 
-最初からやり直したいときは：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ~
 rm -rf rebase-practice
 ```
+
+</div>
 
 その後、演習 1 から始めてみよう。
 
