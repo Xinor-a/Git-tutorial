@@ -14,11 +14,7 @@
 
 > 「ねえ、`main` のバグ直してほしいんだけど、今すぐ！」
 
-困った。`feature` ブランチの変更はまだコミットできる状態じゃない（途中だから）。かといってこのまま `main` に切り替えようとすると…
-
-```bash
-git switch main
-```
+困った。`feature` ブランチの変更はまだコミットできる状態じゃない（途中だから）。かといってこのまま `git switch main` で `main` に切り替えようとすると…
 
 ```
 error: Your local changes to the following files would be overwritten by checkout:
@@ -27,32 +23,13 @@ Please commit your changes or stash them before you switch branches.
 Aborting
 ```
 
-ブランチを切り替えられない！ コミットするか、変更を退避するかしないといけない。ここで `git stash` の出番だ。
+ブランチを切り替えられない！コミットするか、変更を退避するかしないといけない。ここで `git stash` の出番だ。
 
 ---
 
 ### git stash — 変更を一時保存する
 
-```bash
-git stash
-```
-
-```
-Saved working directory and index state WIP on feature: 9e8f7a6 機能Aを追加
-```
-
-コミットしていない変更が「スタッシュ（一時保存領域）」に保存された。作業ツリーがきれいな状態に戻る。
-
-確認してみよう：
-
-```bash
-git status
-```
-
-```
-On branch feature
-nothing to commit, working tree clean
-```
+`git stash` を実行すると、コミットしていない変更が「スタッシュ（一時保存領域）」に保存される。作業ツリーがきれいな状態に戻るので、そのままブランチを切り替えられる。
 
 変更が消えたわけじゃない。スタッシュの中に入っているだけだ。
 
@@ -60,60 +37,15 @@ nothing to commit, working tree clean
 
 ### main に切り替えて緊急修正をする
 
-```bash
-git switch main
-```
-
-今度はスムーズに切り替えられる。バグを修正してコミットしよう：
-
-```bash
-echo "バグ修正の内容" >> README.md
-git add README.md
-git commit -m "緊急バグ修正：READMEの不具合を解消"
-```
-
-```bash
-git log --oneline
-```
-
-```
-b9c8d7e 緊急バグ修正：READMEの不具合を解消
-a1b2c3d 最初のコミット
-```
-
-修正完了。
+スタッシュしてきれいな状態になったら `git switch main` でスムーズに切り替えられる。バグを修正したら `git add` してから `git commit` でコミットしよう。
 
 ---
 
 ### feature ブランチに戻って作業を再開する
 
-```bash
-git switch feature
-```
+`git switch feature` で `feature` ブランチに戻り、`git stash pop` でスタッシュに保存した変更を取り出す。退避していた変更がきれいに戻ってくる。
 
-スタッシュに保存した変更を取り出そう：
-
-```bash
-git stash pop
-```
-
-```
-On branch feature
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-        modified:   feature-a.txt
-
-Dropped refs/stash@{0} (c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8)
-```
-
-退避していた変更がきれいに戻ってきた。`git stash pop` はスタッシュから変更を取り出して、スタッシュのリストからも削除する。
-
-作業の続きができる状態に戻ったことを確認しよう：
-
-```bash
-git status
-git diff
-```
+`git stash pop` はスタッシュから変更を取り出して、スタッシュのリストからも削除する。
 
 ---
 
@@ -147,21 +79,7 @@ stash@{1}: WIP on feature: 7b6c5d4 別の作業の途中
 
 ### git stash drop — スタッシュを削除する
 
-もう必要なくなったスタッシュは削除できる：
-
-```bash
-git stash drop stash@{0}
-```
-
-```
-Dropped stash@{0} (c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8)
-```
-
-全部まとめて削除するには：
-
-```bash
-git stash clear
-```
+もう必要なくなったスタッシュは `git stash drop stash@{番号}` で削除できる。全部まとめて削除するには `git stash clear` を使う。
 
 スタッシュを溜め込むと管理が大変になるので、用が済んだら削除しておこう。
 
@@ -169,11 +87,7 @@ git stash clear
 
 ### スタッシュにメモをつける
 
-スタッシュが増えてきたとき、「これ何のやつだっけ？」と迷うことがある。メモをつけておくと便利：
-
-```bash
-git stash push -m "検索フォームの途中"
-```
+スタッシュが増えてきたとき、「これ何のやつだっけ？」と迷うことがある。`git stash push -m "メモ"` でメモをつけておくと便利だ。
 
 ```bash
 git stash list
@@ -201,6 +115,8 @@ stash@{0}: On feature: 検索フォームの途中
 
 練習用リポジトリを作ろう：
 
+<div class="code-input">
+
 ```bash
 mkdir ~/stash-practice
 cd ~/stash-practice
@@ -211,76 +127,225 @@ git commit -m "最初のコミット"
 git switch -c feature
 ```
 
+</div>
+
 `feature` ブランチで途中まで編集する：
+
+<div class="code-input">
 
 ```bash
 echo "途中の作業" > work-in-progress.txt
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	work-in-progress.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
 `work-in-progress.txt` が `Untracked files` に出ることを確認。スタッシュしてみよう：
+
+<div class="code-input">
 
 ```bash
 git stash -u
 ```
 
+</div>
+
 > `-u` オプションを使うと、まだ `git add` していない新規ファイルも一緒にスタッシュできる。
+
+<div class="code-input">
 
 ```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch feature
+nothing to commit, working tree clean
+```
+
+</div>
+
 `nothing to commit, working tree clean` になることを確認しよう。
 
+---
+
 ### 演習 2: ブランチを切り替えて緊急対応する
+
+<div class="code-input">
 
 ```bash
 git switch main
 echo "緊急修正" >> README.md
 git add README.md
 git commit -m "緊急修正をコミット"
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git log --oneline
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+a1b2c3d (HEAD -> main) 緊急修正をコミット
+f3c4d5e 最初のコミット
+```
+
+</div>
+
+---
+
 ### 演習 3: feature ブランチに戻って作業を再開する
+
+<div class="code-input">
 
 ```bash
 git switch feature
 git stash pop
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	work-in-progress.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+</div>
+
 `work-in-progress.txt` が戻ってきていることを確認しよう。
 
+---
+
 ### 演習 4: スタッシュを複数作って管理する
+
+<div class="code-input">
 
 ```bash
 git stash push -m "作業A"
 echo "別の作業" > other-work.txt
 git stash push -u -m "作業B"
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git stash list
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+stash@{0}: On feature: 作業B
+stash@{1}: On feature: 作業A
+```
+
+</div>
 
 2 つのスタッシュが一覧に出ることを確認。古い方を削除してみよう：
 
+<div class="code-input">
+
 ```bash
 git stash drop stash@{1}
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git stash list
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+stash@{0}: On feature: 作業B
+```
+
+</div>
+
+<div class="code-input">
+
 ```bash
 git stash pop
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
+</div>
+
+---
+
 ### Reset & Retry
 
-最初からやり直したいときは：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ~
 rm -rf stash-practice
 ```
+
+</div>
 
 その後、演習 1 から始めてみよう。
 
