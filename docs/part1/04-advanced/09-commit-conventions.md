@@ -140,6 +140,8 @@ feat: パスワード変更機能を追加
 
 ### ステップ 2: 練習用リポジトリで実際に使う
 
+<div class="code-input">
+
 ```bash
 mkdir cc-practice
 cd cc-practice
@@ -149,38 +151,61 @@ git add README.md
 git commit -m "docs: READMEを追加"
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 echo "console.log('hello')" > app.js
 git add app.js
 git commit -m "feat: アプリのエントリポイントを追加"
 ```
 
+</div>
+
+### ステップ 3: git log で履歴を眺める
+
+<div class="code-input">
+
 ```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx (HEAD -> main) feat: アプリのエントリポイントを追加
 xxxxxxx docs: READMEを追加
 ```
 
+</div>
+
 type が揃った綺麗な履歴になっているはずだ。
 
-### ステップ 3: git log で履歴を眺める
+<div class="code-input">
 
 ```bash
-git log --oneline
 git log
 ```
+
+</div>
 
 type ごとに色分けされたり、ツールによっては自動的に整理される理由がわかるはず。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
+
 ```bash
 cd ..
 rm -rf cc-practice
 ```
+
+</div>
 
 ステップ2から再挑戦しよう。
 
