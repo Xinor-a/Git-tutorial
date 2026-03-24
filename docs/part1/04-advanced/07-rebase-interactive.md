@@ -26,13 +26,9 @@ a2f1c89 ログイン機能を追加
 e4b3d67 (main) 前のコミット
 ```
 
-`a2f1c89` から `f3c9a12` の3つをまとめてプッシュしたい。`HEAD~3` は「直近3つのコミット」という意味だ：
+`a2f1c89` から `f3c9a12` の3つをまとめてプッシュしたい。`HEAD~3` は「直近3つのコミット」という意味で、`git rebase -i HEAD~3` を実行するとエディタが開く。
 
-```bash
-git rebase -i HEAD~3
-```
-
-エディタが開いて、こんな内容が表示される：
+エディタには次のような内容が表示される：
 
 ```
 pick a2f1c89 ログイン機能を追加
@@ -83,7 +79,7 @@ typo fix
 feat: ログイン機能を追加
 ```
 
-保存して閉じると完了。確認しよう：
+保存して閉じると完了。`git log --oneline` で確認すると：
 
 ```bash
 git log --oneline
@@ -100,11 +96,7 @@ e4b3d67 (main) 前のコミット
 
 ### シナリオ 2: 古いコミットメッセージを書き直したい
 
-`reword`（または `r`）を使うと、コミットの内容はそのままでメッセージだけ書き直せる。
-
-```bash
-git rebase -i HEAD~3
-```
+`reword`（または `r`）を使うと、コミットの内容はそのままでメッセージだけ書き直せる。`git rebase -i HEAD~3` を実行してエディタを開き、書き直したいコミットの `pick` を `reword` に変える：
 
 ```
 reword a2f1c89 ログイン機能を追加
@@ -151,6 +143,8 @@ pick f3c9a12 typo fix
 
 ### ステップ 1: 練習用リポジトリを準備する
 
+<div class="code-input">
+
 ```bash
 mkdir rebase-practice
 cd rebase-practice
@@ -160,7 +154,11 @@ git add file.txt
 git commit -m "initial commit"
 ```
 
+</div>
+
 ### ステップ 2: 雑なコミットを3つ積む
+
+<div class="code-input">
 
 ```bash
 echo "feature" >> file.txt
@@ -176,11 +174,19 @@ git add file.txt
 git commit -m "typo"
 ```
 
+</div>
+
 確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx (HEAD -> main) typo
@@ -189,39 +195,63 @@ xxxxxxx wip
 xxxxxxx initial commit
 ```
 
+</div>
+
 ### ステップ 3: 3つをひとつにまとめる
+
+<div class="code-input">
 
 ```bash
 git rebase -i HEAD~3
 ```
 
+</div>
+
 エディタで2行目・3行目の `pick` を `squash` に変えて保存。次のエディタでメッセージを `feat: ファイルに機能を追加` に書き換えて保存。
 
 ### ステップ 4: 結果を確認する
 
+<div class="code-input">
+
 ```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx (HEAD -> main) feat: ファイルに機能を追加
 xxxxxxx initial commit
 ```
 
+</div>
+
 3つのコミットが1つになっていることを確認しよう。
+
+<div class="code-input">
 
 ```bash
 git diff HEAD~1
 ```
 
+</div>
+
 変更内容はすべて保持されていることも確認しよう。
 
 ### Reset & Retry
+
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf rebase-practice
 ```
+
+</div>
 
 ステップ1から再挑戦しよう。
 
