@@ -5,8 +5,8 @@
 
 ## What & Why
 
-「このファイル、編集しすぎてぐちゃぐちゃになった。最後のコミット時点に戻したい」——そんなとき `git restore` が使えます。  
-コミット単位で巻き戻す reset/revert と違い、`git restore` は **ファイル単位で変更を元に戻す** コマンドです。  
+「このファイル、編集しすぎてぐちゃぐちゃになった。最後のコミット時点に戻したい」——そんなとき `git restore` が使えます。
+コミット単位で巻き戻す reset/revert と違い、`git restore` は **ファイル単位で変更を元に戻す** コマンドです。
 ステージングの取り消しにも使えて、「間違えて `git add` してしまった」ときにも活躍します。
 
 ## Content
@@ -34,91 +34,36 @@ Changes not staged for commit:
 
 ### `git restore <ファイル>` ― 特定ファイルの変更を捨てる
 
-```bash
-git restore config.py
-```
+`git restore config.py` を実行すると、`config.py` の変更だけを捨てられます。
 
-> ⚠️ **警告：この操作は元に戻せません**  
-> `git restore` で捨てた変更は、コミットされていないため reflog にも残りません。  
+> ⚠️ **警告：この操作は元に戻せません**
+> `git restore` で捨てた変更は、コミットされていないため reflog にも残りません。
 > 本当に捨てていいか確認してから実行してください。
 
-実行後にステータスを確認：
-
-```bash
-git status
-```
-
-```
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   main.py
-```
-
-`config.py` の変更だけが消え、`main.py` はそのまま残っています。
+`main.py` はそのまま残り、`config.py` だけが最後のコミット時点に戻ります。
 
 ---
 
 ### `git restore .` ― すべての変更を捨てる
 
-ワーキングツリー（コミットされていないファイルへの変更）をすべて元に戻したい場合：
+ワーキングツリー（コミットされていないファイルへの変更）をすべて元に戻したい場合は `git restore .` を使います。
 
-```bash
-git restore .
-```
-
-> ⚠️ **警告：ステージされていないすべての変更が消えます。**  
+> ⚠️ **警告：ステージされていないすべての変更が消えます。**
 > 実行前に `git status` で何が変更されているかを必ず確認しましょう。
-
-```bash
-git status
-```
-
-```
-On branch main
-nothing to commit, working tree clean
-```
 
 ---
 
 ### `git restore --staged <ファイル>` ― ステージングを取り消す
 
-`git add` してステージに上げたファイルを、ステージから外したい（でもファイルの変更は残したい）場合：
+`git add` してステージに上げたファイルを、ステージから外したい（でもファイルの変更は残したい）場合は `git restore --staged <ファイル>` を使います。
 
-```bash
-# 間違って git add してしまった
-git add wrong-file.txt
-git status
-```
-
-```
-On branch main
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        modified:   wrong-file.txt
-```
-
-```bash
-git restore --staged wrong-file.txt
-git status
-```
-
-```
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   wrong-file.txt
-```
-
-ファイルの変更内容はそのまま残り、ステージングだけが取り消されました。
+実行後にファイルの変更内容はそのまま残り、ステージングだけが取り消されます。
 
 ---
 
 ### 古いコマンドとの関係
 
-`git restore` は Git 2.23（2019年）で追加されたコマンドです。  
+`git restore` は Git 2.23（2019年）で追加されたコマンドです。
 それ以前は別のコマンドで同じことをしていました：
 
 | やりたいこと | 旧コマンド | 新コマンド |
@@ -126,7 +71,7 @@ Changes not staged for commit:
 | ファイルの変更を捨てる | `git checkout -- <ファイル>` | `git restore <ファイル>` |
 | ステージングを取り消す | `git reset HEAD <ファイル>` | `git restore --staged <ファイル>` |
 
-古いチュートリアルやStack Overflowで旧コマンドが出てきても、やっていることは同じです。  
+古いチュートリアルやStack Overflowで旧コマンドが出てきても、やっていることは同じです。
 現在は `git restore` が推奨されています。
 
 ---
@@ -165,6 +110,8 @@ Changes not staged for commit:
 
 練習用のリポジトリを作ります。
 
+<div class="code-input">
+
 ```bash
 mkdir restore-practice && cd restore-practice
 git init
@@ -174,27 +121,84 @@ git add main.txt config.txt
 git commit -m "最初のコミット"
 ```
 
+</div>
+
 ---
 
 ### 演習1：ファイルの変更を捨てる
 
+<div class="code-input">
+
 ```bash
 echo "間違えた変更" >> config.txt
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   config.txt
+```
+
+</div>
 
 変更が表示されることを確認してから：
 
+<div class="code-input">
+
 ```bash
 git restore config.txt
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+</div>
+
 変更が消えていることを確認してください。
+
+<div class="code-input">
 
 ```bash
 cat config.txt
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+設定の内容
+```
+
+</div>
 
 元の内容に戻っていることを確認しましょう。
 
@@ -202,60 +206,190 @@ cat config.txt
 
 ### 演習2：ステージングを取り消す
 
+<div class="code-input">
+
 ```bash
 echo "main の変更" >> main.txt
 echo "config の変更" >> config.txt
 git add main.txt config.txt
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   config.txt
+        modified:   main.txt
+```
+
+</div>
 
 両方がステージされていることを確認してから、`config.txt` だけステージから外します：
 
+<div class="code-input">
+
 ```bash
 git restore --staged config.txt
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
-`main.txt` はステージされたまま、`config.txt` はステージから外れていることを確認してください。  
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   main.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   config.txt
+```
+
+</div>
+
+`main.txt` はステージされたまま、`config.txt` はステージから外れていることを確認してください。
 `config.txt` のファイル内容は変わっていないことも確認しましょう：
+
+<div class="code-input">
 
 ```bash
 cat config.txt
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+設定の内容
+config の変更
+```
+
+</div>
+
 ---
 
 ### 演習3：すべての変更を捨てる
 
+<div class="code-input">
+
 ```bash
 echo "変更A" >> main.txt
 echo "変更B" >> config.txt
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   main.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   config.txt
+        modified:   main.txt
+```
+
+</div>
 
 2つのファイルが変更されていることを確認してから：
 
+<div class="code-input">
+
 ```bash
 git restore .
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   main.txt
+```
+
+</div>
+
+> 💡 `git restore .` はワーキングツリーの変更だけを捨てます。ステージ済みの変更（`git add` 済み）は残ります。
+> すべてを元に戻したい場合は `git restore --staged .` でステージも解除してから `git restore .` を実行しましょう。
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
 
-すべての変更が消え、ワーキングツリーがきれいになったことを確認してください。
+</div>
+
+<div class="code-output">
+
+```
+xxxxxxx 最初のコミット
+```
+
+</div>
 
 ---
 
 ### Reset & Retry
 
-練習をやり直したい場合：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf restore-practice
 ```
+
+</div>
 
 「準備」の手順から再実行してください。
 
