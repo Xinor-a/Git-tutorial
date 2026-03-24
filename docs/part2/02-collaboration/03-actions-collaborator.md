@@ -114,11 +114,29 @@ GitHub の **Code** タブからブランチ一覧を開き、`collaborator/upda
 
 ローカルのターミナルで以下を実行し、まだローカルに届いていないことを確認しよう：
 
+<div class="code-input">
+
 ```bash
 git branch -a
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git log --oneline
 ```
+
+</div>
 
 リモートの `collaborator/update-...` がローカルにはまだ見えないことを確認できれば OK だ。
 
