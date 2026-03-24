@@ -33,110 +33,31 @@ SSHでは**鍵ペア**と呼ばれる2つのファイルを使う。
 > 南京錠はGitHubに渡して「かけておいて」と頼む。  
 > 鍵はあなただけが持っていて、南京錠を開けられるのはあなただけ。
 
-### Step 1: SSH鍵を生成する
+### SSH鍵の生成から登録までの流れ
 
-ターミナルで次のコマンドを実行しよう。  
-`your@email.com` の部分は、GitHubに登録したメールアドレスに置き換えてね。
+設定の流れは大きく5ステップだ。
 
-```bash
-ssh-keygen -t ed25519 -C "your@email.com"
-```
+1. `ssh-keygen -t ed25519 -C "メールアドレス"` で鍵ペアを生成する。
+   コマンドを実行すると保存先とパスフレーズを聞かれる。
+   保存先はデフォルト（そのままEnter）、パスフレーズは学習用途なら空のままEnterでOK。
+   完了すると `~/.ssh/id_ed25519`（秘密鍵）と `~/.ssh/id_ed25519.pub`（公開鍵）が作られる。
 
-実行すると、いくつか質問される：
+2. `ls ~/.ssh/` で鍵ファイルが作成されたことを確認する。
+   `id_ed25519` と `id_ed25519.pub` の2ファイルが見えればOK。
+   - `id_ed25519` — 秘密鍵。**このファイルの中身は絶対に誰にも見せないこと。**
+   - `id_ed25519.pub` — 公開鍵。GitHubに登録するのはこちら。
 
-```text
-Enter file in which to save the key (/home/あなた/.ssh/id_ed25519):
-```
+3. `cat ~/.ssh/id_ed25519.pub` で公開鍵の中身を表示してコピーする。
+   `ssh-ed25519 AAAA...` から始まる1行全体をコピーする。
 
-保存先を聞かれる。そのままEnterを押してデフォルトの場所に保存しよう。
-
-```text
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-```
-
-パスフレーズを設定できる（任意）。  
-設定すると秘密鍵を使うたびにパスフレーズの入力が必要になる（セキュリティが高まる）。  
-学習用途なら空のままEnterでもOK。
-
-生成が完了すると、こんなメッセージが表示される：
-
-```text
-Your identification has been saved in /home/あなた/.ssh/id_ed25519
-Your public key has been saved in /home/あなた/.ssh/id_ed25519.pub
-The key fingerprint is:
-SHA256:xxxxxxxxxxxxxxxxxxxx your@email.com
-```
-
-### Step 2: 鍵ファイルを確認する
-
-生成された鍵ファイルを確認してみよう。
-
-```bash
-ls ~/.ssh/
-```
-
-```text
-id_ed25519    id_ed25519.pub
-```
-
-- `id_ed25519` — 秘密鍵。**このファイルの中身は絶対に誰にも見せないこと。**
-- `id_ed25519.pub` — 公開鍵。GitHubに登録するのはこちら。
-
-### Step 3: 公開鍵の中身をコピーする
-
-次のコマンドで公開鍵の中身を表示する：
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-こんな形式の文字列が表示される：
-
-```text
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIxxxxxxxxxxxxxxxxxxxxxxxx your@email.com
-```
-
-この**全体をコピー**しておこう（`ssh-ed25519` から始まってメールアドレスで終わる1行全部）。
-
-### Step 4: GitHubに公開鍵を登録する
-
-1. GitHubにログインして、右上のアイコンをクリック → **Settings** を開く。
-2. 左側のメニューから **SSH and GPG keys** を選ぶ。
-3. 右上の **New SSH key** ボタンをクリック。
-4. 設定画面で次のように入力する：
-   - **Title** — わかりやすい名前（例：`My Laptop`、`WSL Ubuntu`）。どのPCの鍵かがわかればOK。
-   - **Key type** — `Authentication Key` のまま。
+4. GitHubの **Settings → SSH and GPG keys → New SSH key** を開き、コピーした公開鍵を登録する。
+   - **Title** — わかりやすい名前（例：`My Laptop`、`WSL Ubuntu`）。
    - **Key** — 先ほどコピーした公開鍵をペースト。
-5. **Add SSH key** ボタンをクリック。
+   - **Add SSH key** をクリック。
 
-GitHubのパスワードを再確認されることがある。入力して進もう。
-
-### Step 5: 接続を確認する
-
-設定が正しいか確認するために、次のコマンドを実行してみよう：
-
-```bash
-ssh -T git@github.com
-```
-
-初回接続時はこんなメッセージが出ることがある：
-
-```text
-The authenticity of host 'github.com (xx.xx.xx.xx)' can't be established.
-ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
-Are you sure you want to continue connecting (yes/no/[fingerprint])?
-```
-
-`yes` と入力してEnterを押そう。
-
-接続が成功すると、こんなメッセージが表示される：
-
-```text
-Hi あなたのユーザー名! You've successfully authenticated, but GitHub does not provide shell access.
-```
-
-`Hi あなたのユーザー名!` という表示が出ればSSH設定は完了。
+5. `ssh -T git@github.com` で接続確認する。
+   `Hi あなたのユーザー名! You've successfully authenticated...` と表示されれば完了。
+   初回接続時はフィンガープリントの確認が出ることがある。`yes` と答えて進もう。
 
 ### よくあるトラブル
 
@@ -170,40 +91,93 @@ Hi あなたのユーザー名! You've successfully authenticated, but GitHub do
 
 1. ターミナルを開いて、SSH鍵を生成する：
 
+   <div class="code-input">
+
    ```bash
    ssh-keygen -t ed25519 -C "あなたのメールアドレス"
    ```
 
+   </div>
+
 2. 生成されたファイルを確認する：
+
+   <div class="code-input">
 
    ```bash
    ls ~/.ssh/
    ```
 
+   </div>
+
+   <div class="code-output">
+
+   ```text
+   id_ed25519    id_ed25519.pub
+   ```
+
+   </div>
+
 3. 公開鍵の中身を表示してコピーする：
+
+   <div class="code-input">
 
    ```bash
    cat ~/.ssh/id_ed25519.pub
    ```
 
+   </div>
+
+   <div class="code-output">
+
+   ```text
+   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIxxxxxxxxxxxxxxxxxxxxxxxx あなたのメールアドレス
+   ```
+
+   </div>
+
 4. GitHubの **Settings → SSH and GPG keys → New SSH key** に貼り付けて登録する。
 
 5. 接続を確認する：
+
+   <div class="code-input">
 
    ```bash
    ssh -T git@github.com
    ```
 
+   </div>
+
+   <div class="code-output">
+
+   ```text
+   Hi あなたのユーザー名! You've successfully authenticated, but GitHub does not provide shell access.
+   ```
+
+   </div>
+
    `Hi あなたのユーザー名!` と表示されれば成功。
 
 ### Reset & Retry
 
+⚠️ うまくいかなかったときだけ実行してください。
+
 鍵の生成をやり直したい場合は、既存の鍵ファイルを削除してから再実行しよう：
+
+<div class="code-input">
 
 ```bash
 rm ~/.ssh/id_ed25519 ~/.ssh/id_ed25519.pub
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 ssh-keygen -t ed25519 -C "あなたのメールアドレス"
 ```
+
+</div>
 
 GitHubに古い鍵が登録されていたら、**Settings → SSH and GPG keys** から削除してから新しい鍵を登録し直そう。
 
