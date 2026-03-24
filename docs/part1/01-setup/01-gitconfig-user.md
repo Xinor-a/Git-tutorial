@@ -1,6 +1,6 @@
 # ユーザー名とメールアドレスを設定しよう
 
-[< Previous: Gitをインストールしよう](../../part0/01-install/01-install-git.md) | [Back to Index](../../../README.md) | [Next: エディタの設定 >](02-gitconfig-editor.md)
+[< Previous: Gitをインストールしよう](../../part0/02-install/01-install-git.md) | [Back to Index](../../../README.md) | [Next: エディタの設定 >](02-gitconfig-editor.md)
 
 ## What & Why
 
