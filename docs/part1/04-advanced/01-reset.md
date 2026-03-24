@@ -5,8 +5,8 @@
 
 ## What & Why
 
-コミットを間違えた、ステージしすぎた、やり直したい——そんなとき `git reset` が使えます。  
-「歴史を巻き戻す」コマンドで、どこまで戻すか・変更をどう扱うかを3つのモードで細かく指定できます。  
+コミットを間違えた、ステージしすぎた、やり直したい——そんなとき `git reset` が使えます。
+「歴史を巻き戻す」コマンドで、どこまで戻すか・変更をどう扱うかを3つのモードで細かく指定できます。
 ただし使い方を誤ると変更が消えてしまうので、各モードの違いをしっかり理解しておきましょう。
 
 ## Content
@@ -26,157 +26,67 @@ c1b0a9f README を更新
 8f7e6d5 最初のコミット
 ```
 
-「あ、最新の2つのコミット、まとめて1つにすればよかった……」と気づきました。  
+「あ、最新の2つのコミット、まとめて1つにすればよかった……」と気づきました。
 こういうときが `git reset` の出番です。
 
 ---
 
 ### `git reset` の基本
 
-`git reset` は **HEAD（現在の位置）を指定したコミットまで移動させる** コマンドです。  
+`git reset` は **HEAD（現在の位置）を指定したコミットまで移動させる** コマンドです。
 `HEAD~1` は「1つ前のコミット」、`HEAD~2` は「2つ前のコミット」を指します。
 
-```bash
-git reset HEAD~1
-```
-
-これで HEAD が1つ前に戻ります。でも「戻したあと、変更はどうなるの？」というのがポイント。  
+`git reset HEAD~1` を実行すると HEAD が1つ前に戻ります。でも「戻したあと、変更はどうなるの？」というのがポイント。
 それを決めるのが **3つのモード** です。
 
 ---
 
 ### モード1：`--soft` ― 変更をステージに残す
 
-```bash
-git reset --soft HEAD~1
-```
+`git reset --soft HEAD~1` を実行すると：
 
 - HEAD を1つ前に戻す
 - **変更はステージ（インデックス）にそのまま残る**
 - ファイルの内容はまったく変わらない
 
-**いつ使う？**  
+**いつ使う？**
 「コミットメッセージを書き直したい」「直前の2つのコミットを1つにまとめたい」というとき。
 
-実行前：
-
-```bash
-git log --oneline
-```
-
-```
-e5f6a7b タイポを修正
-d4c3b2a ヘッダーのスタイルを変更
-c1b0a9f README を更新
-```
-
-`git reset --soft HEAD~1` を実行後：
-
-```bash
-git log --oneline
-```
-
-```
-d4c3b2a ヘッダーのスタイルを変更
-c1b0a9f README を更新
-```
-
-```bash
-git status
-```
-
-```
-On branch main
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        modified:   src/header.css
-```
-
-コミットは消えましたが、変更はステージされたままです。  
+コミットは消えますが、変更はステージされたまま残ります。
 あとは `git commit -m "新しいメッセージ"` で再コミットできます。
 
 ---
 
 ### モード2：`--mixed` ― 変更をワーキングツリーに残す（デフォルト）
 
-```bash
-git reset --mixed HEAD~1
-# または単に
-git reset HEAD~1
-```
+`git reset --mixed HEAD~1`（または単に `git reset HEAD~1`）を実行すると：
 
 - HEAD を1つ前に戻す
 - **ステージはクリアされる（`git add` が取り消される）**
 - ファイルの内容はそのまま残る
 
-**いつ使う？**  
+**いつ使う？**
 「うっかり関係ないファイルも `git add` してしまった」というとき。
 
-`git reset HEAD~1` を実行後：
-
-```bash
-git log --oneline
-```
-
-```
-d4c3b2a ヘッダーのスタイルを変更
-c1b0a9f README を更新
-```
-
-```bash
-git status
-```
-
-```
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-        modified:   src/header.css
-```
-
-ファイルは変わっていませんが、ステージングが解除されています。  
+ファイルは変わっていませんが、ステージングが解除されます。
 `git add` で必要なファイルだけ選んで再コミットできます。
 
 ---
 
 ### モード3：`--hard` ― 変更を完全に消す
 
-```bash
-git reset --hard HEAD~1
-```
+`git reset --hard HEAD~1` を実行すると：
 
 - HEAD を1つ前に戻す
 - **ステージもワーキングツリーも、そのコミット時点の状態に戻る**
 - **変更は消える——復元できない**
 
-> ⚠️ **警告：`--hard` は破壊的です**  
-> 作業中のファイルへの変更がすべて失われます。  
+> ⚠️ **警告：`--hard` は破壊的です**
+> 作業中のファイルへの変更がすべて失われます。
 > 「本当にこのコミット以降の作業をすべて捨てていい」という確信がある場合だけ使いましょう。
 
-**いつ使う？**  
+**いつ使う？**
 「実験的な変更をすべて捨てて、きれいな状態からやり直したい」というとき。
-
-`git reset --hard HEAD~1` を実行後：
-
-```bash
-git log --oneline
-```
-
-```
-d4c3b2a ヘッダーのスタイルを変更
-c1b0a9f README を更新
-```
-
-```bash
-git status
-```
-
-```
-On branch main
-nothing to commit, working tree clean
-```
-
-ファイルも含めて完全に1つ前の状態に戻っています。
 
 ---
 
@@ -192,10 +102,10 @@ nothing to commit, working tree clean
 
 ### reset はローカルコミット限定！
 
-> ⚠️ **重要：すでに push したコミットには `git reset` を使わないこと。**  
->  
-> `git reset` は歴史を書き換えます。チームで共有しているブランチに push 済みのコミットを reset してしまうと、他の人のリポジトリと履歴がズレて大混乱になります。  
->  
+> ⚠️ **重要：すでに push したコミットには `git reset` を使わないこと。**
+>
+> `git reset` は歴史を書き換えます。チームで共有しているブランチに push 済みのコミットを reset してしまうと、他の人のリポジトリと履歴がズレて大混乱になります。
+>
 > push 済みのコミットを取り消すには、次のページで学ぶ `git revert` を使いましょう。
 
 ## Summary
@@ -213,27 +123,49 @@ nothing to commit, working tree clean
 
 練習用のリポジトリを作ります。
 
+<div class="code-input">
+
 ```bash
 mkdir reset-practice && cd reset-practice
 git init
 echo "最初のファイル" > file.txt
 git add file.txt
 git commit -m "最初のコミット"
+```
 
+</div>
+
+<div class="code-input">
+
+```bash
 echo "2回目の変更" >> file.txt
 git add file.txt
 git commit -m "2回目のコミット"
+```
 
+</div>
+
+<div class="code-input">
+
+```bash
 echo "3回目の変更" >> file.txt
 git add file.txt
 git commit -m "3回目のコミット"
 ```
 
+</div>
+
 現在の状態を確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-output">
 
 ```
 xxxxxxx 3回目のコミット
@@ -241,43 +173,136 @@ yyyyyyy 2回目のコミット
 zzzzzzz 最初のコミット
 ```
 
+</div>
+
 ---
 
 ### 演習1：`--soft` を試す
+
+<div class="code-input">
 
 ```bash
 git reset --soft HEAD~1
 ```
 
+</div>
+
 ログとステータスを確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
+```
+
+</div>
+
+<div class="code-output">
+
+```
+yyyyyyy 2回目のコミット
+zzzzzzz 最初のコミット
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
-「3回目のコミット」が消えて、変更がステージに残っていることを確認してください。  
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   file.txt
+```
+
+</div>
+
+「3回目のコミット」が消えて、変更がステージに残っていることを確認してください。
 確認できたら、新しいメッセージで再コミットしてみましょう：
+
+<div class="code-input">
 
 ```bash
 git commit -m "3回目（書き直し）"
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git log --oneline
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+xxxxxxx 3回目（書き直し）
+yyyyyyy 2回目のコミット
+zzzzzzz 最初のコミット
+```
+
+</div>
 
 ---
 
 ### 演習2：`--mixed` を試す
 
+<div class="code-input">
+
 ```bash
 git reset HEAD~1
 ```
 
+</div>
+
 ログとステータスを確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
+```
+
+</div>
+
+<div class="code-output">
+
+```
+yyyyyyy 2回目のコミット
+zzzzzzz 最初のコミット
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
+
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+        modified:   file.txt
+```
+
+</div>
 
 コミットが1つ減り、変更がステージから外れていることを確認してください。
 
@@ -287,33 +312,81 @@ git status
 
 > ⚠️ この操作は変更を消します。練習環境でのみ実行してください。
 
+<div class="code-input">
+
 ```bash
 git reset --hard HEAD~1
 ```
 
+</div>
+
 ログとステータスを確認：
+
+<div class="code-input">
 
 ```bash
 git log --oneline
+```
+
+</div>
+
+<div class="code-output">
+
+```
+zzzzzzz 最初のコミット
+```
+
+</div>
+
+<div class="code-input">
+
+```bash
 git status
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+</div>
+
 コミットが減り、ファイルも元の状態に戻っていることを確認してください：
+
+<div class="code-input">
 
 ```bash
 cat file.txt
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+最初のファイル
+```
+
+</div>
+
 ---
 
 ### Reset & Retry
 
-練習をやり直したい場合は、ディレクトリを削除して最初からやり直してください：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf reset-practice
 ```
+
+</div>
 
 そして「準備」の手順から再実行してください。
 
