@@ -13,38 +13,13 @@
 
 ### エイリアスを設定する
 
-`git config --global alias.<名前> <コマンド>` で設定する：
-
-```bash
-git config --global alias.st status
-```
-
-これで `git st` と打つだけで `git status` が実行できるようになる：
-
-```bash
-git st
-```
-
-```
-On branch main
-nothing to commit, working tree clean
-```
+`git config --global alias.<名前> <コマンド>` で設定する。例えば `git config --global alias.st status` を実行すると、`git st` と打つだけで `git status` が動くようになる。
 
 ---
 
 ### おすすめのエイリアスセット
 
-まとめて設定してしまおう：
-
-```bash
-git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.unstage 'reset HEAD --'
-git config --global alias.lg 'log --oneline --graph --all --decorate'
-```
-
-それぞれの意味：
+よく使われる定番エイリアスをまとめて設定しておくと便利だ：
 
 | エイリアス | 元のコマンド | 用途 |
 |---|---|---|
@@ -54,25 +29,13 @@ git config --global alias.lg 'log --oneline --graph --all --decorate'
 | `unstage` | `reset HEAD --` | ステージから取り消す |
 | `lg` | `log --oneline --graph --all --decorate` | ブランチグラフ付きログ |
 
-`lg` は特に便利だ。`--graph` オプション（[P1-025](../03-branching/08-exercise.md)で紹介）を毎回打たなくて済む：
-
-```bash
-git lg
-```
-
-```
-* f3c9a12 (HEAD -> main) feat: エイリアスの設定を追加
-* d8e7b45 fix: バグを修正
-| * a2f1c89 (feature) feat: 新機能を追加
-|/
-* e4b3d67 initial commit
-```
+`lg` は特に便利で、`--graph` オプション（[P1-025](../03-branching/08-exercise.md)で紹介）を毎回打たなくて済む。
 
 ---
 
 ### 設定を確認する
 
-エイリアスは `~/.gitconfig` に保存される。確認してみよう（gitconfig の読み方は[P1-009](../01-setup/08-exercise-verify-gitconfig.md)参照）：
+エイリアスは `~/.gitconfig` に保存される。`cat ~/.gitconfig` で確認してみよう（gitconfig の読み方は[P1-009](../01-setup/08-exercise-verify-gitconfig.md)参照）：
 
 ```bash
 cat ~/.gitconfig
@@ -97,33 +60,13 @@ cat ~/.gitconfig
 
 ### シェルコマンドをエイリアスにする
 
-`!` を先頭につけると、git コマンドではなくシェルコマンドとして実行できる：
-
-```bash
-git config --global alias.root 'rev-parse --show-toplevel'
-```
-
-```bash
-git root
-```
-
-```
-/home/user/myproject
-```
-
-これはリポジトリのルートディレクトリを表示するワンライナーだ。git 本体に関係ないコマンドでも組み合わせられる。
+`!` を先頭につけると、git コマンドではなくシェルコマンドとして実行できる。例えば `git config --global alias.root 'rev-parse --show-toplevel'` を設定すると、`git root` でリポジトリのルートディレクトリを表示できる。git 本体に関係ないコマンドでも組み合わせられる。
 
 ---
 
 ### エイリアスを削除したいとき
 
-設定を消すには `--unset` を使う：
-
-```bash
-git config --global --unset alias.st
-```
-
-または `~/.gitconfig` をエディタで直接編集して該当行を削除しても OK。
+設定を消すには `git config --global --unset alias.<名前>` を使う。または `~/.gitconfig` をエディタで直接編集して該当行を削除しても OK。
 
 ## Summary
 
@@ -137,6 +80,8 @@ git config --global --unset alias.st
 
 ### ステップ 1: 定番エイリアスをまとめて設定する
 
+<div class="code-input">
+
 ```bash
 git config --global alias.st status
 git config --global alias.co checkout
@@ -145,9 +90,13 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global alias.lg 'log --oneline --graph --all --decorate'
 ```
 
+</div>
+
 ### ステップ 2: 動作確認する
 
 適当なリポジトリで試してみよう：
+
+<div class="code-input">
 
 ```bash
 git st
@@ -155,17 +104,42 @@ git br
 git lg
 ```
 
+</div>
+
 それぞれ `git status`、`git branch`、`git log --oneline --graph --all --decorate` と同じ結果が表示されることを確認しよう。
 
 ### ステップ 3: gitconfig を確認する
+
+<div class="code-input">
 
 ```bash
 cat ~/.gitconfig
 ```
 
+</div>
+
+<div class="code-output">
+
+```
+[user]
+	name = Your Name
+	email = your.email@example.com
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	unstage = reset HEAD --
+	lg = log --oneline --graph --all --decorate
+```
+
+</div>
+
 `[alias]` セクションに設定が反映されていることを確認しよう。
 
 ### ステップ 4: unstage を試す
+
+<div class="code-input">
 
 ```bash
 mkdir alias-practice
@@ -176,22 +150,34 @@ git add file.txt
 git st
 ```
 
+</div>
+
+<div class="code-output">
+
 ```
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	new file:   file.txt
 ```
 
+</div>
+
+<div class="code-input">
+
 ```bash
 git unstage file.txt
 git st
 ```
 
+</div>
+
 ステージから取り消せていることを確認しよう。
 
 ### Reset & Retry
 
-エイリアスを削除したい場合：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 git config --global --unset alias.st
@@ -200,6 +186,8 @@ git config --global --unset alias.br
 git config --global --unset alias.unstage
 git config --global --unset alias.lg
 ```
+
+</div>
 
 その後ステップ1から再挑戦しよう。
 
