@@ -18,18 +18,12 @@ Gitはプログラムのソースコードを管理するツールで、世界�
 
 ---
 
-### 自分のOSを確認する
+### 環境を選んでインストールする
 
-まず、自分がどのOSを使っているか確認してください。
-
-| OS | 確認方法 |
-|---|---|
-| Windows | スタートメニュー → 設定 → システム → バージョン情報 |
-| macOS | Apple メニュー → このMacについて |
-| Linux / WSL | ターミナルで `uname -a` を実行 |
+自分の環境に合った手順を選んでください。
 
 ※ WSLは、Windows Subsystem for Linux の略で、Windows上でLinux環境を動かす仕組みです。
-WSLを使っている場合は、Linuxの手順でGitをインストールしてください。
+WSLを使っている場合は、「Ubuntu / Debian」の手順でインストールしてください。
 
 ---
 
@@ -44,9 +38,6 @@ WSLを使っている場合は、Linuxの手順でGitをインストールして
 4. インストールが完了したら、**Git Bash** または **コマンドプロンプト** を開く
 
 または、**winget**（Windows パッケージマネージャー）を使って `winget install --id Git.Git -e --source winget` を実行してもインストールできます。
-
-> **WSLを使っている場合**
-> Windows Subsystem for Linux (WSL) 環境では、後述の「Ubuntu / Debian」の手順を使ってください。
 
 ---
 
@@ -71,18 +62,7 @@ Homebrewが入ったら、`brew install git` を実行してインストール�
 
 ### インストールを確認する
 
-どのOSでも、インストール後は `git --version` でバージョンを確認できます。
-
-```bash
-git --version
-```
-
-```
-git version 2.43.0
-```
-
-このような出力が表示されればOKです（バージョン番号は多少違っても大丈夫）。
-
+インストール後は `git --version` でバージョンが表示されればOKです（バージョン番号は多少違っても大丈夫）。
 何も表示されなかったり「command not found」と出た場合は、インストールが完了していません。
 もう一度手順を確認してみましょう。
 
