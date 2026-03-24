@@ -5,15 +5,15 @@
 
 ## What & Why
 
-`git reset --hard` をやりすぎてコミットが消えた！　と焦ったことはありませんか？  
-実はGitは、あなたが思うよりずっと記憶力がいいんです。  
+`git reset --hard` をやりすぎてコミットが消えた！　と焦ったことはありませんか？
+実はGitは、あなたが思うよりずっと記憶力がいいんです。
 `git reflog` を使えば、「消えた」と思っていたコミットを約90日間は取り戻せます。
 
 ## Content
 
 ### シナリオ
 
-あなたはフィーチャーブランチで作業中。  
+あなたはフィーチャーブランチで作業中。
 気づいたら `git reset --hard HEAD~2` を実行してしまい、2つ分のコミットが消えてしまいました。
 
 ```
@@ -26,7 +26,7 @@
 
 ### reflog ってなに？
 
-Git は `HEAD` が移動するたびに、その記録をローカルに保存しています。  
+Git は `HEAD` が移動するたびに、その記録をローカルに保存しています。
 `git reset`、`git checkout`、`git commit` など、なにかするたびにメモされるイメージです。
 
 この記録を見るコマンドが `git reflog` です。
@@ -60,48 +60,30 @@ d7e1b04 HEAD@{1}: commit: スタイルを修正
 
 **方法1：その場で戻す（ブランチごと）**
 
-```bash
-git reset --hard HEAD@{2}
-```
-
-これで `HEAD@{2}` の状態、つまり `git reset --hard` をする前の状態に戻れます。
-
-```bash
-git log --oneline
-```
-
-```
-8c2a931 ログイン機能を追加
-d7e1b04 スタイルを修正   ← 消えていたコミットが戻った！
-3b0f714 initial commit
-```
+`git reset --hard HEAD@{2}` を実行すると、`HEAD@{2}` の状態——つまり `git reset --hard` をする前の状態——に戻れます。
 
 **方法2：別ブランチに「救出」する**
 
 今いるブランチを変えたくない場合は、新しいブランチとして取り出せます。
 
-```bash
-git checkout HEAD@{2} -b recovery-branch
-```
-
-これで `recovery-branch` という新しいブランチが作られ、そこに「消えた」コミットが入った状態になります。  
+`git checkout HEAD@{2} -b recovery-branch` を実行すると、`recovery-branch` という新しいブランチが作られ、そこに「消えた」コミットが入った状態になります。
 落ち着いてから中身を確認して、必要なら元のブランチにマージできます。
 
 ---
 
 ### reflog の有効期限
 
-reflog の記録はずっと残るわけではありません。  
+reflog の記録はずっと残るわけではありません。
 デフォルトでは **約90日** で自動的に消えます（`git reflog expire` というコマンドで管理されています）。
 
-90日あれば、たいていのミスは取り戻せます。  
+90日あれば、たいていのミスは取り戻せます。
 でも「絶対消したくない大事な変更」は、ちゃんとブランチやタグに残しておくのが安心です。
 
 ---
 
 ### まとめ：Gitはあなたの味方
 
-`git reset --hard` でコミットを消してしまっても、reflog があればたいていの場合は助かります。  
+`git reset --hard` でコミットを消してしまっても、reflog があればたいていの場合は助かります。
 「やらかした！」と気づいたら、まず `git reflog` を打ってみましょう。
 
 ## Summary
@@ -118,20 +100,29 @@ reflog の記録はずっと残るわけではありません。
 
 **準備**
 
+<div class="code-input">
+
 ```bash
-mkdir reflog-practice
-cd reflog-practice
+mkdir reflog-practice && cd reflog-practice
 git init
 echo "first" > memo.txt && git add memo.txt && git commit -m "first commit"
 echo "second" >> memo.txt && git add memo.txt && git commit -m "second commit"
 echo "third" >> memo.txt && git add memo.txt && git commit -m "third commit"
 ```
 
+</div>
+
 1. 現在のコミット履歴を確認する。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline
    ```
+
+   </div>
+
+   <div class="code-output">
 
    ```
    xxxxxxx third commit
@@ -139,58 +130,126 @@ echo "third" >> memo.txt && git add memo.txt && git commit -m "third commit"
    xxxxxxx first commit
    ```
 
+   </div>
+
 2. わざと2つ前に戻す（ミスを再現）。
+
+   <div class="code-input">
 
    ```bash
    git reset --hard HEAD~2
    ```
 
+   </div>
+
 3. `git log` で確認する。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline
    ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   xxxxxxx first commit
+   ```
+
+   </div>
 
    `second commit` と `third commit` が消えているはず。
 
 4. `git reflog` で記録を確認する。
 
+   <div class="code-input">
+
    ```bash
    git reflog
    ```
+
+   </div>
+
+   <div class="code-output">
+
+   ```
+   xxxxxxx HEAD@{0}: reset: moving to HEAD~2
+   xxxxxxx HEAD@{1}: commit: third commit
+   xxxxxxx HEAD@{2}: commit: second commit
+   xxxxxxx HEAD@{3}: commit: first commit
+   ```
+
+   </div>
 
    `HEAD@{1}` や `HEAD@{2}` に消えたコミットが見えるはず。
 
 5. コミットを取り戻す。
 
+   <div class="code-input">
+
    ```bash
    git reset --hard HEAD@{1}
    ```
 
+   </div>
+
 6. `git log` で確認する。
+
+   <div class="code-input">
 
    ```bash
    git log --oneline
    ```
 
+   </div>
+
+   <div class="code-output">
+
+   ```
+   xxxxxxx third commit
+   xxxxxxx second commit
+   xxxxxxx first commit
+   ```
+
+   </div>
+
    コミットが戻っていれば成功！
 
 7. `git status` も確認しておこう。
+
+   <div class="code-input">
 
    ```bash
    git status
    ```
 
+   </div>
+
+   <div class="code-output">
+
+   ```
+   On branch main
+   nothing to commit, working tree clean
+   ```
+
+   </div>
+
 ---
 
 ### Reset & Retry
 
-練習用のリポジトリを削除してやり直すには：
+⚠️ うまくいかなかったときだけ実行してください。
+
+<div class="code-input">
 
 ```bash
 cd ..
 rm -rf reflog-practice
 ```
+
+</div>
 
 もう一度「準備」の手順から始めよう。
 
