@@ -115,18 +115,26 @@ origin  git@github.com:あなたのユーザー名/リポジトリ名.git (push)
 
 Part 1で作ったローカルリポジトリがあれば、その中で次のコマンドを実行してみよう：
 
+<div class="code-input">
+
 ```bash
 git remote -v
 ```
 
-まだGitHubと連携していないので、何も表示されないか、空行が返るはず。  
+</div>
+
+まだGitHubと連携していないので、何も表示されないか、空行が返るはず。
 これが「リモートが登録されていない状態」。
+
+<div class="code-input">
 
 ```bash
 git log --oneline
 ```
 
-ローカルのコミット履歴を確認しておこう。  
+</div>
+
+ローカルのコミット履歴を確認しておこう。
 GitHubにpushしたとき、この履歴がそのままリモートにも現れる。
 
 ### Reset & Retry
