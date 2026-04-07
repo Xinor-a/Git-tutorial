@@ -1,0 +1,16 @@
+body {
+    width: 100%;
+    max-width: none;
+    margin: 10px;
+    padding: 0;
+}
+
+/* for inline code */
+code {
+    background-color: #282c34; /* dark gray */
+    color: #55ff55 !important; /* bright green */
+    font-family: "Courier New", Courier, monospace; /* monospace font */
+    padding: 2px 4px; /* inner padding */
+    border-radius: 4px; /* rounded corners */
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2); /* inner shadow */
+}
