@@ -4,46 +4,45 @@
 
 ## What & Why
 
-Gitはコミットメッセージを書くとき、テキストエディタを自動で開きます。
-デフォルトのエディタは `vim` というツールで、初心者にはちょっと難しいです。
+Gitはコミットメッセージを書くとき、テキストエディタを自動で開きます。  
+デフォルトのエディタは `vim` や `nano` というツールで、初心者にはちょっと難しいです。  
 ここでは使い慣れたVSCodeをGitのエディタとして設定します。
-
-## Content
-
-### シナリオ
-
-前のページで名前とメールアドレスを設定しました。
-次は「コミットメッセージを書くとき、どのエディタを使うか」を設定します。
-設定しておかないと、Gitが `vim` を開いてしまい、「終了できない！」と焦ることになります。
 
 ---
 
+## Actions
+
 ### VSCodeのコマンドを使えるようにする
 
-まず、ターミナルから `code` コマンドでVSCodeが開けるか確認します。
+まず、ターミナルから `code` コマンドでVSCodeが開けるか確認します。  
+下記のコマンドで、VSCodeのバージョンが表示されればOKです。
 
 ```bash
 code --version
 ```
 
-こんな感じで表示されれば大丈夫です。
+こんな感じで表示されます。
 
-```
+```plaintext
 1.89.0
 ...
 ```
 
-何も表示されない場合は、VSCodeを開いて `Ctrl+Shift+P`（MacはCmd+Shift+P）を押し、
+エラーまたは何も表示されない場合は、VSCodeを開いて `Ctrl+Shift+P`（MacはCmd+Shift+P）を押し、
 `Shell Command: Install 'code' command in PATH` を実行してください。
 
 ---
 
 ### エディタを設定する
 
-VSCodeをGitのデフォルトエディタに設定するには `git config --global core.editor "code --wait"` を実行します。
+次のコマンドで、VSCodeをGitのデフォルトエディタに設定します。
 
-`--wait` というオプションは「VSCodeを閉じるまで待つ」という意味です。
-これがないと、Gitがエディタの起動を待たずに処理を続けてしまいます。
+```bash
+git config --global core.editor "code --wait"
+```
+
+`--wait` というオプションは「VSCodeを閉じるまで待つ」という意味です。  
+VSCodeにはこれがないと、Gitがエディタの起動を待たずに処理を続けてしまいます。
 
 ---
 
@@ -53,11 +52,15 @@ VSCodeをGitのデフォルトエディタに設定するには `git config --gl
 git config --global core.editor
 ```
 
-```
+`code --wait` と表示されることを確認してください。
+
+```plaintext
 code --wait
 ```
 
-`cat ~/.gitconfig` でも確認できます。
+表示されない場合は、[Reset & Retry](#reset--retry)を参考に、もう一度設定してみましょう。
+
+ちなみに、`cat ~/.gitconfig` でも確認できます。
 
 ```bash
 cat ~/.gitconfig
@@ -65,10 +68,10 @@ cat ~/.gitconfig
 
 ```
 [user]
-	name = 田中 太郎
-	email = taro@example.com
+  name = あなたのユーザー名
+  email = あなたのメールアドレス
 [core]
-	editor = code --wait
+  editor = code --wait
 ```
 
 `[core]` セクションに `editor = code --wait` が追加されています。
@@ -85,87 +88,14 @@ cat ~/.gitconfig
 
 これでvimを終了できます。覚えておくと安心です。
 
+---
+
 ## Summary
 
 - `git config --global core.editor "code --wait"` でVSCodeをエディタに設定する。
-- `--wait` オプションは必須。これがないとGitとVSCodeがうまく連携しない。
+- VSCodeには `--wait` オプションが必須。これがないとGitとVSCodeがうまく連携しない。
 - `cat ~/.gitconfig` で設定を確認できる。
 - vimが開いてしまったら `:q!` → `Enter` で脱出できる。
-
-## Exercises
-
-### 演習1: エディタを設定してみよう
-
-1. VSCodeの `code` コマンドが使えるか確認する。
-
-<div class="code-input">
-
-```bash
-code --version
-```
-
-</div>
-
-<div class="code-output">
-
-```
-1.89.0
-...
-```
-
-</div>
-
-2. エディタを設定する。
-
-<div class="code-input">
-
-```bash
-git config --global core.editor "code --wait"
-```
-
-</div>
-
-3. 設定を確認する。
-
-<div class="code-input">
-
-```bash
-git config --global core.editor
-```
-
-</div>
-
-<div class="code-output">
-
-```
-code --wait
-```
-
-</div>
-
-`code --wait` と表示されることを確認しよう。
-
-4. `cat ~/.gitconfig` で全体の設定を見てみよう。
-
-<div class="code-input">
-
-```bash
-cat ~/.gitconfig
-```
-
-</div>
-
-<div class="code-output">
-
-```
-[user]
-	name = 田中 太郎
-	email = taro@example.com
-[core]
-	editor = code --wait
-```
-
-</div>
 
 ---
 

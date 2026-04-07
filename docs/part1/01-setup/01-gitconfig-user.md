@@ -2,30 +2,42 @@
 
 [< Previous: Gitをインストールしよう](../../part0/02-install/01-install-git.md) | [Back to Index](../../../README.md) | [Next: エディタの設定 >](02-gitconfig-editor.md)
 
+## シナリオ
+
+あなたはGitをインストールしたばかり。  
+友達に「最初に名前とメールアドレスを登録しておかないとだめだよ」と言われました。  
+さっそくターミナルを開いてやってみましょう。
+
 ## What & Why
 
-Gitでコミット（変更の記録）を作るとき、「誰が作ったか」を一緒に記録します。
-そのために、最初に自分の名前とメールアドレスをGitに教えておく必要があります。
+Gitでコミット（変更の記録）を作るとき、「誰が作ったか」を一緒に記録します。  
+そのために、最初に自分の名前とメールアドレスをGitに教えておく必要があります。  
 この設定を済ませないと、コミットができません。
-
-## Content
-
-### シナリオ
-
-あなたはGitをインストールしたばかり。
-友達に「最初に名前とメールアドレスを登録しておかないとだめだよ」と言われました。
-さっそくターミナルを開いてやってみましょう。
 
 ---
 
+## Actions
+
 ### ユーザー名とメールアドレスを設定する
 
-`git config --global user.name "あなたの名前"` でユーザー名を設定します。
-`--global` というオプションは「このパソコン全体に設定する」という意味です。
-一度やっておけば、どのプロジェクトでも同じ名前が使われます。
+まずは、あなたのユーザー名を設定しましょう。  
+`name` の部分を、設定したいユーザ名に置き換えて、ターミナルに以下のコマンドを実行してください。
 
-同様に `git config --global user.email "あなた@example.com"` でメールアドレスを設定します。
-GitHubを使う場合は、GitHubに登録したメールアドレスと同じにしておくと便利です。
+```bash
+git config --global user.name "name"
+```
+
+`--global` というオプションは「このパソコン全体に設定する」という意味です。  
+つまり、一度やっておけば、このパソコン上ではいつでも同じユーザー名が適用されます。
+
+同様に、次のコマンドであなたのメールアドレスも設定してみましょう。  
+`name@example.com` の部分を、設定したいメールアドレスに置き換えてください。  
+すでにGitHubを使っている場合は、GitHubに登録したメールアドレスと同じにしておくと便利です。  
+分からなければ、適当なメールアドレスを設定しても大丈夫です。
+
+```bash
+git config --global user.email "name@example.com"
+```
 
 ---
 
@@ -37,114 +49,51 @@ GitHubを使う場合は、GitHubに登録したメールアドレスと同じ�
 git config --global user.name
 ```
 
-```
-田中 太郎
-```
+あなたのユーザー名が表示されましたか？
+
+次に、メールアドレスも確認してみましょう。
 
 ```bash
 git config --global user.email
 ```
 
-```
-taro@example.com
-```
+メールアドレスも表示されましたか？
 
-名前とメールアドレスが表示されれば成功です！
+うまく表示されていない場合は、[Reset & Retry](#reset--retry) を参考に、もう一度設定してみてください。
 
 ---
 
 ### 設定ファイルの中身を見てみよう
 
-Gitの設定はファイルに保存されています。
+Gitの設定はファイルに保存されています。  
 `cat ~/.gitconfig` で中身を確認できます。
 
 ```bash
 cat ~/.gitconfig
 ```
 
-```
+```plaintext
 [user]
-	name = 田中 太郎
-	email = taro@example.com
+  name = あなたのユーザー名
+  email = あなたのメールアドレス
 ```
 
 `~` はホームディレクトリ（自分の部屋みたいな場所）を表します。
-`.gitconfig` というファイルに、さっき設定した内容が書かれているのがわかります。
+
+- Windowsの場合は `C:\Users\あなたのユーザー名\` を指します。
+- MacやLinuxの場合は `/home/あなたのユーザー名/` または `/Users/あなたのユーザー名/` を指します。
+
+`~/.gitconfig` というのは、ホームディレクトリの中にある `.gitconfig` というファイルのことで、ここにさっき設定した内容が書かれているのがわかります。
+
+---
 
 ## Summary
 
-- `git config --global user.name "名前"` で名前を設定する。
-- `git config --global user.email "メールアドレス"` でメールアドレスを設定する。
-- `--global` をつけると、パソコン全体で使われる設定になる。
-- 設定は `~/.gitconfig` というファイルに保存される。
-- `cat ~/.gitconfig` で現在の設定を確認できる。
-
-## Exercises
-
-### 演習1: 自分の情報を設定してみよう
-
-1. ターミナルを開く。
-2. 自分の名前を設定する。
-
-<div class="code-input">
-
-```bash
-git config --global user.name "あなたの名前"
-```
-
-</div>
-
-3. 自分のメールアドレスを設定する。
-
-<div class="code-input">
-
-```bash
-git config --global user.email "あなた@example.com"
-```
-
-</div>
-
-4. 設定を確認する。
-
-<div class="code-input">
-
-```bash
-git config --global user.name
-git config --global user.email
-```
-
-</div>
-
-<div class="code-output">
-
-```
-田中 太郎
-taro@example.com
-```
-
-</div>
-
-5. ファイルの中身を見る。
-
-<div class="code-input">
-
-```bash
-cat ~/.gitconfig
-```
-
-</div>
-
-<div class="code-output">
-
-```
-[user]
-	name = 田中 太郎
-	email = taro@example.com
-```
-
-</div>
-
-`[user]` セクションに名前とメールアドレスが表示されることを確認しよう。
+- `git config --global user.name "name"` で名前を設定する。
+- `git config --global user.email "email@example.com"` でメールアドレスを設定する。
+- `--global` オプションは、この設定をパソコン全体で使うことを意味する。
+- パソコン全体の設定は `~/.gitconfig` というファイルに保存される。
+  - `cat ~/.gitconfig` で現在の設定を確認できる。
 
 ---
 

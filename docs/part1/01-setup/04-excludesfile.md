@@ -4,26 +4,19 @@
 
 ## What & Why
 
-`.gitignore` はGitに「このファイルは管理しなくていい」と伝えるためのファイルです。
-プロジェクトごとに `.gitignore` を作ることもありますが、
-どのプロジェクトでも共通して無視したいファイル（OSやエディタが自動生成するファイルなど）は
-グローバルの `.gitignore` にまとめて書いておくと便利です。
-
-## Content
-
-### シナリオ
-
-Gitで管理したくないファイルはプロジェクトごとに `.gitignore` で指定できますが、
-MacなどのOSが自動生成する `.DS_Store` というファイルや、
-Windowsが作る `Thumbs.db` は、どのプロジェクトでも毎回 `.gitignore` に書く必要があります。
-
-グローバル `.gitignore` を使えば、一度設定するだけで全プロジェクトに適用されます。
+`.gitignore` はGitに「このファイルは管理しなくていい」と伝えるためのファイルです。  
+プロジェクトごとに `.gitignore` を作ることもありますが、どのプロジェクトでも共通して無視したいファイル（OSやエディタが自動生成するファイルなど）はグローバルの `~/.gitignore` にまとめて書いておくと便利です。
 
 ---
 
 ### グローバル .gitignore ファイルを作る
 
-`touch ~/.gitignore_global` でホームディレクトリにグローバル `.gitignore` ファイルを作ります。
+グローバルな `.gitignore` ファイルは、ホームディレクトリに作るのが一般的です。  
+以下のコマンドで、ホームディレクトリにグローバルな `.gitignore_global` ファイルを作ります。
+
+```bash
+touch ~/.gitignore_global
+```
 
 次に、`code ~/.gitignore_global` でVSCodeで開いて、以下の内容を貼り付けて保存してください。
 
@@ -55,35 +48,48 @@ Desktop.ini
 
 ### Gitにグローバル .gitignore を教える
 
-ファイルを作っただけでは使われません。
-`git config --global core.excludesfile ~/.gitignore_global` でGitにこのファイルを使うよう設定します。
+ファイルを作っただけでは使われません。  
+次のコマンドで、Gitにこのファイルをグローバルな `.gitignore` として使うよう設定します。
+
+```bash
+git config --global core.excludesfile ~/.gitignore_global
+```
 
 ---
 
 ### 設定を確認する
 
+設定が正しくできたか、次のコマンドで確認してみましょう。
+
 ```bash
 git config --global core.excludesfile
 ```
 
-```
+グローバルな `.gitignore` のパスが表示されますか？  
+(パスはOSによって違いますが、ホームディレクトリの中にある `.gitignore_global` というファイルを指していればOKです)
+
+```plaintext
 /home/yourname/.gitignore_global
 ```
 
 （Windowsの場合は `C:/Users/yourname/.gitignore_global` のような表示になります）
 
+うまくいかなかった場合は、[Reset & Retry](#reset--retry)を参考に、もう一度設定してみましょう。
+
+`~/.gitconfig` の中身も確認してみましょう。
+
 ```bash
 cat ~/.gitconfig
 ```
 
-```
+```plaintext
 [user]
-	name = 田中 太郎
-	email = taro@example.com
+  name = あなたのユーザー名
+  email = あなたのメールアドレス
 [core]
-	editor = code --wait
-	autocrlf = true
-	excludesfile = /home/yourname/.gitignore_global
+  editor = code --wait
+  autocrlf = true
+  excludesfile = /home/yourname/.gitignore_global
 ```
 
 ---
@@ -105,86 +111,6 @@ cat ~/.gitconfig
 - `touch ~/.gitignore_global` でファイルを作り、`core.excludesfile` で登録する。
 - OSが作る `.DS_Store` や `Thumbs.db` などを書いておくと便利。
 - プロジェクトの `.gitignore` との役割分担を意識しよう。
-
-## Exercises
-
-### 演習1: グローバル .gitignore を設定しよう
-
-1. グローバル `.gitignore` ファイルを作る。
-
-<div class="code-input">
-
-```bash
-touch ~/.gitignore_global
-```
-
-</div>
-
-2. VSCodeで開く。
-
-<div class="code-input">
-
-```bash
-code ~/.gitignore_global
-```
-
-</div>
-
-3. 自分のOSに合わせた内容を書いて保存する（上の例を参考に）。
-
-4. Gitに登録する。
-
-<div class="code-input">
-
-```bash
-git config --global core.excludesfile ~/.gitignore_global
-```
-
-</div>
-
-5. 設定を確認する。
-
-<div class="code-input">
-
-```bash
-git config --global core.excludesfile
-```
-
-</div>
-
-<div class="code-output">
-
-```
-/home/yourname/.gitignore_global
-```
-
-</div>
-
-6. `cat ~/.gitconfig` で全体を確認しよう。
-
-<div class="code-input">
-
-```bash
-cat ~/.gitconfig
-```
-
-</div>
-
-<div class="code-output">
-
-```
-[user]
-	name = 田中 太郎
-	email = taro@example.com
-[core]
-	editor = code --wait
-	autocrlf = true
-	excludesfile = /home/yourname/.gitignore_global
-```
-
-</div>
-
-`[core]` セクションに `excludesfile` が追加されていることを確認しよう。
 
 ---
 

@@ -1,70 +1,113 @@
-# Gitをインストールしよう
+# 0.2.1 Gitをインストールしよう
 
 [< Previous: このチュートリアルについて](../01-intro/01-about.md) | [Back to Index](../../../README.md) | [Next: ユーザー名とメールアドレスの設定 >](../../part1/01-setup/01-gitconfig-user.md)
 
-## What & Why
+## 📖 シナリオ
 
-このチュートリアルを進めるには、まずGitをパソコンに入れる必要があります。
-Gitはプログラムのソースコードを管理するツールで、世界中のエンジニアが使っています。
+あなたはプログラミングを勉強中です。  
+プログラミングに詳しい友達が「Gitを使うと自分の作ったプログラムを管理できて便利だよ！」と教えてくれて興味を持ちました。  
+でも、自分のパソコンにはまだGitが入っていません。  
+「どうやって入れるんだろう？」
+
+まずは、Gitをパソコンにインストールするところから始めましょう！
+
+## 🎯 What & Why
+
+このチュートリアルを進めるにあたって、何をするにもまずはGitをパソコンに入れる必要があります。  
+Gitはプログラムのソースコードを管理するツールで、世界中のエンジニアが使っています。  
 インストールは一度やってしまえば終わり — さっと済ませて、本題に進みましょう！
 
-## Content
-
-### シナリオ
-
-あなたはGitを使ってみようと思い立ちました。
-でも、まだパソコンにGitが入っていません。
-「どうやって入れるんだろう？」——環境ごとに手順を確認していきましょう。
-
 ---
+
+## 🎬 Actions
 
 ### 環境を選んでインストールする
 
-自分の環境に合った手順を選んでください。
+まずは、自分の環境に合った手順を選んでください。
 
-※ WSLは、Windows Subsystem for Linux の略で、Windows上でLinux環境を動かす仕組みです。
-WSLを使っている場合は、「Ubuntu / Debian」の手順でインストールしてください。
+あなたのOSはどれですか？
+
+- [Windowsの場合](#windows-の場合)
+  - [WSLの場合](#linux--wsl-の場合)
+- [macOSの場合](#macos-の場合)
+- [Linuxの場合](#linux--wsl-の場合)
+
+※ WSL (Windows Subsystem for Linux) は、Windows上でLinux環境を動かす仕組みです。
 
 ---
 
-### Windows の場合
+#### Windows の場合
 
-**Git for Windows** をインストールするのが一番かんたんです。
+##### GUIでインストールする方法
+
+**Git for Windows** をインストールするのが一番かんたんです。  
+次の手順で、インストールを実施しましょう。
 
 1. [https://gitforwindows.org/](https://gitforwindows.org/) にアクセスする
 2. 「Download」ボタンをクリックしてインストーラーをダウンロードする
 3. インストーラーを起動し、基本的にそのまま「Next」を押し続けてOK
    - エディタの選択画面では「Use Visual Studio Code as Git's default editor」を選ぶと便利です
-4. インストールが完了したら、**Git Bash** または **コマンドプロンプト** を開く
+4. 完了したら、インストーラを終了する
 
-または、**winget**（Windows パッケージマネージャー）を使って `winget install --id Git.Git -e --source winget` を実行してもインストールできます。
+##### コマンドでインストールする方法
 
----
+**winget**（Windows パッケージマネージャー）を使って、powershellから次のコマンドでインストールできます。
 
-### macOS の場合
+<code style="background-color: #f8d7da; font-family: monospace; margin: 10px; padding: 10px; width: 100%; line-height: 60px;">
+winget install --id Git.Git -e --source winget
+</code>
 
-**Homebrew** を使うのがおすすめです。
-Homebrew が入っていない場合は [https://brew.sh/](https://brew.sh/) からインストールできます。
-
-Homebrewが入ったら、`brew install git` を実行してインストールします。
-
-または、Xcode のコマンドラインツールに含まれるGitを使う方法もあります。
-`xcode-select --install` を実行するとダイアログが表示されるので「インストール」をクリックしてください。
+インストールできたら、ターミナルを開いて、[インストールを確認する](#インストールを確認する)へ進みましょう。
 
 ---
 
-### Ubuntu / Debian（Linux・WSL）の場合
+#### macOS の場合
 
-`sudo apt update` を実行してパッケージ情報を更新してから、`sudo apt install git` でインストールします。
-パスワードを求められたらログインパスワードを入力してください。
+**Homebrew** を使ってGitをインストールするのがおすすめです。
+
+1. Homebrew が入っていない場合は [公式インストールページ](https://brew.sh/) からインストールできます。
+2. Homebrewが入ったら、 ターミナルを開き、次のコマンドを実行してインストールします。
+
+<code style="background-color: #f8d7da; font-family: monospace; margin: 10px; padding: 10px; width: 100%; line-height: 60px;">
+brew install git
+</code>
+
+> または、Xcode のコマンドラインツールに含まれるGitを使う方法もあります。
+> `xcode-select --install` を実行するとダイアログが表示されるので「インストール」をクリックしてください。
+
+インストールできたら、[インストールを確認する](#インストールを確認する)へ進みましょう。
+
+---
+
+#### Linux / WSL の場合
+
+下記コマンドを実行し、Gitをインストールします。
+
+1. ターミナルを開き、apt(Advanced Package Tool)のパッケージリストを更新する
+
+   <code style="background-color: #f8d7da; font-family: monospace; margin: 10px; padding: 10px; width: 100%; line-height: 60px;">
+   sudo apt update
+   </code>
+
+2. Gitをインストールする
+
+   <code style="background-color: #f8d7da; font-family: monospace; margin: 10px; padding: 10px; width: 100%; line-height: 60px;">
+   sudo apt install git
+   </code>
+
+3. パスワードを求められたらログインパスワードを入力してください
+
+インストールできたら、[インストールを確認する](#インストールを確認する)へ進みましょう。
 
 ---
 
 ### インストールを確認する
 
-インストール後は `git --version` でバージョンが表示されればOKです（バージョン番号は多少違っても大丈夫）。
-何も表示されなかったり「command not found」と出た場合は、インストールが完了していません。
+インストール後は <code style="background-color: #fff; font-family: monospace; margin: 10px; padding: 10px; width: 100%; line-height: 60px;">git --version</code> でバージョンが表示されればOKです（バージョン番号は多少違っても大丈夫）。  
+何も表示されなかったり「command not found」などと出た場合は、インストールが完了していません。  
 もう一度手順を確認してみましょう。
+
+---
 
 ## Summary
 
@@ -72,41 +115,9 @@ Homebrewが入ったら、`brew install git` を実行してインストール�
 - `git --version` でインストールを確認できる
 - バージョンが表示されればOK — 次のステップへ進もう！
 
-## Exercises
+---
 
-### 手順
-
-1. 自分のOSに合った方法でGitをインストールする
-2. ターミナル（Git Bash / Terminal / コンソール）を開く
-3. 以下のコマンドを実行して、バージョンが表示されることを確認する
-
-<div class="code-input">
-
-```bash
-git --version
-```
-
-</div>
-
-<div class="code-output">
-
-```
-git version 2.43.0
-```
-
-</div>
-
-4. 以下のコマンドも試してみよう。ヘルプ画面が表示されればGitは正常に動いています。
-
-<div class="code-input">
-
-```bash
-git --help
-```
-
-</div>
-
-### Reset & Retry
+## Reset & Retry
 
 ⚠️ うまくいかなかったときだけ実行してください。
 

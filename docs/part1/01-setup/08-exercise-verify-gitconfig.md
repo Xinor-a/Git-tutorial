@@ -2,23 +2,22 @@
 
 [< Previous: safe.directory の設定](07-safe-directory.md) | [Back to Index](../../../README.md) | [Next: Gitって何？ >](../02-basics/01-what-is-git.md)
 
-## What & Why
-
-ここまでのページで、Gitを使うための基本設定をすべて行いました。
-このページでは `cat ~/.gitconfig` と `git config --list` を使って、
-設定が正しく揃っているかを確認します。
-
-## Content
-
-### シナリオ
+## シナリオ
 
 「よし、全部設定した！」と思っても、どこかで入力ミスがあったり、
 コマンドを飛ばしてしまったりすることはよくあります。
 最後にまとめて確認しておきましょう。
 
+## What & Why
+
+ここまでのページで、Gitを使うための基本設定をすべて行いました。  
+このページでは `cat ~/.gitconfig` と `git config --list` を使って、設定が正しく揃っているかを確認します。
+
 ---
 
 ### cat ~/.gitconfig で設定ファイルを見る
+
+下記のコマンドを実行して、Gitの設定ファイルの内容を表示してみましょう。
 
 ```bash
 cat ~/.gitconfig
@@ -28,20 +27,20 @@ cat ~/.gitconfig
 
 ```
 [user]
-	name = 田中 太郎
-	email = taro@example.com
+  name = あなたのユーザー名
+  email = あなたのメールアドレス
 [core]
-	editor = code --wait
-	autocrlf = true
-	excludesfile = /home/yourname/.gitignore_global
+  editor = code --wait
+  autocrlf = true
+  excludesfile = /home/yourname/.gitignore_global
 [pull]
-	rebase = false
+  rebase = false
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [color]
-	ui = auto
+  ui = auto
 [safe]
-	directory = *
+  directory = *
 ```
 
 > **WSLを使っていない人へ**: `[safe]` セクションがなくても問題ありません。
@@ -58,9 +57,9 @@ cat ~/.gitconfig
 git config --list
 ```
 
-```
-user.name=田中 太郎
-user.email=taro@example.com
+```plaintext
+user.name=あなたのユーザー名
+user.email=あなたのメールアドレス
 core.editor=code --wait
 core.autocrlf=true
 core.excludesfile=/home/yourname/.gitignore_global
@@ -101,88 +100,14 @@ git config --global user.name
 git config --global core.editor
 ```
 
+---
+
 ## Summary
 
 - `cat ~/.gitconfig` でGitの設定ファイルをまるごと確認できる。
 - `git config --list` でキーと値をフラットな一覧で確認できる。
 - チェックリストを使って、抜けている設定がないか確認しよう。
 - 設定が揃ったら、いよいよGitの使い方を学んでいく準備完了！
-
-## Exercises
-
-### 演習1: 全設定を確認しよう
-
-1. 設定ファイルの内容を表示する。
-
-<div class="code-input">
-
-```bash
-cat ~/.gitconfig
-```
-
-</div>
-
-<div class="code-output">
-
-```
-[user]
-	name = 田中 太郎
-	email = taro@example.com
-[core]
-	editor = code --wait
-	autocrlf = true
-	excludesfile = /home/yourname/.gitignore_global
-[pull]
-	rebase = false
-[init]
-	defaultBranch = main
-[color]
-	ui = auto
-[safe]
-	directory = *
-```
-
-</div>
-
-2. 一覧形式でも確認する。
-
-<div class="code-input">
-
-```bash
-git config --list
-```
-
-</div>
-
-<div class="code-output">
-
-```
-user.name=田中 太郎
-user.email=taro@example.com
-core.editor=code --wait
-core.autocrlf=true
-core.excludesfile=/home/yourname/.gitignore_global
-pull.rebase=false
-init.defaultbranch=main
-color.ui=auto
-safe.directory=*
-```
-
-</div>
-
-3. 上のチェックリストを参考に、すべての項目が揃っているか確認する。
-
-4. 不足している項目があれば、対応するページに戻って設定しよう。
-
-   | 設定 | 参照ページ |
-   |---|---|
-   | `user.name` / `user.email` | [ユーザー名とメールアドレスを設定しよう](01-gitconfig-user.md) |
-   | `core.editor` | [エディタを設定しよう](02-gitconfig-editor.md) |
-   | `core.autocrlf` | [改行コードの設定](03-autocrlf.md) |
-   | `core.excludesfile` | [グローバル .gitignore を設定しよう](04-excludesfile.md) |
-   | `pull.rebase` / `init.defaultBranch` | [pull.rebase と init.defaultBranch の設定](05-pull-rebase-defaultbranch.md) |
-   | `color.ui` | [ターミナルの色を設定しよう](06-color-ui.md) |
-   | `safe.directory` | [safe.directory の設定](07-safe-directory.md) |
 
 ---
 
