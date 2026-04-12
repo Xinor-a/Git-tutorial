@@ -1,5 +1,4 @@
 {
-  "markdown.styles": [
-    "docs/stylesheets/extra.css"
-  ]
+    "markdown.styles": ["docs/stylesheets/extra.css"],
+    "markdown-pdf.type": ["html"]
 }
